@@ -239,7 +239,7 @@ fun TipsAndSupportPage(
                         }
                     }
                 }
-                item {
+                /*item {
                     Spacer(modifier = Modifier.height(48.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -299,7 +299,7 @@ fun TipsAndSupportPage(
                             })
                     }
                     Spacer(modifier = Modifier.height(48.dp))
-                }
+                }*/
             }
         }
     )

@@ -104,7 +104,7 @@
     <string name="tips_and_support">Aholkuak eta babesa</string>
     <string name="tips_and_support_desc">Honi buruz, kode irekiko lizentziak</string>
     <string name="welcome">Ongi etorri</string>
-    <string name="tos_tips">Mesedez irakurri eta onartu Read You-ren zerbitzu-baldintzak eta pribatutasun politika jarraitu ahal izateko.</string>
+    <string name="tos_tips">Mesedez irakurri eta onartu Sam-Lab RSS-ren zerbitzu-baldintzak eta pribatutasun politika jarraitu ahal izateko.</string>
     <string name="browse_tos_tips">Nabigatu <i><u>zerbitzu-baldintzetan eta pribatutasun politikan</u></i></string>
     <string name="terms_of_service">Zerbitzu-baldintzak</string>
     <string name="tos_content">
@@ -121,7 +121,7 @@
         &lt;/p&gt;
         &lt;br/&gt;
         &lt;p&gt;
-        &lt;b&gt;Read You&lt;/b&gt;
+        &lt;b&gt;Sam-Lab RSS&lt;/b&gt;
 
         aplikazioak ez du inolako erabiltzaile daturik biltzen, eta informazio sentikor guztia (pasahitzak eta beste kontu-informazioa)
         aplikazioaren datu-base lokal eta seguruan gordetzen dira zure gailuan.
@@ -129,7 +129,7 @@
         &lt;/p&gt;
         &lt;br/&gt;
         &lt;p&gt;
-        &lt;b&gt;Read You&lt;/b&gt;
+        &lt;b&gt;Sam-Lab RSS&lt;/b&gt;
 
         aplikazioak hurrengo baimenak erabiliko ditu zerbitzua hornitu ahal izateko.
 
@@ -160,7 +160,7 @@
         &lt;br/&gt;
         &lt;p&gt;
 
-        Politika honek ez du eraginik &lt;b&gt;Read You&lt;/b&gt; aplikazioarekin erabiltzen dituzun hirugarrenen zerbitzuetan.
+        Politika honek ez du eraginik &lt;b&gt;Sam-Lab RSS&lt;/b&gt; aplikazioarekin erabiltzen dituzun hirugarrenen zerbitzuetan.
         Erabiltzen dituzun zerbitzuen pribatutasun politikak haien webguneetan aztertu ditzakezu.
 
         &lt;/p&gt;
@@ -173,9 +173,9 @@
         &lt;/h5&gt;
         &lt;br/&gt;
         &lt;p&gt;
-        &lt;b&gt;Read You&lt;/b&gt;
+        &lt;b&gt;Sam-Lab RSS&lt;/b&gt;
 
-        edukia biltzen duen tresna bat besterik ez da. Egiten duzun &lt;b&gt;Read You&lt;/b&gt; aplikazioaren erabilera
+        edukia biltzen duen tresna bat besterik ez da. Egiten duzun &lt;b&gt;Sam-Lab RSS&lt;/b&gt; aplikazioaren erabilera
         zure herrialde eta eskualdearen lege eta arauen menpekoa da, eta zure ekintzetatik deribatutako edozein erantzukizun
         zure gain hartuko da pertsonalki.
 
@@ -189,10 +189,10 @@
         &lt;/h5&gt;
         &lt;br/&gt;
         &lt;p&gt;
-        &lt;b&gt;Read You&lt;/b&gt;
+        &lt;b&gt;Sam-Lab RSS&lt;/b&gt;
 
         GNU GPL 3.0 kode irekiko lizentziapean dagoen kode irekiko proiektu bat da[1], baimena ematen dizuna modu librean
-        &lt;b&gt;Read You&lt;/b&gt; proiektuaren kodea erabiltzeko, erreferentzia egiteko, eta iturburua aldatzeko,
+        &lt;b&gt;Sam-Lab RSS&lt;/b&gt; proiektuaren kodea erabiltzeko, erreferentzia egiteko, eta iturburua aldatzeko,
         baina baimentzen ez duena aldatutako eta deribatutako kode hori kode itxiko software komertzial bezala banatzen edo saltzen.
         Xehetasunetarako, mesedez irakurri GNU GPL 3.0 kode irekiko lizentzia[2] osoa.
 

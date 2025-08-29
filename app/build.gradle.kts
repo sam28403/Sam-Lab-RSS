@@ -35,16 +35,16 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "me.ash.reader"
-        minSdk = 26
-        targetSdk = 34
-        versionCode = 41
-        versionName = "0.15.0"
+        applicationId = "cc.samlab.rss"
+        minSdk = 35
+        targetSdk = 36
+        versionCode = 42
+        versionName = "1.0.0"
 
         buildConfigField(
             "String",
             "USER_AGENT_STRING",
-            "\"ReadYou/${versionName}(${versionCode})\"",
+            "\"RSS/${versionName}(${versionCode})\"",
         )
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
