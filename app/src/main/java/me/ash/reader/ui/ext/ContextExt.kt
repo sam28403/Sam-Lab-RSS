@@ -41,6 +41,8 @@ fun Context.getCurrentVersion(): Version = packageManager
     .versionName
     .toVersion()
 
+
+
 fun Context.getLatestApk(): File = File(cacheDir, "latest.apk")
 
 fun Context.getFileProvider(): String = "${packageName}.fileprovider"

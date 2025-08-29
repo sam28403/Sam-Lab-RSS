@@ -59,8 +59,8 @@ fun LanguagesPage(
             LazyColumn {
                 item(key = languages.value) {
                     DisplayText(text = stringResource(R.string.languages), desc = "")
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Banner(
+                    //Spacer(modifier = Modifier.height(16.dp))
+                    /*Banner(
                         title = stringResource(R.string.help_translate),
                         icon = Icons.Outlined.Lightbulb,
                         action = {
@@ -75,7 +75,7 @@ fun LanguagesPage(
                             OpenLinkPreference.AutoPreferCustomTabs
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(16.dp))*/
                 }
                 item {
                     LanguagesPreference.values.map {

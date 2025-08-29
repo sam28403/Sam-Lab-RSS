@@ -40,7 +40,7 @@ fun LicenseListPage(
                 onClick = onBack
             )
         },
-        actions = {
+        /*actions = {
             FeedbackIconButton(
                 modifier = Modifier.size(20.dp),
                 imageVector = Icons.Rounded.Star,
@@ -52,7 +52,7 @@ fun LicenseListPage(
                     openLink = OpenLinkPreference.AutoPreferCustomTabs,
                 )
             }
-        },
+        },*/
         content = {
             Column {
                 LibrariesContainer(

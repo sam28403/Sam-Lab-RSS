@@ -134,7 +134,7 @@
     <string name="agree">Agree</string>
     <string name="wallpaper_colors">Wallpaper colors</string>
     <string name="no_palettes">No palettes</string>
-    <string name="only_android_8.1_plus">Only Android 8.1+</string>
+    <string name="only_android_8.1_plus">Only Android 15+</string>
     <string name="basic_colors">Basic colors</string>
     <string name="primary_color">Primary color</string>
     <string name="primary_color_hint">Like #666666 or 666666</string>
@@ -154,8 +154,8 @@
     <string name="reading_page">Reading page</string>
     <string name="sponsor">Sponsor</string>
     <string name="open_source_licenses">Open source licenses</string>
-    <string name="github_link" translatable="false">https://github.com/ReadYouApp/ReadYou</string>
-    <string name="telegram_link" translatable="false">https://t.me/ReadYouApp</string>
+    <string name="github_link" translatable="false">https://github.com/sam28403/Sam-Lab-RSS</string>
+    <string name="telegram_link" translatable="false">https://t.me/samlab666</string>
     <string name="wiki_link" translatable="false">https://github.com/ReadYouApp/ReadYou/wiki/Getting-Started</string>
     <string name="update_link">https://api.github.com/repos/ReadYouApp/ReadYou/releases/latest</string>
     <string name="change_log">Changelog</string>
@@ -227,6 +227,7 @@
     <string name="images_desc">Rounded corners, horizontal padding</string>
     <string name="videos_desc">Rounded corners, horizontal padding</string>
     <string name="maximize">Maximize</string>
+    <string name="every_1_minutes">Every 1 minute</string>
     <string name="every_15_minutes">Every 15 minutes</string>
     <string name="every_30_minutes">Every 30 minutes</string>
     <string name="every_1_hour">Every hour</string>
@@ -331,7 +332,7 @@
     <string name="troubleshooting">Troubleshooting</string>
     <string name="troubleshooting_desc">Bug report, app preferences</string>
     <string name="bug_report">Bug report</string>
-    <string name="issue_tracer_url" translatable="false">https://github.com/sam28403</string>
+    <string name="issue_tracer_url" translatable="false">https://github.com/sam28403/Sam-Lab-RSS</string>
     <string name="app_preferences">App preferences</string>
     <string name="import_from_protobuf_file">Import from protobuf file</string>
     <string name="export_as_protobuf_file">Export as protobuf file</string>
@@ -385,4 +386,5 @@
     <string name="parse_full_content_desc">Fetch full articles from webpages</string>
     <string name="enable">Enable</string>
     <string name="disable">Disable</string>
+    <string name="intro">A Material You 3 RSS Reader.</string>
 </resources>

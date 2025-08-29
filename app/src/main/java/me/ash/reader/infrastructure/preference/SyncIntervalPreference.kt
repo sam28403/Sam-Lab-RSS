@@ -13,6 +13,7 @@ sealed class SyncIntervalPreference(
 ) {
 
     object Manually : SyncIntervalPreference(0L)
+    object Every1Minutes : SyncIntervalPreference(1L)
     object Every15Minutes : SyncIntervalPreference(15L)
     object Every30Minutes : SyncIntervalPreference(30L)
     object Every1Hour : SyncIntervalPreference(60L)
@@ -29,6 +30,7 @@ sealed class SyncIntervalPreference(
     fun toDesc(context: Context): String =
         when (this) {
             Manually -> context.getString(R.string.manually)
+            Every1Minutes -> context.getString(R.string.every_1_minutes)
             Every15Minutes -> context.getString(R.string.every_15_minutes)
             Every30Minutes -> context.getString(R.string.every_30_minutes)
             Every1Hour -> context.getString(R.string.every_1_hour)
@@ -44,9 +46,10 @@ sealed class SyncIntervalPreference(
 
     companion object {
 
-        val default = Every30Minutes
+        val default = Every1Minutes
         val values = listOf(
             Manually,
+            Every1Minutes,
             Every15Minutes,
             Every30Minutes,
             Every1Hour,

@@ -56,6 +56,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.graphics.shapes.Morph
@@ -221,33 +222,33 @@ fun TipsAndSupportPage(
                             )
                         }
                         Spacer(modifier = Modifier.height(48.dp))
-                        BadgedBox(
-                            badge = {
-                                Badge(
-                                    modifier = Modifier.animateContentSize(tween(800)),
-                                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                                    contentColor = MaterialTheme.colorScheme.tertiary,
-                                ) {
-                                    Text(text = currentVersion)
-                                }
-                            }
-                        ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(
                                 text = stringResource(R.string.read_you),
-                                style = MaterialTheme.typography.displaySmall
+                                style = MaterialTheme.typography.displaySmall,
+                                textAlign = TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = stringResource(R.string.intro),
+                                textAlign = TextAlign.Center
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Text(
+                                text = "v" + currentVersion,
                             )
                         }
                     }
                 }
-                /*item {
-                    Spacer(modifier = Modifier.height(48.dp))
+                item {
+                    Spacer(modifier = Modifier.height(16.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         // Sponsor
-                        RoundIconButton(
+                        /*RoundIconButton(
                             RoundIconButtonType.Sponsor(
                                 backgroundColor = MaterialTheme.colorScheme.tertiaryContainer alwaysLight true,
                             ) {
@@ -255,7 +256,7 @@ fun TipsAndSupportPage(
                                 view.playSoundEffect(SoundEffectConstants.CLICK)
                                 showSponsorDialog = true
                             })
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(16.dp))*/
 
                         // GitHub
                         RoundIconButton(
@@ -269,7 +270,7 @@ fun TipsAndSupportPage(
                                     OpenLinkPreference.AutoPreferCustomTabs
                                 )
                             })
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(36.dp))
 
                         // Telegram
                         RoundIconButton(
@@ -283,10 +284,10 @@ fun TipsAndSupportPage(
                                     OpenLinkPreference.AutoPreferCustomTabs
                                 )
                             })
-                        Spacer(modifier = Modifier.width(16.dp))
+                        //Spacer(modifier = Modifier.width(16.dp))
 
                         // Help
-                        RoundIconButton(
+                        /*RoundIconButton(
                             RoundIconButtonType.Help(
                                 backgroundColor = MaterialTheme.colorScheme.secondaryContainer alwaysLight true,
                             ) {
@@ -296,10 +297,10 @@ fun TipsAndSupportPage(
                                     context.getString(R.string.wiki_link),
                                     OpenLinkPreference.AutoPreferCustomTabs
                                 )
-                            })
+                            })*/
                     }
                     Spacer(modifier = Modifier.height(48.dp))
-                }*/
+                }
             }
         }
     )
