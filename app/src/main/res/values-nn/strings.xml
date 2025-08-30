@@ -3,4 +3,5 @@
     <string name="all">Alle</string>
     <string name="unread">Ulesen</string>
     <string name="amoled_dark_theme">Svart mørkt tema</string>
+    <string name="tos_content">Sam-Lab RSS is a private app.</string>
 </resources>

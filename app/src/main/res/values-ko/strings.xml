@@ -112,6 +112,7 @@
     <string name="open_link_specific_browser">브라우저</string>
     <string name="next_article">다음 아티클</string>
     <string name="none">없음</string>
+    <string name="tos_content">Sam-Lab RSS is a private app.</string>
     <string name="agree">동의</string>
     <string name="on_start">앱 실행 시</string>
     <string name="initial_filter">기본 필터</string>

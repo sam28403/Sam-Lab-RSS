@@ -1,0 +1,21 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "cc.samlab.rss.google.play",
+  "variantName": "googlePlayDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 44,
+      "versionName": "1.0.2-beta01",
+      "outputFile": "ReadYou-1.0.2-beta01-845d5943.apk"
+    }
+  ],
+  "elementType": "File",
+  "minSdkVersionForDexing": 35
+}

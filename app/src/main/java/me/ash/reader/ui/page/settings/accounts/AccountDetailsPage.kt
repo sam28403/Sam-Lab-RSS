@@ -479,7 +479,7 @@ private fun subscriptionOPMLFileLauncher(
     launcher: ManagedActivityResultLauncher<String, Uri?>,
 ) {
     launcher.launch(
-        "Read-You-" +
+        "Sam-Lab RSS-" +
             "${context.getCurrentVersion()}-subscription-" +
             "${Date().toString(DateFormat.YYYY_MM_DD_DASH_HH_MM_SS_DASH)}.opml"
     )

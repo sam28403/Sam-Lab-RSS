@@ -1,5 +1,8 @@
 package me.ash.reader.ui.page.settings.tips
 
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
 import android.view.HapticFeedbackConstants
 import android.view.SoundEffectConstants
 import androidx.compose.animation.animateContentSize
@@ -134,6 +137,23 @@ fun TipsAndSupportPage(
 
     val logoBGColor = remember { colorGacha.random() }
 
+    var clickCount by remember { mutableStateOf(0) }
+
+    //@Composable
+    fun openEasterEgg(context: Context) {
+        val intent = Intent().apply {
+            setClassName("com.android.egg", "com.android.egg.landroid.MainActivity")
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+
+        try {
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(context, "\uD83D\uDEAB", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
 
     LaunchedEffect(Unit) {
         currentVersion = context.getCurrentVersion().toString()
@@ -177,22 +197,12 @@ fun TipsAndSupportPage(
                                     view.playSoundEffect(SoundEffectConstants.CLICK)
                                 },
                                 onTap = {
-                                    updateViewModel.checkUpdate(
-                                        {
-                                            context.showToast(context.getString(R.string.checking_updates))
-                                            context.dataStore.put(
-                                                DataStoreKey.skipVersionNumber,
-                                                ""
-                                            )
-                                        },
-                                        {
-                                            if (!it) {
-                                                context.showToast(
-                                                    context.getString(R.string.is_latest_version)
-                                                )
-                                            }
-                                        }
-                                    )
+                                    clickCount++
+                                    if (clickCount == 12) {
+                                        context.showToast("🐱Sam-Lab RSS🐱")
+                                        openEasterEgg(context)  // 直接进入 Android 15/16 的彩蛋
+                                        clickCount = 0 // 循环解锁（可去掉）
+                                    }
                                 }
                             )
                         },
@@ -235,7 +245,7 @@ fun TipsAndSupportPage(
                             )
                             Spacer(modifier = Modifier.height(16.dp))
                             Text(
-                                text = "v" + currentVersion,
+                                text = "v$currentVersion",
                             )
                         }
                     }

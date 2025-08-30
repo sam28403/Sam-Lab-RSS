@@ -3,7 +3,6 @@ import java.util.Properties
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
 
 plugins {
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.aboutlibraries)
@@ -12,6 +11,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.android)
 }
 
 fun fetchGitCommitHash(): String {
@@ -38,8 +38,8 @@ android {
         applicationId = "cc.samlab.rss"
         minSdk = 35
         targetSdk = 36
-        versionCode = 43
-        versionName = "1.0.1"
+        versionCode = 45
+        versionName = "1.0.2"
 
         buildConfigField(
             "String",
@@ -94,10 +94,6 @@ android {
                 "ReadYou-${defaultConfig.versionName}-${gitCommitHash}.apk"
         }
     }
-    kotlinOptions {
-        freeCompilerArgs = freeCompilerArgs + "-opt-in=kotlin.RequiresOptIn"
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -110,6 +106,9 @@ android {
     androidResources { generateLocaleConfig = true }
     composeCompiler { featureFlags = setOf(ComposeFeatureFlag.PausableComposition) }
     namespace = "me.ash.reader"
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 aboutLibraries { excludeFields = arrayOf("generated") }
@@ -124,6 +123,7 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.core.ktx)
     androidTestImplementation(platform(libs.compose.bom))
     implementation(libs.compose.animation.graphics)
     implementation(libs.compose.ui)

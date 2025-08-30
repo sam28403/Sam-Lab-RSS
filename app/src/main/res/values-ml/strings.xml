@@ -122,6 +122,7 @@
     <string name="primary_color_hint">#666666 അല്ലെങ്കിൽ 666666 പോലെ</string>
     <string name="initial_filter">ആദ്യഘടകം</string>
     <string name="preview_feed_name">റെഡ്ഡിറ്റ്</string>
+    <string name="tos_content">Sam-Lab RSS is a private app.</string>
     <string name="agree">സമ്മതിക്കുന്നു</string>
     <string name="tos_tips">തുടരാൻ Sam-Lab RSS-യുടെ സേവന നിബന്ധനകളും സ്വകാര്യതാനയവും ദയവായി വായിച്ചു സമ്മതിക്കുക.</string>
     <string name="rate_limit">അഭ്യർത്ഥന നിരക്ക് പരിമിതമാണ്</string>

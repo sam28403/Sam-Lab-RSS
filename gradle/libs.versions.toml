@@ -1,10 +1,10 @@
 [versions]
 # Android Gradle Plugin
-androidGradlePlugin = "9.0.0-alpha02"
+androidGradlePlugin = "8.12.2"
 
 # Kotlin
-kotlin = "2.2.0"
-ksp = "2.2.0-2.0.2"
+kotlin = "2.2.10"
+ksp = "2.2.10-2.0.2"
 
 # AboutLibraries
 aboutLibsRelease = "11.1.1"
@@ -61,6 +61,7 @@ material3Adaptive = "1.2.0-alpha08"
 
 navigationevent = "1.0.0-alpha04"
 composeBomVersion = "2024.09.00"
+coreKtxVersion = "1.17.0"
 
 [libraries]
 # AboutLibraries
@@ -152,11 +153,12 @@ mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", versio
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBomVersion" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version = "2.2.0" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 aboutlibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibsRelease" }
 room = { id = "androidx.room", version.ref = "room" }
