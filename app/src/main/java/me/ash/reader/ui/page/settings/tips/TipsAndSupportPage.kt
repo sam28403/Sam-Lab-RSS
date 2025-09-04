@@ -294,10 +294,10 @@ fun TipsAndSupportPage(
                                     OpenLinkPreference.AutoPreferCustomTabs
                                 )
                             })
-                        //Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(36.dp))
 
                         // Help
-                        /*RoundIconButton(
+                        RoundIconButton(
                             RoundIconButtonType.Help(
                                 backgroundColor = MaterialTheme.colorScheme.secondaryContainer alwaysLight true,
                             ) {
@@ -307,7 +307,7 @@ fun TipsAndSupportPage(
                                     context.getString(R.string.wiki_link),
                                     OpenLinkPreference.AutoPreferCustomTabs
                                 )
-                            })*/
+                            })
                     }
                     Spacer(modifier = Modifier.height(48.dp))
                 }

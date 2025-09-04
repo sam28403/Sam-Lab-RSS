@@ -3,15 +3,21 @@ package me.ash.reader.ui.theme
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDirection
 import androidx.compose.ui.unit.sp
 import java.text.Bidi
+import me.ash.reader.R
 
 // TODO: Rename file to Typography.kt and add @Stable
 
-private val LabelSmallEmphasizedFont = FontFamily.SansSerif
+val GoogleFontFamily = FontFamily(
+    Font(R.font.google) // Assuming your font file is named google.ttf
+)
+
+private val LabelSmallEmphasizedFont = GoogleFontFamily // Use your custom font
 private val LabelSmallEmphasizedLineHeight = 16.0.sp
 private val LabelSmallEmphasizedSize = 11.sp
 private val LabelSmallEmphasizedTracking = 0.5.sp

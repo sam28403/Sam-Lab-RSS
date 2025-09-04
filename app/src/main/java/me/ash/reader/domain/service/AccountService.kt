@@ -60,7 +60,9 @@ constructor(
 
     fun getAccounts(): Flow<List<Account>> = accountDao.queryAllAsFlow()
 
-    fun getAccountById(accountId: Int): Flow<Account?> = accountDao.queryAccount(accountId)
+    fun getAccountFlowById(accountId: Int): Flow<Account?> = accountDao.queryAccount(accountId)
+
+    suspend fun getAccountById(accountId: Int): Account? = accountDao.queryById(accountId)
 
     fun getCurrentAccount(): Account = runBlocking {
         currentAccountFlow.first { it != null } as Account
@@ -99,19 +101,19 @@ constructor(
     suspend fun initWithDefaultAccount() {
         val account = addDefaultAccount()
         val group = getDefaultGroup()
-        //val initialFeed = getInitialFeed(account, group)
-        //feedDao.insert(initialFeed)
+        val initialFeed = getInitialFeed(account, group)
+        feedDao.insert(initialFeed)
     }
 
-    //private fun getInitialFeed(account: Account, group: Group): Feed =
-        //Feed(
-            //id = account.id!!.spacerDollar(UUID.randomUUID().toString()),
-            //name = "ReadYou Releases",
-            //icon = "https://github.com/ReadYouApp.png",
-            //url = "https://github.com/ReadYouApp/ReadYou/releases.atom",
-            //groupId = group.id,
-            //accountId = account.id,
-        //)
+    private fun getInitialFeed(account: Account, group: Group): Feed =
+        Feed(
+            id = account.id!!.spacerDollar(UUID.randomUUID().toString()),
+            name = "ReadYou Releases",
+            icon = "https://github.com/ReadYouApp.png",
+            url = "https://github.com/ReadYouApp/ReadYou/releases.atom",
+            groupId = group.id,
+            accountId = account.id,
+        )
 
     fun getDefaultGroup(): Group =
         getCurrentAccountId().let {

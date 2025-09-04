@@ -1,16 +1,9 @@
-/**
- * Copyright (C) 2021 Kyant0
- *
- * @link https://github.com/Kyant0/MusicYou
- * @author Kyant0
- * @modifier Ashinch
- */
-
 package me.ash.reader.ui.component.base
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -42,6 +35,12 @@ fun SwitchThumbIcon(checked: Boolean, modifier: Modifier = Modifier) {
     if (checked) {
         Icon(
             imageVector = Icons.Rounded.Check,
+            contentDescription = null,
+            modifier = sizeModifier
+        )
+    } else {
+        Icon(
+            imageVector = Icons.Rounded.Close,
             contentDescription = null,
             modifier = sizeModifier
         )

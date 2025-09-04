@@ -156,7 +156,7 @@
     <string name="open_source_licenses">Open source licenses</string>
     <string name="github_link" translatable="false">https://github.com/sam28403/Sam-Lab-RSS</string>
     <string name="telegram_link" translatable="false">https://t.me/samlab666</string>
-    <string name="wiki_link" translatable="false">https://github.com/ReadYouApp/ReadYou/wiki/Getting-Started</string>
+    <string name="wiki_link" translatable="false">https://github.com/sam28403/Sam-Lab-RSS/wiki</string>
     <string name="update_link">https://api.github.com/repos/ReadYouApp/ReadYou/releases/latest</string>
     <string name="change_log">Changelog</string>
     <string name="update">Update</string>
