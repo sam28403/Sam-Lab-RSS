@@ -54,11 +54,7 @@ constructor(
     }
 
     fun tryImport(context: Context, byteArray: ByteArray) {
-        if (!byteArray.isProbableProtobuf()) {
-            showWarningDialog()
-        } else {
-            importPreferencesFromJSON(context, byteArray)
-        }
+        importPreferencesFromJSON(context, byteArray)
     }
 
     fun importPreferencesFromJSON(context: Context, byteArray: ByteArray) {
