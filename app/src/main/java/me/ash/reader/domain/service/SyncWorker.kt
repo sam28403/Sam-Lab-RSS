@@ -7,6 +7,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit
 import me.ash.reader.domain.model.account.Account
+import me.ash.reader.infrastructure.preference.SyncIntervalPreference
 import me.ash.reader.infrastructure.rss.ReaderCacheHelper
 
 @HiltWorker
@@ -34,6 +35,19 @@ constructor(
                 rssService.get().clearKeepArchivedArticles().forEach {
                     readerCacheHelper.deleteCacheFor(articleId = it.id)
                 }
+
+                // 如果当前账户的同步周期是 1 分钟，则再次排队下次同步
+                workManager.enqueueUniqueWork(
+                    SYNC_WORK_NAME_PERIODIC,
+                    ExistingWorkPolicy.REPLACE,
+                    OneTimeWorkRequestBuilder<SyncWorker>()
+                        .setInitialDelay(1, TimeUnit.MINUTES)
+                        .setInputData(workDataOf("accountId" to accountId))
+                        .addTag(SYNC_TAG)
+                        .addTag(ONETIME_WORK_TAG)
+                        .build()
+                )
+
                 workManager
                     .beginUniqueWork(
                         uniqueWorkName = POST_SYNC_WORK_NAME,
@@ -89,7 +103,7 @@ constructor(
                 .enqueue()
         }
 
-        fun enqueuePeriodicWork(account: Account, workManager: WorkManager) {
+        /*fun enqueuePeriodicWork(account: Account, workManager: WorkManager) {
             val syncInterval = account.syncInterval
             val syncOnlyWhenCharging = account.syncOnlyWhenCharging
             val syncOnlyOnWiFi = account.syncOnlyOnWiFi
@@ -131,6 +145,66 @@ constructor(
             )
 
             workManager.cancelUniqueWork(READER_WORK_NAME_PERIODIC)
+        }*/
+
+        fun enqueuePeriodicWork(account: Account, workManager: WorkManager) {
+            val syncInterval = account.syncInterval
+            val syncOnlyWhenCharging = account.syncOnlyWhenCharging
+            val syncOnlyOnWiFi = account.syncOnlyOnWiFi
+
+            // 特殊处理：如果是“每 1 分钟”，使用 OneTimeWorkRequest 模拟循环
+            if (syncInterval == SyncIntervalPreference.Every1Minutes) {
+                workManager.enqueueUniqueWork(
+                    SYNC_WORK_NAME_PERIODIC,
+                    ExistingWorkPolicy.REPLACE,
+                    OneTimeWorkRequestBuilder<SyncWorker>()
+                        .setConstraints(
+                            Constraints.Builder()
+                                .setRequiresCharging(syncOnlyWhenCharging.value)
+                                .setRequiredNetworkType(
+                                    if (syncOnlyOnWiFi.value) NetworkType.UNMETERED
+                                    else NetworkType.CONNECTED
+                                )
+                                .build()
+                        )
+                        .setBackoffCriteria(
+                            backoffPolicy = BackoffPolicy.EXPONENTIAL,
+                            backoffDelay = 30,
+                            timeUnit = TimeUnit.SECONDS,
+                        )
+                        .setInputData(workDataOf("accountId" to account.id))
+                        .addTag(SYNC_TAG)
+                        .addTag(ONETIME_WORK_TAG)
+                        .build()
+                )
+                return
+            }
+
+            // 其他情况仍然用 PeriodicWorkRequest
+            workManager.enqueueUniquePeriodicWork(
+                SYNC_WORK_NAME_PERIODIC,
+                ExistingPeriodicWorkPolicy.UPDATE,
+                PeriodicWorkRequestBuilder<SyncWorker>(syncInterval.value, TimeUnit.MINUTES)
+                    .setConstraints(
+                        Constraints.Builder()
+                            .setRequiresCharging(syncOnlyWhenCharging.value)
+                            .setRequiredNetworkType(
+                                if (syncOnlyOnWiFi.value) NetworkType.UNMETERED
+                                else NetworkType.CONNECTED
+                            )
+                            .build()
+                    )
+                    .setBackoffCriteria(
+                        backoffPolicy = BackoffPolicy.EXPONENTIAL,
+                        backoffDelay = 30,
+                        timeUnit = TimeUnit.SECONDS,
+                    )
+                    .setInputData(workDataOf("accountId" to account.id))
+                    .addTag(SYNC_TAG)
+                    .addTag(PERIODIC_WORK_TAG)
+                    .build()
+            )
         }
+
     }
 }
