@@ -101,19 +101,7 @@ constructor(
     suspend fun initWithDefaultAccount() {
         val account = addDefaultAccount()
         val group = getDefaultGroup()
-        val initialFeed = getInitialFeed(account, group)
-        feedDao.insert(initialFeed)
     }
-
-    private fun getInitialFeed(account: Account, group: Group): Feed =
-        Feed(
-            id = account.id!!.spacerDollar(UUID.randomUUID().toString()),
-            name = "ReadYou Releases",
-            icon = "https://github.com/ReadYouApp.png",
-            url = "https://github.com/ReadYouApp/ReadYou/releases.atom",
-            groupId = group.id,
-            accountId = account.id,
-        )
 
     fun getDefaultGroup(): Group =
         getCurrentAccountId().let {
