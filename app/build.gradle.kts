@@ -24,11 +24,15 @@ fun fetchGitCommitHash(): String {
 
 val gitCommitHash = fetchGitCommitHash()
 val keyProps = Properties()
-val keyPropsFile: File = rootProject.file("signature/keystore.properties")
+val releaseKeyPropsFile: File = rootProject.file("signature/keystore_release.properties")
+val debugKeyPropsFile: File = rootProject.file("signature/keystore.properties")
 
-if (keyPropsFile.exists()) {
-    println("Loading keystore properties from ${keyPropsFile.absolutePath}")
-    keyProps.load(FileInputStream(keyPropsFile))
+
+if (releaseKeyPropsFile.exists()) {
+    println("Loading keystore properties from ${releaseKeyPropsFile.absolutePath}")
+    keyProps.load(FileInputStream(releaseKeyPropsFile))
+} else if (debugKeyPropsFile.exists()) {
+    keyProps.load(FileInputStream(debugKeyPropsFile))
 }
 
 android {
@@ -38,8 +42,8 @@ android {
         applicationId = "cc.samlab.rss"
         minSdk = 35
         targetSdk = 36
-        versionCode = 51
-        versionName = "1.0.8"
+        versionCode = 52
+        versionName = "1.0.9"
 
         buildConfigField(
             "String",

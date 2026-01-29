@@ -387,4 +387,5 @@
     <string name="enable">Enable</string>
     <string name="disable">Disable</string>
     <string name="intro">A Material You 3 RSS Reader.</string>
+    <string name="google_sans" translatable="false">Google Sans</string>
 </resources>
