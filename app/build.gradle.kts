@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.kotlin.parcelize)
-    alias(libs.plugins.kotlin.android)
 }
 
 fun fetchGitCommitHash(): String {
@@ -36,14 +35,14 @@ if (releaseKeyPropsFile.exists()) {
 }
 
 android {
-    compileSdk = 36
 
+    compileSdk = 37
     defaultConfig {
         applicationId = "cc.samlab.rss"
         minSdk = 35
-        targetSdk = 36
-        versionCode = 53
-        versionName = "1.0.10"
+        targetSdk = 37
+        versionCode = 54
+        versionName = "1.1.0"
 
         buildConfigField(
             "String",
@@ -92,12 +91,16 @@ android {
         }
         all { signingConfig = signingConfigs.getByName("release") }
     }
-    applicationVariants.all {
-        outputs.all {
-            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
-                "ReadYou-${defaultConfig.versionName}-${gitCommitHash}.apk"
+    /*androidComponents {
+        onVariants { variant ->
+            variant.outputs.forEach { output ->
+                output.outputFile.set(
+                    layout.buildDirectory.file("outputs/apk/${variant.name}/ReadYou-${defaultConfig.versionName}-${gitCommitHash}.apk")
+                )
+            }
         }
     }
+*/
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -110,9 +113,14 @@ android {
     androidResources { generateLocaleConfig = true }
     composeCompiler { featureFlags = setOf(ComposeFeatureFlag.PausableComposition) }
     namespace = "me.ash.reader"
-    kotlinOptions {
-        jvmTarget = "11"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+        }
     }
+    compileSdkMinor = 0
+    buildToolsVersion = "37.0.0"
+    ndkVersion = "30.0.14904198 rc1"
 }
 
 aboutLibraries { excludeFields = arrayOf("generated") }
