@@ -28,8 +28,7 @@ import me.ash.reader.ui.ext.isFuture
 import me.ash.reader.ui.ext.spacerDollar
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.executeAsync
-import okhttp3.internal.commonIsSuccessful
+import okhttp3.coroutines.executeAsync
 import okio.IOException
 import org.jsoup.Jsoup
 
@@ -71,7 +70,7 @@ constructor(
     suspend fun parseFullContent(link: String, title: String): String {
         return withContext(ioDispatcher) {
             val response = response(okHttpClient, link)
-            if (response.commonIsSuccessful) {
+            if (response.isSuccessful) {
                 val responseBody = response.body
                 val charset = responseBody.contentType()?.charset()
                 val content =

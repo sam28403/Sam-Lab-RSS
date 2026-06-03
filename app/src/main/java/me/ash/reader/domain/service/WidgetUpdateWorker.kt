@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.glance.appwidget.GlanceAppWidgetManager
-import androidx.glance.appwidget.GlanceAppWidgetManager.Companion.SET_WIDGET_PREVIEWS_RESULT_SUCCESS
 import androidx.glance.appwidget.updateAll
 import androidx.hilt.work.HiltWorker
 import androidx.work.Constraints
@@ -52,8 +51,8 @@ constructor(
     private suspend fun generatePreviews() {
         if (haveSetPreviews) return
         val glanceManager = GlanceAppWidgetManager(context)
-        val list = glanceManager.setWidgetPreviews(ArticleCardWidgetReceiver::class) == SET_WIDGET_PREVIEWS_RESULT_SUCCESS
-        val card = glanceManager.setWidgetPreviews(ArticleListWidgetReceiver::class) == SET_WIDGET_PREVIEWS_RESULT_SUCCESS
+        val list = glanceManager.setWidgetPreviews(ArticleCardWidgetReceiver::class) == GlanceAppWidgetManager.SET_WIDGET_PREVIEWS_RESULT_SUCCESS
+        val card = glanceManager.setWidgetPreviews(ArticleListWidgetReceiver::class) == GlanceAppWidgetManager.SET_WIDGET_PREVIEWS_RESULT_SUCCESS
         haveSetPreviews = list and card
     }
 

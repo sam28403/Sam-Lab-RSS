@@ -41,8 +41,8 @@ android {
         applicationId = "cc.samlab.rss"
         minSdk = 35
         targetSdk = 37
-        versionCode = 54
-        versionName = "1.1.0"
+        versionCode = 55
+        versionName = "1.1.1"
 
         buildConfigField(
             "String",
@@ -123,7 +123,11 @@ android {
     ndkVersion = "30.0.14904198 rc1"
 }
 
-aboutLibraries { excludeFields = arrayOf("generated") }
+aboutLibraries {
+    export {
+        excludeFields.add("generated")
+    }
+}
 
 dependencies {
     // AboutLibraries
