@@ -1,6 +1,7 @@
 package me.ash.reader.domain.data
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.snapshotFlow
 import com.google.gson.Gson
@@ -12,13 +13,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import me.ash.reader.domain.model.account.Account
 import me.ash.reader.domain.model.account.AccountType
@@ -28,6 +30,8 @@ import me.ash.reader.domain.service.RssService
 import me.ash.reader.infrastructure.di.ApplicationScope
 import me.ash.reader.infrastructure.di.IODispatcher
 import java.io.File
+import java.io.FileReader
+import java.io.FileWriter
 import javax.inject.Inject
 
 private const val TAG = "DiffMapHolder"
@@ -67,6 +71,8 @@ class DiffMapHolder @Inject constructor(
     var dbJob: Job? = null
     var remoteJob: Job? = null
 
+    private val fileMutex = Mutex()
+
     init {
         applicationScope.launch {
             accountService.currentAccountFlow.mapNotNull { it }.collect { account ->
@@ -82,7 +88,10 @@ class DiffMapHolder @Inject constructor(
 
     private fun init(account: Account) {
         userCacheDir = cacheDir.resolve(account.id.toString())
-        commitDiffsFromCache()
+        applicationScope.launch(ioDispatcher) {
+            commitDiffsFromCache()
+            commitDiffsToDbInternal()
+        }
         commitOnChange()
         if (account.type != AccountType.Local) {
             syncOnChange()
@@ -92,18 +101,20 @@ class DiffMapHolder @Inject constructor(
     private fun cleanup(account: Account) {
         dbJob?.cancel()
         remoteJob?.cancel()
-        writeDiffsToCache()
-        diffMap.clear()
-        pendingSyncDiffs.clear()
-        syncedDiffs.clear()
+        applicationScope.launch(ioDispatcher) {
+            writeDiffsToCache()
+            withContext(Dispatchers.Main) {
+                diffMap.clear()
+                pendingSyncDiffs.clear()
+                syncedDiffs.clear()
+            }
+        }
     }
 
     private fun commitOnChange() {
         dbJob = applicationScope.launch(ioDispatcher) {
             diffMapSnapshotFlow.debounce(2_000).collect {
-                if (it.isNotEmpty()) {
-                    writeDiffsToCache()
-                }
+                writeDiffsToCache()
             }
         }
     }
@@ -199,25 +210,39 @@ class DiffMapHolder @Inject constructor(
 
     fun commitDiffsToDb() {
         applicationScope.launch(ioDispatcher) {
-            val markAsReadArticles = diffMap.filter { !it.value.isUnread }.map { it.key }.toSet()
-            val markAsUnreadArticles = diffMap.filter { it.value.isUnread }.map { it.key }.toSet()
-            clearDiffs()
-            rssService.get().batchMarkAsRead(articleIds = markAsReadArticles, isUnread = false)
-            rssService.get().batchMarkAsRead(articleIds = markAsUnreadArticles, isUnread = true)
+            commitDiffsToDbInternal()
         }
     }
 
-    private fun writeDiffsToCache() {
-        applicationScope.launch(ioDispatcher) {
-            try {
-                val tmpJson = gson.toJson(diffMap)
-                userCacheDir.mkdirs()
-                cacheFile.createNewFile()
-                if (cacheFile.exists() && cacheFile.canWrite()) {
-                    cacheFile.writeText(tmpJson)
-                }
-            } catch (_: Exception) {
+    private suspend fun commitDiffsToDbInternal() = withContext(ioDispatcher) {
+        if (diffMap.isEmpty()) return@withContext
+        val diffs = diffMap.toMap()
+        val markAsReadArticles = diffs.filter { !it.value.isUnread }.map { it.key }.toSet()
+        val markAsUnreadArticles = diffs.filter { it.value.isUnread }.map { it.key }.toSet()
+        clearDiffs()
+        rssService.get().batchMarkAsRead(articleIds = markAsReadArticles, isUnread = false)
+        rssService.get().batchMarkAsRead(articleIds = markAsUnreadArticles, isUnread = true)
+    }
 
+    private suspend fun writeDiffsToCache() = withContext(ioDispatcher) {
+        fileMutex.withLock {
+            try {
+                val tmpFile = File(cacheFile.absolutePath + ".tmp")
+                userCacheDir.mkdirs()
+                val snapshot = diffMap.toMap()
+                if (snapshot.isEmpty()) {
+                    if (cacheFile.exists()) cacheFile.delete()
+                    return@withLock
+                }
+                FileWriter(tmpFile).use { writer ->
+                    gson.toJson(snapshot, writer)
+                }
+                if (tmpFile.exists()) {
+                    if (cacheFile.exists()) cacheFile.delete()
+                    tmpFile.renameTo(cacheFile)
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to write diffs to cache", e)
             }
         }
     }
@@ -254,29 +279,35 @@ class DiffMapHolder @Inject constructor(
         syncedDiffs += diffs.filter { synced.contains(it.key) }
     }
 
-    private fun commitDiffsFromCache() {
-        applicationScope.launch(ioDispatcher) {
+    private suspend fun commitDiffsFromCache() = withContext(ioDispatcher) {
+        fileMutex.withLock {
             if (cacheFile.exists() && cacheFile.canRead()) {
-                val tmpJson = cacheFile.readText()
-                val mapType = object : TypeToken<Map<String, Diff>>() {}.type
-                val diffMapFromCache = gson.fromJson<Map<String, Diff>>(
-                    tmpJson, mapType
-                )
-                diffMapFromCache?.let {
-                    diffMap.clear()
-                    diffMap.putAll(it)
+                try {
+                    FileReader(cacheFile).use { reader ->
+                        val mapType = object : TypeToken<Map<String, Diff>>() {}.type
+                        val diffMapFromCache: Map<String, Diff>? = gson.fromJson(reader, mapType)
+                        diffMapFromCache?.let {
+                            withContext(Dispatchers.Main) {
+                                diffMap.clear()
+                                diffMap.putAll(it)
+                            }
+                        }
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to read diffs from cache, clearing corrupted file", e)
+                    if (cacheFile.exists()) cacheFile.delete()
                 }
             }
-        }.invokeOnCompletion {
-            commitDiffsToDb()
         }
     }
 
-    private fun clearDiffs() {
-        applicationScope.launch(ioDispatcher) {
+    private suspend fun clearDiffs() = withContext(ioDispatcher) {
+        fileMutex.withLock {
             if (cacheFile.exists() && cacheFile.canWrite()) {
                 cacheFile.delete()
             }
+        }
+        withContext(Dispatchers.Main) {
             diffMap.clear()
         }
     }
