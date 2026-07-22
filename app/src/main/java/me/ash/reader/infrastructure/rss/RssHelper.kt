@@ -1,7 +1,5 @@
 package me.ash.reader.infrastructure.rss
 
-import android.content.Context
-import android.util.Log
 import com.rometools.modules.mediarss.MediaEntryModule
 import com.rometools.modules.mediarss.MediaModule
 import com.rometools.modules.mediarss.types.UrlReference
@@ -10,7 +8,7 @@ import com.rometools.rome.feed.synd.SyndFeed
 import com.rometools.rome.feed.synd.SyndImageImpl
 import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
-import dagger.hilt.android.qualifiers.ApplicationContext
+import java.io.ByteArrayInputStream
 import java.nio.charset.Charset
 import java.util.*
 import javax.inject.Inject
@@ -19,9 +17,9 @@ import kotlinx.coroutines.withContext
 import me.ash.reader.domain.model.article.Article
 import me.ash.reader.domain.model.feed.Feed
 import me.ash.reader.domain.repository.FeedDao
+import me.ash.reader.domain.service.AccountService
 import me.ash.reader.infrastructure.di.IODispatcher
 import me.ash.reader.infrastructure.html.Readability
-import me.ash.reader.ui.ext.currentAccountId
 import me.ash.reader.ui.ext.decodeHTML
 import me.ash.reader.ui.ext.extractDomain
 import me.ash.reader.ui.ext.isFuture
@@ -31,6 +29,7 @@ import okhttp3.Request
 import okhttp3.coroutines.executeAsync
 import okio.IOException
 import org.jsoup.Jsoup
+import timber.log.Timber
 
 val enclosureRegex = """<enclosure\s+url="([^"]+)"\s+type=".*"\s*/>""".toRegex()
 val imgRegex = """img.*?src=(["'])((?!data).*?)\1""".toRegex(RegexOption.DOT_MATCHES_ALL)
@@ -39,31 +38,75 @@ val imgRegex = """img.*?src=(["'])((?!data).*?)\1""".toRegex(RegexOption.DOT_MAT
 class RssHelper
 @Inject
 constructor(
-    @ApplicationContext private val context: Context,
-    @IODispatcher private val ioDispatcher: CoroutineDispatcher,
+    @param:IODispatcher private val ioDispatcher: CoroutineDispatcher,
     private val okHttpClient: OkHttpClient,
+    private val accountService: AccountService,
 ) {
 
+    data class SearchFeedResult(
+        val feed: SyndFeed,
+        val feedLink: String,
+    )
+
     @Throws(Exception::class)
-    suspend fun searchFeed(feedLink: String): SyndFeed {
+    suspend fun searchFeed(feedLink: String): SearchFeedResult {
         return withContext(ioDispatcher) {
-            val response = response(okHttpClient, feedLink)
-            val contentType = response.header("Content-Type")
-            val httpContentType =
-                contentType?.let {
-                    if (it.contains("charset=", ignoreCase = true)) it
-                    else "$it; charset=UTF-8"
-                } ?: "text/xml; charset=UTF-8"
+            val directResponse = response(okHttpClient, feedLink)
+            if (!directResponse.isSuccessful) throw IOException(directResponse.message)
+            val directBody = directResponse.body.bytes()
+            val directHttpContentType = toHttpContentType(directResponse.header("Content-Type"))
+
+            val parsedDirectFeed = runCatching { parseFeed(directBody, directHttpContentType) }.getOrNull()
+
+            val resolvedFeedLink =
+                if (parsedDirectFeed != null) feedLink
+                else discoverFeedLink(feedLink, directBody)
+                    ?: throw IOException("Unable to detect RSS feed URL")
 
 
-            response.body.byteStream().use { inputStream ->
-                    SyndFeedInput().build(XmlReader(inputStream, httpContentType)).also {
-                    it.icon = SyndImageImpl()
-                    it.icon.link = queryRssIconLink(feedLink)
-                    it.icon.url = it.icon.link
+            val feed = parsedDirectFeed ?: run {
+                val discoveredResponse = response(okHttpClient, resolvedFeedLink)
+                if (!discoveredResponse.isSuccessful) {
+                    throw IOException(discoveredResponse.message)
                 }
+                parseFeed(
+                    discoveredResponse.body.bytes(),
+                    toHttpContentType(discoveredResponse.header("Content-Type")),
+                )
             }
+
+            feed.also {
+                it.icon = SyndImageImpl()
+                it.icon.link = queryRssIconLink(resolvedFeedLink)
+                it.icon.url = it.icon.link
+            }
+
+            SearchFeedResult(feed = feed, feedLink = resolvedFeedLink)
         }
+    }
+
+    private fun toHttpContentType(contentType: String?): String =
+        contentType?.let {
+            if (it.contains("charset=", ignoreCase = true)) it else "$it; charset=UTF-8"
+        } ?: "text/xml; charset=UTF-8"
+
+    private fun parseFeed(body: ByteArray, httpContentType: String): SyndFeed =
+        ByteArrayInputStream(body).use { inputStream ->
+            SyndFeedInput().build(XmlReader(inputStream, httpContentType))
+        }
+
+    private fun discoverFeedLink(pageUrl: String, body: ByteArray): String? {
+        val document = Jsoup.parse(String(body, Charsets.UTF_8), pageUrl)
+        val links = document.select("head link[rel~=(?i)alternate][href]")
+        val preferred =
+            links.firstOrNull {
+                val type = it.attr("type").lowercase(Locale.ROOT)
+                type == "application/rss+xml" ||
+                    type == "application/atom+xml" ||
+                    type == "application/rdf+xml"
+            }
+        val fallback = links.firstOrNull()
+        return (preferred ?: fallback)?.absUrl("href")?.takeIf { it.isNotBlank() }
     }
 
     @Throws(Exception::class)
@@ -74,26 +117,26 @@ constructor(
                 val responseBody = response.body
                 val charset = responseBody.contentType()?.charset()
                 val content =
-                    responseBody.source().use {
+                    responseBody.source().use { source ->
                         if (charset != null) {
-                            return@use it.readString(charset)
+                            return@use source.readString(charset)
                         }
 
-                        val peekContent = it.peek().readString(Charsets.UTF_8)
+                        val peekContent = source.peek().readString(Charsets.UTF_8)
 
                         val charsetFromMeta =
                             runCatching {
                                     val element =
                                         Jsoup.parse(peekContent, link)
                                             .selectFirst("meta[http-equiv=content-type]")
-                                    return@runCatching if (element == null) Charsets.UTF_8
+                                    if (element == null) Charsets.UTF_8
                                     else {
                                         element
                                             .attr("content")
                                             .substringAfter("charset=")
                                             .removeSurrounding("\"")
                                             .lowercase()
-                                            .let { Charset.forName(it) }
+                                            .let { charsetName -> Charset.forName(charsetName) }
                                     }
                                 }
                                 .getOrDefault(Charsets.UTF_8)
@@ -101,7 +144,7 @@ constructor(
                         if (charsetFromMeta == Charsets.UTF_8) {
                             peekContent
                         } else {
-                            it.readString(charsetFromMeta)
+                            source.readString(charsetFromMeta)
                         }
                     }
 
@@ -123,7 +166,7 @@ constructor(
         preDate: Date = Date(),
     ): List<Article> =
         try {
-            val accountId = context.currentAccountId
+            val accountId = accountService.getCurrentAccountId()
             val response = response(okHttpClient, feed.url)
             val contentType = response.header("Content-Type")
 
@@ -145,7 +188,7 @@ constructor(
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            Log.e("RLog", "queryRssXml[${feed.name}]: ${e.message}")
+            Timber.tag("RLog").e("queryRssXml[${feed.name}]: ${e.message}")
             listOf()
         }
 
@@ -159,7 +202,7 @@ constructor(
         val content =
             syndEntry.contents
                 .takeIf { it.isNotEmpty() }
-                ?.let { it.joinToString("\n") { it.value } }
+                ?.let { contents -> contents.joinToString("\n") { it.value } }
         //        Log.i(
         //            "RLog",
         //            "request rss:\n" +
@@ -241,7 +284,7 @@ constructor(
         val iconFinder = BestIconFinder(okHttpClient)
         val domain = feedLink.extractDomain()
         return iconFinder.findBestIcon(domain ?: feedLink).also {
-            Log.i("RLog", "queryRssIconByLink: get $it from $domain")
+            Timber.tag("RLog").i("queryRssIconByLink: get $it from $domain")
         }
     }
 
