@@ -61,7 +61,7 @@ private const val DOWNWARD = -1
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun ReadingPage(
-    //    navController: NavHostController,
+    // navController: NavHostController,
     viewModel: ArticleListReaderViewModel,
     navigationAction: NavigationAction,
     onLoadArticle: (String, Int) -> Unit,
@@ -78,23 +78,25 @@ fun ReadingPage(
 
     var isReaderScrollingDown by remember { mutableStateOf(false) }
     var showFullScreenImageViewer by remember { mutableStateOf(false) }
-
+    var showAiSummaryOverlay by remember { mutableStateOf(false) }
     var currentImageData by remember { mutableStateOf(ImageData()) }
+    var summaryContent by remember { mutableStateOf("") }
+    var isSummaryLoading by remember { mutableStateOf(false) }
+    var summaryError by remember { mutableStateOf<String?>(null) }
 
-    val isShowToolBar =
-        if (LocalReadingAutoHideToolbar.current.value) {
-            readerState.articleId != null && !isReaderScrollingDown
-        } else {
-            true
-        }
+    val isShowToolBar = if (LocalReadingAutoHideToolbar.current.value) {
+        readerState.articleId != null && !isReaderScrollingDown
+    } else {
+        true
+    }
 
     var showTopDivider by remember { mutableStateOf(false) }
 
-    //    LaunchedEffect(readerState.listIndex) {
-    //        readerState.listIndex?.let {
-    //            navController.previousBackStackEntry?.savedStateHandle?.set("articleIndex", it)
-    //        }
-    //    }
+    // LaunchedEffect(readerState.listIndex) {
+    //     readerState.listIndex?.let {
+    //         navController.previousBackStackEntry?.savedStateHandle?.set("articleIndex", it)
+    //     }
+    // }
 
     var bringToTop by remember { mutableStateOf(false) }
 
@@ -112,6 +114,23 @@ fun ReadingPage(
                         navigationAction = navigationAction,
                         onNavButtonClick = onNavAction,
                         onNavigateToStylePage = onNavigateToStylePage,
+                        onAiSummaryClick = {
+                            summaryError = null
+                            isSummaryLoading = true
+                            showAiSummaryOverlay = true
+                            coroutineScope.launch {
+                                viewModel.summarizeCurrentArticle(
+                                    onSuccess = { summary ->
+                                        summaryContent = summary
+                                        isSummaryLoading = false
+                                    },
+                                    onError = { error ->
+                                        summaryError = error
+                                        isSummaryLoading = false
+                                    }
+                                )
+                            }
+                        }
                     )
                 }
 
@@ -123,85 +142,69 @@ fun ReadingPage(
                     AnimatedContent(
                         targetState = readerState,
                         transitionSpec = {
-                            val direction =
-                                when {
-                                    initialState.nextArticle?.articleId == targetState.articleId ->
-                                        UPWARD
-                                    initialState.previousArticle?.articleId ==
-                                        targetState.articleId -> DOWNWARD
-                                    initialState.articleId == targetState.articleId -> {
-                                        when (targetState.content) {
-                                            is ReaderState.Description -> DOWNWARD
-                                            else -> UPWARD
-                                        }
+                            val direction = when {
+                                initialState.nextArticle?.articleId == targetState.articleId -> UPWARD
+                                initialState.previousArticle?.articleId == targetState.articleId -> DOWNWARD
+                                initialState.articleId == targetState.articleId -> {
+                                    when (targetState.content) {
+                                        is ReaderState.Description -> DOWNWARD
+                                        else -> UPWARD
                                     }
-
-                                    else -> UPWARD
                                 }
+                                else -> UPWARD
+                            }
                             val exit = 100
                             val enter = exit * 2
                             (slideInVertically(
                                 initialOffsetY = { (it * 0.2f * direction).toInt() },
-                                animationSpec =
-                                    spring(
-                                        dampingRatio = .9f,
-                                        stiffness = Spring.StiffnessLow,
-                                        visibilityThreshold = IntOffset.VisibilityThreshold,
-                                    ),
-                            ) +
-                                fadeIn(
-                                    tween(
-                                        delayMillis = exit,
-                                        durationMillis = enter,
-                                        easing = LinearOutSlowInEasing,
-                                    )
-                                )) togetherWith
-                                (slideOutVertically(
-                                    targetOffsetY = { (it * -0.2f * direction).toInt() },
-                                    animationSpec =
-                                        spring(
-                                            dampingRatio = Spring.DampingRatioNoBouncy,
-                                            stiffness = Spring.StiffnessLow,
-                                            visibilityThreshold = IntOffset.VisibilityThreshold,
-                                        ),
-                                ) +
-                                    fadeOut(
-                                        tween(durationMillis = exit, easing = FastOutLinearInEasing)
-                                    ))
+                                animationSpec = spring(
+                                    dampingRatio = .9f,
+                                    stiffness = Spring.StiffnessLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold,
+                                ),
+                            ) + fadeIn(
+                                tween(
+                                    delayMillis = exit,
+                                    durationMillis = enter,
+                                    easing = LinearOutSlowInEasing,
+                                )
+                            )) togetherWith (slideOutVertically(
+                                targetOffsetY = { (it * -0.2f * direction).toInt() },
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioNoBouncy,
+                                    stiffness = Spring.StiffnessLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold,
+                                ),
+                            ) + fadeOut(
+                                tween(durationMillis = exit, easing = FastOutLinearInEasing)
+                            ))
                         },
                         label = "",
                     ) {
                         remember { it }
                             .run {
-                                val state =
-                                    rememberPullToLoadState(
-                                        key = content,
-                                        onLoadNext =
-                                            if (isNextArticleAvailable) {
-                                                {
-                                                    val (id, index) = readerState.nextArticle
-                                                    onLoadArticle(id, index)
-                                                }
-                                            } else null,
-                                        onLoadPrevious =
-                                            if (isPreviousArticleAvailable) {
-                                                {
-                                                    val (id, index) = readerState.previousArticle
-                                                    onLoadArticle(id, index)
-                                                }
-                                            } else null,
-                                    )
+                                val state = rememberPullToLoadState(
+                                    key = content,
+                                    onLoadNext = if (isNextArticleAvailable) {
+                                        {
+                                            val (id, index) = readerState.nextArticle
+                                            onLoadArticle(id, index)
+                                        }
+                                    } else null,
+                                    onLoadPrevious = if (isPreviousArticleAvailable) {
+                                        {
+                                            val (id, index) = readerState.previousArticle
+                                            onLoadArticle(id, index)
+                                        }
+                                    } else null,
+                                )
 
-                                val listState =
-                                    rememberSaveable(
-                                        inputs = arrayOf(content),
-                                        saver = LazyListState.Saver,
-                                    ) {
-                                        LazyListState()
-                                    }
+                                val listState = rememberSaveable(
+                                    inputs = arrayOf(content),
+                                    saver = LazyListState.Saver,
+                                ) { LazyListState() }
 
                                 val scrollState = rememberScrollState()
-
                                 val scope = rememberCoroutineScope()
 
                                 LaunchedEffect(bringToTop) {
@@ -218,40 +221,29 @@ fun ReadingPage(
                                     }
                                 }
 
-                                showTopDivider =
-                                    snapshotFlow {
-                                            scrollState.value >= 120 ||
-                                                listState.firstVisibleItemIndex != 0
-                                        }
-                                        .collectAsStateValue(initial = false)
+                                showTopDivider = snapshotFlow {
+                                    scrollState.value >= 120 || listState.firstVisibleItemIndex != 0
+                                }
+                                    .collectAsStateValue(initial = false)
 
                                 CompositionLocalProvider(
-                                    LocalTextStyle provides
-                                        LocalTextStyle.current.run {
-                                            merge(
-                                                lineHeight =
-                                                    if (lineHeight.isSpecified)
-                                                        (lineHeight.value *
-                                                                LocalReadingTextLineHeight.current)
-                                                            .sp
-                                                    else TextUnit.Unspecified
-                                            )
-                                        }
+                                    LocalTextStyle provides LocalTextStyle.current.run {
+                                        merge(
+                                            lineHeight = if (lineHeight.isSpecified) (lineHeight.value * LocalReadingTextLineHeight.current)
+                                                .sp else TextUnit.Unspecified
+                                        )
+                                    }
                                 ) {
                                     Box(
                                         modifier = Modifier.fillMaxSize(),
                                         contentAlignment = Alignment.Center,
                                     ) {
                                         Content(
-                                            modifier =
-                                                Modifier.pullToLoad(
-                                                    state = state,
-                                                    onScroll = { f ->
-                                                        if (abs(f) > 2f)
-                                                            isReaderScrollingDown = f < 0f
-                                                    },
-                                                    enabled = isPullToSwitchArticleEnabled,
-                                                ),
+                                            modifier = Modifier.pullToLoad(
+                                                state = state,
+                                                onScroll = { f -> if (abs(f) > 2f) isReaderScrollingDown = f < 0f },
+                                                enabled = isPullToSwitchArticleEnabled,
+                                            ),
                                             contentPadding = paddings,
                                             content = content.text ?: "",
                                             feedName = feedName,
@@ -267,6 +259,7 @@ fun ReadingPage(
                                                 showFullScreenImageViewer = true
                                             },
                                         )
+
                                         PullToLoadIndicator(
                                             state = state,
                                             canLoadPrevious = isPreviousArticleAvailable,
@@ -277,6 +270,7 @@ fun ReadingPage(
                             }
                     }
                 }
+
                 // Bottom Bar
                 if (readerState.articleId != null) {
                     BottomBar(
@@ -284,9 +278,7 @@ fun ReadingPage(
                         isUnread = readingUiState.isUnread,
                         isStarred = readingUiState.isStarred,
                         isNextArticleAvailable = isNextArticleAvailable,
-                        isFullContent =
-                            readerState.content is ReaderState.FullContent ||
-                                readerState.content is ReaderState.Error,
+                        isFullContent = readerState.content is ReaderState.FullContent || readerState.content is ReaderState.Error,
                         isBoldCharacters = boldCharacters.value,
                         onUnread = { viewModel.updateReadStatus(it) },
                         onStarred = { viewModel.updateStarredStatus(it) },
@@ -297,8 +289,7 @@ fun ReadingPage(
                             }
                         },
                         onFullContent = {
-                            if (it) viewModel.renderFullContent()
-                            else viewModel.renderDescriptionContent()
+                            if (it) viewModel.renderFullContent() else viewModel.renderDescriptionContent()
                         },
                         onBoldCharacters = { (!boldCharacters).put(context, coroutineScope) },
                         onReadAloud = {
@@ -313,24 +304,20 @@ fun ReadingPage(
                                         TextToSpeechManager.State.Error -> {
                                             context.showToast("TextToSpeech initialization failed")
                                         }
-
                                         TextToSpeechManager.State.Idle -> {
                                             viewModel.textToSpeechManager.readHtml(
                                                 readerState.content.text ?: ""
                                             )
                                         }
-
                                         is TextToSpeechManager.State.Reading -> {
                                             viewModel.textToSpeechManager.stop()
                                         }
-
                                         TextToSpeechManager.State.Preparing -> {
                                             /* no-op */
                                         }
                                     }
                                 },
-                                state =
-                                    viewModel.textToSpeechManager.stateFlow.collectAsStateValue(),
+                                state = viewModel.textToSpeechManager.stateFlow.collectAsStateValue(),
                             )
                         },
                     )
@@ -338,22 +325,30 @@ fun ReadingPage(
             }
         },
     )
-    if (showFullScreenImageViewer) {
 
+    if (showFullScreenImageViewer) {
         ReaderImageViewer(
             imageData = currentImageData,
             onDownloadImage = {
                 viewModel.downloadImage(
                     it,
                     onSuccess = { context.showToast(context.getString(R.string.image_saved)) },
-                    onFailure = {
-                        // FIXME: crash the app for error report
+                    onFailure = { // FIXME: crash the app for error report
                         th ->
                         throw th
                     },
                 )
             },
             onDismissRequest = { showFullScreenImageViewer = false },
+        )
+    }
+
+    if (showAiSummaryOverlay) {
+        AiSummaryOverlay(
+            summary = summaryContent,
+            isLoading = isSummaryLoading,
+            error = summaryError,
+            onDismissRequest = { showAiSummaryOverlay = false }
         )
     }
 }

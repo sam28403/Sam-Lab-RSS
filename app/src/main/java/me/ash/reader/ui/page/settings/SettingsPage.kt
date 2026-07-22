@@ -14,6 +14,7 @@ import androidx.compose.material.icons.outlined.BugReport
 import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Lightbulb
 import androidx.compose.material.icons.outlined.Palette
+import androidx.compose.material.icons.outlined.Psychology
 import androidx.compose.material.icons.outlined.TipsAndUpdates
 import androidx.compose.material.icons.outlined.TouchApp
 import androidx.compose.material.icons.rounded.Close
@@ -50,6 +51,7 @@ fun SettingsPage(
     navigateToAccounts: () -> Unit,
     navigateToColorAndStyle: () -> Unit,
     navigateToInteraction: () -> Unit,
+    navigateToAiSettings: () -> Unit,
     navigateToLanguages: () -> Unit,
     navigateToTroubleshooting: () -> Unit,
     navigateToTipsAndSupport: () -> Unit,
@@ -58,7 +60,7 @@ fun SettingsPage(
     val newVersion = LocalNewVersionNumber.current
     val skipVersion = LocalSkipVersionNumber.current
     val currentVersion by remember { mutableStateOf(context.getCurrentVersion()) }
-
+    
     RYScaffold(
         containerColor = MaterialTheme.colorScheme.surface onLight MaterialTheme.colorScheme.inverseOnSurface,
         navigationIcon = {
@@ -97,9 +99,9 @@ fun SettingsPage(
                             Spacer(modifier = Modifier.height(16.dp))
                         }
                         // Banner(
-                        //     title = stringResource(R.string.in_coding),
-                        //     desc = stringResource(R.string.coming_soon),
-                        //     icon = Icons.Outlined.Lightbulb,
+                        // title = stringResource(R.string.in_coding),
+                        // desc = stringResource(R.string.coming_soon),
+                        // icon = Icons.Outlined.Lightbulb,
                         // )
                     }
                 }
@@ -125,6 +127,14 @@ fun SettingsPage(
                         desc = stringResource(R.string.interaction_desc),
                         icon = Icons.Outlined.TouchApp,
                         onClick = navigateToInteraction
+                    )
+                }
+                item {
+                    SelectableSettingGroupItem(
+                        title = stringResource(R.string.ai_settings),
+                        desc = stringResource(R.string.ai_settings_desc),
+                        icon = Icons.Outlined.Psychology,
+                        onClick = navigateToAiSettings
                     )
                 }
                 item {
@@ -158,6 +168,5 @@ fun SettingsPage(
             }
         }
     )
-
     UpdateDialog()
 }
