@@ -90,6 +90,13 @@ fun Preferences.toSettings(): Settings {
         // Languages
         languages = LanguagesPreference.fromPreferences(this),
 
+        // Translation
+        // Translation
+        translateArticle = TranslateArticlePreference.fromPreferences(this),
+        translateTargetLanguage = TranslateTargetLanguagePreference.fromPreferences(this),
+        translateWifiOnly = TranslateWifiOnlyPreference.fromPreferences(this),
+        translateTitle = TranslateTitlePreference.fromPreferences(this),
+
         // AI
         aiBaseUrl = AiBaseUrlPreference.fromPreferences(this),
         aiApiKey = AiApiKeyPreference.fromPreferences(this),

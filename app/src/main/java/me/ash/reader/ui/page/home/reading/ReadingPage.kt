@@ -21,6 +21,8 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -35,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.isSpecified
@@ -47,7 +50,10 @@ import me.ash.reader.infrastructure.preference.LocalPullToSwitchArticle
 import me.ash.reader.infrastructure.preference.LocalReadingAutoHideToolbar
 import me.ash.reader.infrastructure.preference.LocalReadingBoldCharacters
 import me.ash.reader.infrastructure.preference.LocalReadingTextLineHeight
+import me.ash.reader.infrastructure.preference.LocalTranslateArticle
+import me.ash.reader.infrastructure.preference.LocalTranslateTitle
 import me.ash.reader.infrastructure.preference.not
+import me.ash.reader.ui.component.base.RYDialog
 import me.ash.reader.ui.ext.collectAsStateValue
 import me.ash.reader.ui.ext.showToast
 import me.ash.reader.ui.page.adaptive.ArticleListReaderViewModel
@@ -74,6 +80,8 @@ fun ReadingPage(
     val readingUiState = viewModel.readingUiState.collectAsStateValue()
     val readerState = viewModel.readerStateStateFlow.collectAsStateValue()
     val boldCharacters = LocalReadingBoldCharacters.current
+    val translateGlobalEnabled = LocalTranslateArticle.current.value
+    val translateTitleEnabled = LocalTranslateTitle.current.value
     val coroutineScope = rememberCoroutineScope()
 
     var isReaderScrollingDown by remember { mutableStateOf(false) }
@@ -179,6 +187,7 @@ fun ReadingPage(
                                 tween(durationMillis = exit, easing = FastOutLinearInEasing)
                             ))
                         },
+                        contentKey = { listOf(it.articleId, it.content::class, it.listIndex, it.isTranslated) },
                         label = "",
                     ) {
                         remember { it }
@@ -280,6 +289,11 @@ fun ReadingPage(
                         isNextArticleAvailable = isNextArticleAvailable,
                         isFullContent = readerState.content is ReaderState.FullContent || readerState.content is ReaderState.Error,
                         isBoldCharacters = boldCharacters.value,
+                        isTranslated = readerState.isTranslated,
+                        isTranslating = readerState.isTranslating,
+                        isTranslateEnabled = translateGlobalEnabled,
+                        isDownloadingModel = readerState.isDownloadingModel,
+                        translationProgress = readerState.translationProgress,
                         onUnread = { viewModel.updateReadStatus(it) },
                         onStarred = { viewModel.updateStarredStatus(it) },
                         onNextArticle = {
@@ -289,7 +303,7 @@ fun ReadingPage(
                             }
                         },
                         onFullContent = {
-                            if (it) viewModel.renderFullContent() else viewModel.renderDescriptionContent()
+                            if (it) viewModel.renderFullContent(translateTitleEnabled) else viewModel.renderDescriptionContent(translateTitleEnabled)
                         },
                         onBoldCharacters = { (!boldCharacters).put(context, coroutineScope) },
                         onReadAloud = {
@@ -319,6 +333,9 @@ fun ReadingPage(
                                 },
                                 state = viewModel.textToSpeechManager.stateFlow.collectAsStateValue(),
                             )
+                        },
+                        onTranslate = {
+                            viewModel.toggleTranslation(translateTitleEnabled)
                         },
                     )
                 }
@@ -351,4 +368,34 @@ fun ReadingPage(
             onDismissRequest = { showAiSummaryOverlay = false }
         )
     }
+
+    // Model download confirmation dialog
+    RYDialog(
+        visible = readerState.needsDownloadConfirmation,
+        onDismissRequest = { viewModel.cancelTranslation() },
+        title = {
+            Text(
+                text = stringResource(R.string.download_model_title)
+            )
+        },
+        text = {
+            Text(
+                text = stringResource(R.string.download_model_message)
+            )
+        },
+        confirmButton = {
+            TextButton(
+                onClick = { viewModel.confirmDownloadAndTranslate(translateTitleEnabled) }
+            ) {
+                Text(text = stringResource(R.string.confirm))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = { viewModel.cancelTranslation() }
+            ) {
+                Text(text = stringResource(R.string.cancel))
+            }
+        },
+    )
 }

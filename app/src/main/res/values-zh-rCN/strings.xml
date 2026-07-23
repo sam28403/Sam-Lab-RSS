@@ -369,4 +369,25 @@
     <string name="ai_summary_error">无法生成总结：%1$s</string>
     <string name="ai_settings">AI设置</string>
     <string name="ai_settings_desc">配置AI总结服务</string>
+    <string name="translate">翻译</string>
+    <string name="translation">翻译</string>
+    <string name="translation_desc">翻译文章，管理语言模型</string>
+    <string name="translate_article">翻译文章</string>
+    <string name="translate_title">翻译标题</string>
+    <string name="auto_translate">自动翻译</string>
+    <string name="show_original">显示原文</string>
+    <string name="translating">翻译中…</string>
+    <string name="translation_model_downloading">下载语言模型</string>
+    <string name="translation_model_download_failed">语言模型下载失败</string>
+    <string name="downloaded_models">已下载模型</string>
+    <string name="delete_model">删除模型</string>
+    <string name="no_downloaded_models">无已下载语言模型</string>
+    <string name="translate_target_language">目标语言</string>
+    <string name="translate_wifi_only">仅使用Wi-Fi下载</string>
+    <string name="manage_models">管理模型</string>
+    <string name="delete_model_desc">删除已下载的语言模型</string>
+    <string name="delete_model_title">删除模型</string>
+    <string name="delete_model_confirmation">你确定要删除%1$s模型吗？</string>
+    <string name="download_model_title">下载翻译模型</string>
+    <string name="download_model_message">翻译本文需要下载翻译模型（每个约 30 MB）。继续吗？</string>
 </resources>

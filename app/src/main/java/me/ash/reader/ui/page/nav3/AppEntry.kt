@@ -51,6 +51,8 @@ import me.ash.reader.ui.page.settings.interaction.InteractionPage
 import me.ash.reader.ui.page.settings.languages.LanguagesPage
 import me.ash.reader.ui.page.settings.tips.LicenseListPage
 import me.ash.reader.ui.page.settings.tips.TipsAndSupportPage
+import me.ash.reader.ui.page.settings.translation.TranslationPage
+import me.ash.reader.ui.page.settings.translation.TranslationTargetLanguagePage
 import me.ash.reader.ui.page.settings.troubleshooting.TroubleshootingPage
 import me.ash.reader.ui.page.settings.ai.AiSettingsPage
 import me.ash.reader.ui.page.startup.StartupPage
@@ -186,6 +188,7 @@ fun AppEntry(backStack: NavBackStack<NavKey>) {
                                 navigateToInteraction = { backStack.add(Route.Interaction) },
                                 navigateToAiSettings = { backStack.add(Route.AiSettings) },
                                 navigateToLanguages = { backStack.add(Route.Languages) },
+                                navigateToTranslation = { backStack.add(Route.Translation) },
                                 navigateToTroubleshooting = {
                                     backStack.add(Route.Troubleshooting)
                                 },
@@ -267,6 +270,17 @@ fun AppEntry(backStack: NavBackStack<NavKey>) {
                     Route.Interaction -> NavEntry(key) { InteractionPage(onBack = onBack) }
                     Route.AiSettings -> NavEntry(key) { AiSettingsPage(onBack = onBack) }
                     Route.Languages -> NavEntry(key) { LanguagesPage(onBack = onBack) }
+                    Route.Translation ->
+                        NavEntry(key) {
+                            TranslationPage(
+                                onBack = onBack,
+                                onNavigateToTargetLanguage = {
+                                    backStack.add(Route.TranslationTargetLanguage)
+                                },
+                            )
+                        }
+                    Route.TranslationTargetLanguage ->
+                        NavEntry(key) { TranslationTargetLanguagePage(onBack = onBack) }
                     Route.Troubleshooting -> NavEntry(key) { TroubleshootingPage(onBack = onBack) }
                     Route.TipsAndSupport ->
                         NavEntry(key) {

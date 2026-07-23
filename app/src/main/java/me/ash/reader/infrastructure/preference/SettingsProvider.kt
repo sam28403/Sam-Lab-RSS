@@ -141,6 +141,13 @@ class SettingsProvider @Inject constructor(
             // Languages
             LocalLanguages provides settings.languages,
 
+            // Translation
+            // Translation
+            LocalTranslateArticle provides settings.translateArticle,
+            LocalTranslateTargetLanguage provides settings.translateTargetLanguage,
+            LocalTranslateWifiOnly provides settings.translateWifiOnly,
+            LocalTranslateTitle provides settings.translateTitle,
+
             // AI
             LocalAiBaseUrl provides settings.aiBaseUrl,
             LocalAiApiKey provides settings.aiApiKey,

@@ -41,8 +41,8 @@ android {
         applicationId = "cc.samlab.rss"
         minSdk = 35
         targetSdk = 37
-        versionCode = 56
-        versionName = "1.1.2"
+        versionCode = 57
+        versionName = "1.2.0"
 
         buildConfigField(
             "String",
@@ -191,6 +191,7 @@ dependencies {
     implementation(libs.browser)
     implementation(libs.navigation.compose)
     implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.lifecycle.runtime.compose)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.core.ktx)
     implementation(libs.activity.compose)
@@ -212,6 +213,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.timber)
+    implementation(libs.mlkit.translate)
+    implementation(libs.mlkit.language.id)
 
     // Testing
     testImplementation(libs.junit)

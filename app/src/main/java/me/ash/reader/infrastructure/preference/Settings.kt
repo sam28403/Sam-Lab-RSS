@@ -83,6 +83,13 @@ data class Settings(
     // Languages
     val languages: LanguagesPreference = LanguagesPreference.default,
 
+    // Translation
+    // Translation
+    val translateArticle: TranslateArticlePreference = TranslateArticlePreference.default,
+    val translateTargetLanguage: TranslateTargetLanguagePreference = TranslateTargetLanguagePreference.default,
+    val translateWifiOnly: TranslateWifiOnlyPreference = TranslateWifiOnlyPreference.default,
+    val translateTitle: TranslateTitlePreference = TranslateTitlePreference.default,
+
     // AI
     val aiBaseUrl: AiBaseUrlPreference = AiBaseUrlPreference.default,
     val aiApiKey: AiApiKeyPreference = AiApiKeyPreference.default,
