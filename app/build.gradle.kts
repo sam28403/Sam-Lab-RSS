@@ -135,6 +135,7 @@ dependencies {
     implementation(libs.aboutlibraries.compose)
 
     // Compose
+    implementation(libs.markdown.renderer)
     implementation(libs.compose.html)
     implementation(platform(libs.compose.bom.alpha))
     implementation(libs.androidx.ui.graphics)

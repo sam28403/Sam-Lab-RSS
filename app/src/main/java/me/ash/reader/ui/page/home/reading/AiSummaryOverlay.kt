@@ -32,6 +32,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.compose.ui.window.DialogWindowProvider
 import androidx.core.view.HapticFeedbackConstantsCompat
+import com.mikepenz.markdown.m3.Markdown
 import me.ash.reader.R
 
 @Composable
@@ -146,10 +147,9 @@ fun AiSummaryOverlay(
                                     modifier = Modifier.fillMaxSize()
                                 ) {
                                     item {
-                                        Text(
-                                            text = summary,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            color = MaterialTheme.colorScheme.onSurface
+                                        Markdown(
+                                            content = summary,
+                                            modifier = Modifier.fillMaxSize()
                                         )
                                     }
                                 }
