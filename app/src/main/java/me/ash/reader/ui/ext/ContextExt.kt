@@ -126,9 +126,9 @@ fun Context.openURL(
                 OpenLinkPreference.CustomTabs -> {
                     val customTabsPackages = getCustomTabsPackages()
                     require(customTabsPackages.isNotEmpty())
-                    val defaultBrowser = getDefaultBrowserInfo()!!.activityInfo.packageName
+                    val defaultBrowser = getDefaultBrowserInfo()?.activityInfo?.packageName
 
-                    val targetApp = if (customTabsPackages.contains(defaultBrowser)) {
+                    val targetApp = if (defaultBrowser != null && customTabsPackages.contains(defaultBrowser)) {
                         defaultBrowser
                     } else {
                         customTabsPackages[0]
@@ -138,8 +138,11 @@ fun Context.openURL(
                 }
 
                 OpenLinkPreference.DefaultBrowser -> {
-                    val packageName = getDefaultBrowserInfo()!!.activityInfo.packageName
-                    startActivity(intent.setPackage(packageName))
+                    val packageName = getDefaultBrowserInfo()?.activityInfo?.packageName
+                    if (packageName != null && packageName != "android") {
+                        intent.setPackage(packageName)
+                    }
+                    startActivity(intent)
                 }
 
                 OpenLinkPreference.SpecificBrowser -> {
@@ -150,7 +153,7 @@ fun Context.openURL(
             }
         } catch (_: Throwable) {
             showToast(getString(R.string.open_link_something_wrong))
-            startActivity(intent)
+            startActivity(intent.setPackage(null))
         }
     }
 }

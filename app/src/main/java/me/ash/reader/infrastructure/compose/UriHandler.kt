@@ -81,10 +81,10 @@ internal class AppUriHandler(
                         OpenLinkPreference.CustomTabs -> {
                             val customTabsPackages = getCustomTabsPackages()
                             require(customTabsPackages.isNotEmpty())
-                            val defaultBrowser = getDefaultBrowserInfo()!!.activityInfo.packageName
+                            val defaultBrowser = getDefaultBrowserInfo()?.activityInfo?.packageName
 
                             val targetApp =
-                                if (customTabsPackages.contains(defaultBrowser)) {
+                                if (defaultBrowser != null && customTabsPackages.contains(defaultBrowser)) {
                                     defaultBrowser
                                 } else {
                                     customTabsPackages[0]
@@ -94,8 +94,11 @@ internal class AppUriHandler(
                         }
 
                         OpenLinkPreference.DefaultBrowser -> {
-                            val packageName = getDefaultBrowserInfo()!!.activityInfo.packageName
-                            startActivity(intent.setPackage(packageName))
+                            val packageName = getDefaultBrowserInfo()?.activityInfo?.packageName
+                            if (packageName != null && packageName != "android") {
+                                intent.setPackage(packageName)
+                            }
+                            startActivity(intent)
                         }
 
                         OpenLinkPreference.SpecificBrowser -> {
@@ -105,7 +108,7 @@ internal class AppUriHandler(
                     }
                 } catch (_: Throwable) {
                     showToast(getString(R.string.open_link_something_wrong))
-                    startActivity(intent)
+                    startActivity(intent.setPackage(null))
                 }
             }
         }

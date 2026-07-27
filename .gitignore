@@ -97,3 +97,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/.artifacts/

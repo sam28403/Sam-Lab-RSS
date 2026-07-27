@@ -41,8 +41,8 @@ android {
         applicationId = "cc.samlab.rss"
         minSdk = 35
         targetSdk = 37
-        versionCode = 57
-        versionName = "1.2.0"
+        versionCode = 58
+        versionName = "1.2.1"
 
         buildConfigField(
             "String",
