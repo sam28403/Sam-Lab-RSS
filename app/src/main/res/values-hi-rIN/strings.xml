@@ -321,4 +321,59 @@
     <string name="latest">नवीनतम</string>
     <string name="earliest">सबसे पुराना</string>
     <string name="sponsor_desc">हम अपने ऑफ-ऑवर्स में इस मुफ़्त, ओपन-सोर्स ऐप का निर्माण और रखरखाव करते हैं। अगर आपको यह पसंद है, तो कृपया एक छोटे से दान के साथ हमारा समर्थन करने पर विचार करें! ☕️</string>
+    <string name="card_widget_label">कार्ड दृश्य</string>
+    <string name="widget_description">चयनित स्रोतों से नवीनतम अपठित लेख देखें</string>
+    <string name="apply">लागू करें</string>
+    <string name="notifications">सूचनाएं</string>
+    <string name="group_configuration_description">\"%2$s\" में फ़ीड के लिए \"%1$s\" कॉन्फ़िगर करें</string>
+    <string name="disabled">अक्षम</string>
+    <string name="enabled">सक्षम</string>
+    <string name="notifications_desc">नये अपठित लेख उपलब्ध होने पर सूचनाएं प्राप्त करें</string>
+    <string name="open_in_browser_desc">लेखों को ब्राउज़र में खोलें</string>
+    <string name="parse_full_content_desc">वेब पेजों से पूर्ण लेख प्राप्त करें</string>
+    <string name="enable">सक्षम करें</string>
+    <string name="disable">अक्षम करें</string>
+    <string name="intro">एक मटीरियल यू 3 RSS रीडर।</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI सारांश</string>
+    <string name="ai_summary_loading">सारांश तैयार किया जा रहा है…</string>
+    <string name="ai_summary_error">सारांश तैयार करने में विफल: %1$s</string>
+    <string name="ai_settings">AI सेटिंग्स</string>
+    <string name="ai_settings_desc">AI सारांश सेवाओं को कॉन्फ़िगर करें</string>
+    <string name="api_configuration">API कॉन्फ़िगरेशन</string>
+    <string name="ai_base_url">API बेस URL</string>
+    <string name="ai_base_url_hint">AI बेस URL इनपुट करें</string>
+    <string name="ai_api_key">API की</string>
+    <string name="ai_api_key_hint">API की इनपुट करें</string>
+    <string name="ai_model">मॉडल</string>
+    <string name="ai_model_default">डिफ़ॉल्ट मॉडल</string>
+    <string name="ai_fetch_models">उपलब्ध मॉडल प्राप्त किए जा रहे हैं…</string>
+    <string name="summarization_settings">सारांश सेटिंग्स</string>
+    <string name="ai_summarization_prompt">कस्टम प्रॉम्प्ट</string>
+    <string name="ai_summarization_prompt_hint">AI के लिए निर्देश...</string>
+    <string name="ai_summarization_prompt_default">"कृपया निम्नलिखित लेख का 3-5 बिंदुओं में संक्षिप्त सारांश प्रदान करें: "</string>
+
+    <!-- Translation -->
+    <string name="translate">अनुवाद करें</string>
+    <string name="translation">अनुवाद</string>
+    <string name="translation_desc">लेखों का अनुवाद करें, भाषा मॉडल प्रबंधित करें</string>
+    <string name="translate_article">लेखों का अनुवाद करें</string>
+    <string name="translate_title">शीर्षक का अनुवाद करें</string>
+    <string name="auto_translate">ऑटो-अनुवाद</string>
+    <string name="show_original">मूल दिखाएं</string>
+    <string name="translating">अनुवाद किया जा रहा है…</string>
+    <string name="translation_model_downloading">भाषा मॉडल डाउनलोड किया जा रहा है…</string>
+    <string name="translation_model_download_failed">भाषा मॉडल डाउनलोड विफल</string>
+    <string name="downloaded_models">डाउनलोड किए गए मॉडल</string>
+    <string name="delete_model">मॉडल हटाएं</string>
+    <string name="no_downloaded_models">कोई डाउनलोड किया गया मॉडल नहीं</string>
+    <string name="translate_target_language">लक्ष्य भाषा</string>
+    <string name="translate_wifi_only">केवल वाई-फाई पर डाउनलोड करें</string>
+    <string name="manage_models">मॉडल प्रबंधित करें</string>
+    <string name="delete_model_desc">डाउनलोड किए गए भाषा मॉडल को हटाएं</string>
+    <string name="delete_model_title">मॉडल हटाएं</string>
+    <string name="delete_model_confirmation">क्या आप वाकई %1$s मॉडल को हटाना चाहते हैं?</string>
+    <string name="download_model_title">अनुवाद मॉडल डाउनलोड करें</string>
+    <string name="download_model_message">इस लेख का अनुवाद करने के लिए अनुवाद मॉडल (प्रत्येक ~30 MB) डाउनलोड करने की आवश्यकता है। जारी रखें?</string>
 </resources>

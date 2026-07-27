@@ -300,4 +300,59 @@
     <string name="swipe_to_start">Veeg naar links</string>
     <string name="only_link">Alleen link</string>
     <string name="mark_above_as_read">Markeer bovenstaande als gelezen</string>
+    <string name="card_widget_label">Kaartweergave</string>
+    <string name="widget_description">Bekijk de laatste ongelezen artikelen van geselecteerde bronnen</string>
+    <string name="apply">Toepassen</string>
+    <string name="notifications">Meldingen</string>
+    <string name="group_configuration_description">Configureer \"%1$s\" voor feeds in \"%2$s\"</string>
+    <string name="disabled">Uitgeschakeld</string>
+    <string name="enabled">Ingeschakeld</string>
+    <string name="notifications_desc">Ontvang meldingen wanneer er nieuwe ongelezen artikelen beschikbaar zijn</string>
+    <string name="open_in_browser_desc">Open artikelen in de browser</string>
+    <string name="parse_full_content_desc">Haal volledige artikelen op van webpagina\'s</string>
+    <string name="enable">Inschakelen</string>
+    <string name="disable">Uitschakelen</string>
+    <string name="intro">Een Material You 3 RSS-lezer.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI-samenvatting</string>
+    <string name="ai_summary_loading">Samenvatting genereren…</string>
+    <string name="ai_summary_error">Samenvatting genereren mislukt: %1$s</string>
+    <string name="ai_settings">AI-instellingen</string>
+    <string name="ai_settings_desc">AI-samenvattingsdiensten configureren</string>
+    <string name="api_configuration">API-configuratie</string>
+    <string name="ai_base_url">API-basis-URL</string>
+    <string name="ai_base_url_hint">Voer AI-basis-URL in</string>
+    <string name="ai_api_key">API-sleutel</string>
+    <string name="ai_api_key_hint">Voer API-sleutel in</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Standaardmodel</string>
+    <string name="ai_fetch_models">Beschikbare modellen ophalen…</string>
+    <string name="summarization_settings">Samenvattingsinstellingen</string>
+    <string name="ai_summarization_prompt">Aangepaste prompt</string>
+    <string name="ai_summarization_prompt_hint">Instructies voor de AI...</string>
+    <string name="ai_summarization_prompt_default">"Geef een beknopte samenvatting van het volgende artikel in 3-5 opsommingstekens: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Vertalen</string>
+    <string name="translation">Vertaling</string>
+    <string name="translation_desc">Artikelen vertalen, taalmodellen beheren</string>
+    <string name="translate_article">Artikelen vertalen</string>
+    <string name="translate_title">Titels vertalen</string>
+    <string name="auto_translate">Automatisch vertalen</string>
+    <string name="show_original">Toon origineel</string>
+    <string name="translating">Vertalen…</string>
+    <string name="translation_model_downloading">Taalmodel downloaden…</string>
+    <string name="translation_model_download_failed">Downloaden taalmodel mislukt</string>
+    <string name="downloaded_models">Gedownloade modellen</string>
+    <string name="delete_model">Model verwijderen</string>
+    <string name="no_downloaded_models">Geen gedownloade modellen</string>
+    <string name="translate_target_language">Doeltaal</string>
+    <string name="translate_wifi_only">Alleen downloaden via Wi-Fi</string>
+    <string name="manage_models">Modellen beheren</string>
+    <string name="delete_model_desc">Verwijder gedownload taalmodel</string>
+    <string name="delete_model_title">Model verwijderen</string>
+    <string name="delete_model_confirmation">Weet u zeker dat u het model %1$s wilt verwijderen?</string>
+    <string name="download_model_title">Vertaalmodellen downloaden</string>
+    <string name="download_model_message">Vertaalmodellen (elk ~30 MB) moeten worden gedownload om dit artikel te vertalen. Doorgaan?</string>
 </resources>

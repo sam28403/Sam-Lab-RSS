@@ -305,4 +305,59 @@
     <string name="only_available_on_webview">Chỉ có trên WebView</string>
     <string name="about">Giới thiệu</string>
     <string name="native_component">Native Component</string>
+    <string name="card_widget_label">Giao diện thẻ</string>
+    <string name="widget_description">Xem các bài viết chưa đọc mới nhất từ các nguồn đã chọn</string>
+    <string name="apply">Áp dụng</string>
+    <string name="notifications">Thông báo</string>
+    <string name="group_configuration_description">Cấu hình \"%1$s\" cho các bảng tin trong \"%2$s\"</string>
+    <string name="disabled">Đã tắt</string>
+    <string name="enabled">Đã bật</string>
+    <string name="notifications_desc">Nhận thông báo khi có bài viết chưa đọc mới</string>
+    <string name="open_in_browser_desc">Mở bài viết trong trình duyệt</string>
+    <string name="parse_full_content_desc">Lấy nội dung đầy đủ của bài viết từ trang web</string>
+    <string name="enable">Bật</string>
+    <string name="disable">Tắt</string>
+    <string name="intro">Một trình đọc RSS phong cách Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Tóm tắt bằng AI</string>
+    <string name="ai_summary_loading">Đang tạo tóm tắt…</string>
+    <string name="ai_summary_error">Tạo tóm tắt thất bại: %1$s</string>
+    <string name="ai_settings">Cài đặt AI</string>
+    <string name="ai_settings_desc">Cấu hình dịch vụ tóm tắt AI</string>
+    <string name="api_configuration">Cấu hình API</string>
+    <string name="ai_base_url">URL cơ sở API</string>
+    <string name="ai_base_url_hint">Nhập URL cơ sở AI</string>
+    <string name="ai_api_key">Khóa API</string>
+    <string name="ai_api_key_hint">Nhập khóa API</string>
+    <string name="ai_model">Mô hình</string>
+    <string name="ai_model_default">Mô hình mặc định</string>
+    <string name="ai_fetch_models">Đang lấy các mô hình khả dụng…</string>
+    <string name="summarization_settings">Cài đặt tóm tắt</string>
+    <string name="ai_summarization_prompt">Gợi ý tùy chỉnh</string>
+    <string name="ai_summarization_prompt_hint">Hướng dẫn cho AI...</string>
+    <string name="ai_summarization_prompt_default">\"Vui lòng cung cấp một tóm tắt ngắn gọn của bài viết sau đây trong 3-5 gạch đầu dòng: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Dịch</string>
+    <string name="translation">Dịch thuật</string>
+    <string name="translation_desc">Dịch bài viết, quản lý các mô hình ngôn ngữ</string>
+    <string name="translate_article">Dịch bài viết</string>
+    <string name="translate_title">Dịch tiêu đề</string>
+    <string name="auto_translate">Tự động dịch</string>
+    <string name="show_original">Hiển thị bản gốc</string>
+    <string name="translating">Đang dịch…</string>
+    <string name="translation_model_downloading">Đang tải xuống mô hình ngôn ngữ…</string>
+    <string name="translation_model_download_failed">Tải xuống mô hình ngôn ngữ thất bại</string>
+    <string name="downloaded_models">Mô hình đã tải xuống</string>
+    <string name="delete_model">Xóa mô hình</string>
+    <string name="no_downloaded_models">Không có mô hình nào được tải xuống</string>
+    <string name="translate_target_language">Ngôn ngữ đích</string>
+    <string name="translate_wifi_only">Chỉ tải xuống qua Wi-Fi</string>
+    <string name="manage_models">Quản lý mô hình</string>
+    <string name="delete_model_desc">Xóa mô hình ngôn ngữ đã tải xuống</string>
+    <string name="delete_model_title">Xóa mô hình</string>
+    <string name="delete_model_confirmation">Bạn có chắc chắn muốn xóa mô hình %1$s không?</string>
+    <string name="download_model_title">Tải xuống các mô hình dịch</string>
+    <string name="download_model_message">Cần tải xuống các mô hình dịch (mỗi mô hình ~30 MB) để dịch bài viết này. Tiếp tục?</string>
 </resources>

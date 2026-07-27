@@ -131,4 +131,59 @@
     <string name="all_deny_open_in_browser_toast">\"%1$s\" ഗ്രൂപ്പിലെ എല്ലാ ലേഖനങ്ങളും ഡിഫോൾട്ട് ബ്രൗസറിൽ തുറക്കുന്നത് നിരോധിച്ചിരിക്കുന്നു</string>
     <string name="mark_as_read_button_position">\"വായിച്ചതായി അടയാളപ്പെടുത്തുക\" ബട്ടൺ സ്ഥാനം</string>
     <string name="top_bar">മുകളിലെ ബാർ</string>
+    <string name="card_widget_label">കാർഡ് കാഴ്ച</string>
+    <string name="widget_description">തിരഞ്ഞെടുത്ത ഉറവിടങ്ങളിൽ നിന്നുള്ള ഏറ്റവും പുതിയ വായിക്കാത്ത ലേഖനങ്ങൾ കാണുക</string>
+    <string name="apply">പ്രയോഗിക്കുക</string>
+    <string name="notifications">അറിയിപ്പുകൾ</string>
+    <string name="group_configuration_description">\"%2$s\"-ലെ ഫീഡുകൾക്കായി \"%1$s\" കോൺഫിഗർ ചെയ്യുക</string>
+    <string name="disabled">അപ്രാപ്തമാക്കി</string>
+    <string name="enabled">പ്രാപ്തമാക്കി</string>
+    <string name="notifications_desc">പുതിയ വായിക്കാത്ത ലേഖനങ്ങൾ ലഭ്യമാകുമ്പോൾ അറിയിപ്പുകൾ നേടുക</string>
+    <string name="open_in_browser_desc">ലേഖനങ്ങൾ ബ്രൗസറിൽ തുറക്കുക</string>
+    <string name="parse_full_content_desc">വെബ് പേജുകളിൽ നിന്ന് പൂർണ്ണ ലേഖനങ്ങൾ നേടുക</string>
+    <string name="enable">പ്രാപ്തമാക്കുക</string>
+    <string name="disable">അപ്രാപ്തമാക്കുക</string>
+    <string name="intro">മെറ്റീരിയൽ യു 3 ആർഎസ്എസ് റീഡർ.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI സംഗ്രഹം</string>
+    <string name="ai_summary_loading">സംഗ്രഹം തയ്യാറാക്കുന്നു…</string>
+    <string name="ai_summary_error">സംഗ്രഹം തയ്യാറാക്കുന്നതിൽ പരാജയപ്പെട്ടു: %1$s</string>
+    <string name="ai_settings">AI ക്രമീകരണങ്ങൾ</string>
+    <string name="ai_settings_desc">AI സംഗ്രഹ സേവനങ്ങൾ കോൺഫിഗർ ചെയ്യുക</string>
+    <string name="api_configuration">API കോൺഫിഗറേഷൻ</string>
+    <string name="ai_base_url">API അടിസ്ഥാന URL</string>
+    <string name="ai_base_url_hint">AI അടിസ്ഥാന URL നൽകുക</string>
+    <string name="ai_api_key">API കീ</string>
+    <string name="ai_api_key_hint">API കീ നൽകുക</string>
+    <string name="ai_model">മോഡൽ</string>
+    <string name="ai_model_default">സ്ഥിരസ്ഥിതി മോഡൽ</string>
+    <string name="ai_fetch_models">ലഭ്യമായ മോഡലുകൾ എടുക്കുന്നു…</string>
+    <string name="summarization_settings">സംഗ്രഹ ക്രമീകരണങ്ങൾ</string>
+    <string name="ai_summarization_prompt">ഇഷ്‌ടാനുസൃത പ്രോംപ്റ്റ്</string>
+    <string name="ai_summarization_prompt_hint">AI-യ്ക്കുള്ള നിർദ്ദേശങ്ങൾ...</string>
+    <string name="ai_summarization_prompt_default">\"താഴെ പറയുന്ന ലേഖനത്തിന്റെ സംഗ്രഹം 3-5 പോയിന്റുകളിൽ നൽകുക: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">വിവർത്തനം ചെയ്യുക</string>
+    <string name="translation">വിവർത്തനം</string>
+    <string name="translation_desc">ലേഖനങ്ങൾ വിവർത്തനം ചെയ്യുക, ഭാഷാ മോഡലുകൾ നിയന്ത്രിക്കുക</string>
+    <string name="translate_article">ലേഖനങ്ങൾ വിവർത്തനം ചെയ്യുക</string>
+    <string name="translate_title">തലക്കെട്ടുകൾ വിവർത്തനം ചെയ്യുക</string>
+    <string name="auto_translate">യാന്ത്രിക വിവർത്തനം</string>
+    <string name="show_original">യഥാർത്ഥമായത് കാണിക്കുക</string>
+    <string name="translating">വിവർത്തനം ചെയ്യുന്നു…</string>
+    <string name="translation_model_downloading">ഭാഷാ മോഡൽ ഡൗൺലോഡ് ചെയ്യുന്നു…</string>
+    <string name="translation_model_download_failed">ഭാഷാ മോഡൽ ഡൗൺലോഡ് പരാജയപ്പെട്ടു</string>
+    <string name="downloaded_models">ഡൗൺലോഡ് ചെയ്ത മോഡലുകൾ</string>
+    <string name="delete_model">മോഡൽ ഇല്ലാതാക്കുക</string>
+    <string name="no_downloaded_models">ഡൗൺലോഡ് ചെയ്ത മോഡലുകളില്ല</string>
+    <string name="translate_target_language">ലക്ഷ്യഭാഷ</string>
+    <string name="translate_wifi_only">Wi-Fi വഴി മാത്രം ഡൗൺലോഡ് ചെയ്യുക</string>
+    <string name="manage_models">മോഡലുകൾ നിയന്ത്രിക്കുക</string>
+    <string name="delete_model_desc">ഡൗൺലോഡ് ചെയ്ത ഭാഷാ മോഡൽ ഇല്ലാതാക്കുക</string>
+    <string name="delete_model_title">മോഡൽ ഇല്ലാതാക്കുക</string>
+    <string name="delete_model_confirmation">%1$s മോഡൽ ഇല്ലാതാക്കണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?</string>
+    <string name="download_model_title">വിവർത്തന മോഡലുകൾ ഡൗൺലോഡ് ചെയ്യുക</string>
+    <string name="download_model_message">ഈ ലേഖനം വിവർത്തനം ചെയ്യാൻ വിവർത്തന മോഡലുകൾ (ഓരോന്നും ~30 MB) ഡൗൺലോഡ് ചെയ്യേണ്ടതുണ്ട്. തുടരണോ?</string>
 </resources>

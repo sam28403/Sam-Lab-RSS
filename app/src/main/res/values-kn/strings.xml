@@ -279,4 +279,59 @@
     <string name="swipe_to_end">ಬಲಕ್ಕೆ ಸ್ವೈಪ್ ಮಾಡಿ</string>
     <string name="none">ಯಾವುದೂ ಇಲ್ಲ</string>
     <string name="toggle_starred">ನಕ್ಷತ್ರ ಹಾಕಿದ ಲೇಖನಗಳನ್ನು ತೋರಿಸಿ</string>
+    <string name="card_widget_label">ಕಾರ್ಡ್ ನೋಟ</string>
+    <string name="widget_description">ಆಯ್ದ ಮೂಲಗಳಿಂದ ಇತ್ತೀಚಿನ ಓದದಿರುವ ಲೇಖನಗಳನ್ನು ವೀಕ್ಷಿಸಿ</string>
+    <string name="apply">ಅನ್ವಯಿಸು</string>
+    <string name="notifications">ಅಧಿಸೂಚನೆಗಳು</string>
+    <string name="group_configuration_description">\"%2$s\" ನಲ್ಲಿನ ಫೀಡ್‌ಗಳಿಗಾಗಿ \"%1$s\" ಕಾನ್ಫಿಗರ್ ಮಾಡಿ</string>
+    <string name="disabled">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+    <string name="enabled">ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
+    <string name="notifications_desc">ಹೊಸ ಓದದಿರುವ ಲೇಖನಗಳು ಲಭ್ಯವಿದ್ದಾಗ ಅಧಿಸೂಚನೆಗಳನ್ನು ಪಡೆಯಿರಿ</string>
+    <string name="open_in_browser_desc">ಲೇಖನಗಳನ್ನು ಬ್ರೌಸರ್‌ನಲ್ಲಿ ತೆರೆಯಿರಿ</string>
+    <string name="parse_full_content_desc">ವೆಬ್‌ಪುಟಗಳಿಂದ ಪೂರ್ಣ ಲೇಖನಗಳನ್ನು ಪಡೆಯಿರಿ</string>
+    <string name="enable">ಸಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="disable">ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ</string>
+    <string name="intro">ಒಂದು ಮೆಟೀರಿಯಲ್ ಯು 3 ಆರ್ಎಸ್ಎಸ್ ರೀಡರ್.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI ಸಾರಾಂಶ</string>
+    <string name="ai_summary_loading">ಸಾರಾಂಶವನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <string name="ai_summary_error">ಸಾರಾಂಶವನ್ನು ಸಿದ್ಧಪಡಿಸಲು ವಿಫಲವಾಗಿದೆ: %1$s</string>
+    <string name="ai_settings">AI ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="ai_settings_desc">AI ಸಾರಾಂಶ ಸೇವೆಗಳನ್ನು ಕಾನ್ಫಿಗರ್ ಮಾಡಿ</string>
+    <string name="api_configuration">API ಕಾನ್ಫಿಗರೇಶನ್</string>
+    <string name="ai_base_url">API ಬೇಸ್ URL</string>
+    <string name="ai_base_url_hint">AI ಬೇಸ್ URL ನಮೂದಿಸಿ</string>
+    <string name="ai_api_key">API ಕೀಲಿ</string>
+    <string name="ai_api_key_hint">API ಕೀಲಿಯನ್ನು ನಮೂದಿಸಿ</string>
+    <string name="ai_model">ಮಾದರಿ</string>
+    <string name="ai_model_default">ಡೀಫಾಲ್ಟ್ ಮಾದರಿ</string>
+    <string name="ai_fetch_models">ಲಭ್ಯವಿರುವ ಮಾದರಿಗಳನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ…</string>
+    <string name="summarization_settings">ಸಾರಾಂಶ ಸೆಟ್ಟಿಂಗ್‌ಗಳು</string>
+    <string name="ai_summarization_prompt">ಕಸ್ಟಮ್ ಪ್ರಾಂಪ್ಟ್</string>
+    <string name="ai_summarization_prompt_hint">AI ಗೆ ಸೂಚನೆಗಳು...</string>
+    <string name="ai_summarization_prompt_default">\"ದಯವಿಟ್ಟು ಈ ಕೆಳಗಿನ ಲೇಖನದ ಸಂಕ್ಷಿಪ್ತ ಸಾರಾಂಶವನ್ನು 3-5 ಬುಲೆಟ್ ಪಾಯಿಂಟ್‌ಗಳಲ್ಲಿ ಒದಗಿಸಿ: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">ಅನುವಾದಿಸಿ</string>
+    <string name="translation">ಅನುವಾದ</string>
+    <string name="translation_desc">ಲೇಖನಗಳನ್ನು ಅನುವಾದಿಸಿ, ಭಾಷಾ ಮಾದರಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
+    <string name="translate_article">ಲೇಖನಗಳನ್ನು ಅನುವಾದಿಸಿ</string>
+    <string name="translate_title">ಶೀರ್ಷಿಕೆಗಳನ್ನು ಅನುವಾದಿಸಿ</string>
+    <string name="auto_translate">ಸ್ವಯಂ ಅನುವಾದ</string>
+    <string name="show_original">ಮೂಲವನ್ನು ತೋರಿಸಿ</string>
+    <string name="translating">ಅನುವಾದಿಸಲಾಗುತ್ತಿದೆ…</string>
+    <string name="translation_model_downloading">ಭಾಷಾ ಮಾದರಿಯನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
+    <string name="translation_model_download_failed">ಭಾಷಾ ಮಾದರಿ ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ</string>
+    <string name="downloaded_models">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾದ ಮಾದರಿಗಳು</string>
+    <string name="delete_model">ಮಾದರಿಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="no_downloaded_models">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾದ ಮಾದರಿಗಳಿಲ್ಲ</string>
+    <string name="translate_target_language">ಗುರಿ ಭಾಷೆ</string>
+    <string name="translate_wifi_only">Wi-Fi ಮೂಲಕ ಮಾತ್ರ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="manage_models">ಮಾದರಿಗಳನ್ನು ನಿರ್ವಹಿಸಿ</string>
+    <string name="delete_model_desc">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾದ ಭಾಷಾ ಮಾದರಿಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="delete_model_title">ಮಾದರಿಯನ್ನು ಅಳಿಸಿ</string>
+    <string name="delete_model_confirmation">%1$s ಮಾದರಿಯನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?</string>
+    <string name="download_model_title">ಅನುವಾದ ಮಾದರಿಗಳನ್ನು ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
+    <string name="download_model_message">ಈ ಲೇಖನವನ್ನು ಅನುವಾದಿಸಲು ಅನುವಾದ ಮಾದರಿಗಳನ್ನು (ತಲಾ ~30 MB) ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಕಾಗಿದೆ. ಮುಂದುವರಿಸಬೇಕೆ?</string>
 </resources>

@@ -312,4 +312,59 @@
     <string name="mark_as_read_on_scroll">علّم إنه منرقرا عال تمرير</string>
     <string name="become_a_sponsor">صير سپانسر</string>
     <string name="sponsor_desc">نحن منعمل و من جدد هيدا الآپ المجاني و مفتوح المصدر برات سعات العمل تبعنا.إذا بيعجبك الآپ، پليز فكر ب دعمنا ب تبرع زغير! ☕️</string>
+    <string name="card_widget_label">ليستة الكروت</string>
+    <string name="widget_description">شوف آخر المقلات المش منقرا ب مصادر منقيها</string>
+    <string name="apply">طبق</string>
+    <string name="notifications">نوتيفيكايشنات</string>
+    <string name="group_configuration_description">إعداد \"%1$s\" للموجزات ب \"%2$s\"</string>
+    <string name="disabled">مطفي</string>
+    <string name="enabled">داير</string>
+    <string name="notifications_desc">جيب نوتيفيكايشنات لمّا يكون فيه مقلات مش منقرا جديدة</string>
+    <string name="open_in_browser_desc">فتاح المقالات بال متصفح</string>
+    <string name="parse_full_content_desc">جيب المقالات الكاملة من صفحات الويب</string>
+    <string name="enable">دور</string>
+    <string name="disable">طفي</string>
+    <string name="intro">قارئ RSS ب ستيل Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">ملخص ذكاء اصطناعي</string>
+    <string name="ai_summary_loading">عم ينعمل ملخص…</string>
+    <string name="ai_summary_error">فشل عمل ملخص: %1$s</string>
+    <string name="ai_settings">إعدادات الذكاء الاصطناعي</string>
+    <string name="ai_settings_desc">إعداد خدمات ملخصات الذكاء الاصطناعي</string>
+    <string name="api_configuration">إعداد الـ API</string>
+    <string name="ai_base_url">\"يو آر إل\" الـ API الأساسي</string>
+    <string name="ai_base_url_hint">حط \"يو آر إل\" الذكاء الاصطناعي الأساسي</string>
+    <string name="ai_api_key">مفتاح الـ API</string>
+    <string name="ai_api_key_hint">حط مفتاح الـ API</string>
+    <string name="ai_model">الموديل</string>
+    <string name="ai_model_default">الموديل الافتراضي</string>
+    <string name="ai_fetch_models">عم نجيب الموديلات الموجودة…</string>
+    <string name="summarization_settings">إعدادات الملخصات</string>
+    <string name="ai_summarization_prompt">برومبت مخصص</string>
+    <string name="ai_summarization_prompt_hint">تعليمات ل الذكاء الاصطناعي...</string>
+    <string name="ai_summarization_prompt_default">\"پليز عطيني ملخص قصير ل هالمقالة ب ٣ ل ٥ نقط: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">ترجم</string>
+    <string name="translation">ترجمة</string>
+    <string name="translation_desc">ترجم المقالات، و دير موديلات اللغات</string>
+    <string name="translate_article">ترجم المقالات</string>
+    <string name="translate_title">ترجم العناوين</string>
+    <string name="auto_translate">ترجمة أوتوماتيكية</string>
+    <string name="show_original">فرجيني الأصلية</string>
+    <string name="translating">عم يترجم…</string>
+    <string name="translation_model_downloading">عم ينزل موديل اللغة…</string>
+    <string name="translation_model_download_failed">فشل تنزيل موديل اللغة</string>
+    <string name="downloaded_models">الموديلات اللي نزلت</string>
+    <string name="delete_model">محي الموديل</string>
+    <string name="no_downloaded_models">مافي موديلات منزلة</string>
+    <string name="translate_target_language">اللغة الهدف</string>
+    <string name="translate_wifi_only">نزل بس عالـ Wi-Fi</string>
+    <string name="manage_models">دير الموديلات</string>
+    <string name="delete_model_desc">محي موديل اللغة اللي نزل</string>
+    <string name="delete_model_title">محي الموديل</string>
+    <string name="delete_model_confirmation">متأكد بدك تمحي موديل %1$s؟</string>
+    <string name="download_model_title">نزل موديلات الترجمة</string>
+    <string name="download_model_message">لازم تنزل موديلات الترجمة (حوالى ٣٠ ميگا ل كل واحد) حتى يترجم هالمقالة. بدك تكفي؟</string>
 </resources>

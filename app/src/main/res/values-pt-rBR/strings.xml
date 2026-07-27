@@ -331,4 +331,59 @@
     <string name="bold_characters">Caracteres em negrito</string>
     <string name="bold_characters_preview">Deixar os primeiros caracteres em negrito das palavras do artigo</string>
     <string name="use_bold_characters">Usar caracteres em negrito</string>
+    <string name="card_widget_label">Vista de cartão</string>
+    <string name="widget_description">Ver os últimos artigos não lidos das fontes selecionadas</string>
+    <string name="apply">Aplicar</string>
+    <string name="notifications">Notificações</string>
+    <string name="group_configuration_description">Configurar \"%1$s\" para feeds em \"%2$s\"</string>
+    <string name="disabled">Desativado</string>
+    <string name="enabled">Ativado</string>
+    <string name="notifications_desc">Receber notificações quando novos artigos não lidos estiverem disponíveis</string>
+    <string name="open_in_browser_desc">Abrir artigos no navegador</string>
+    <string name="parse_full_content_desc">Buscar artigos completos de páginas da web</string>
+    <string name="enable">Ativar</string>
+    <string name="disable">Desativar</string>
+    <string name="intro">Um leitor de RSS Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Resumo por IA</string>
+    <string name="ai_summary_loading">Gerando resumo…</string>
+    <string name="ai_summary_error">Falha ao gerar resumo: %1$s</string>
+    <string name="ai_settings">Configurações de IA</string>
+    <string name="ai_settings_desc">Configurar serviços de resumo por IA</string>
+    <string name="api_configuration">Configuração de API</string>
+    <string name="ai_base_url">URL base da API</string>
+    <string name="ai_base_url_hint">Inserir URL base da IA</string>
+    <string name="ai_api_key">Chave da API</string>
+    <string name="ai_api_key_hint">Inserir chave da API</string>
+    <string name="ai_model">Modelo</string>
+    <string name="ai_model_default">Modelo padrão</string>
+    <string name="ai_fetch_models">Buscando modelos disponíveis…</string>
+    <string name="summarization_settings">Configurações de resumo</string>
+    <string name="ai_summarization_prompt">Prompt personalizado</string>
+    <string name="ai_summarization_prompt_hint">Instruções para a IA...</string>
+    <string name="ai_summarization_prompt_default">\"Por favor, forneça um resumo conciso do seguinte artigo em 3-5 tópicos: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Traduzir</string>
+    <string name="translation">Tradução</string>
+    <string name="translation_desc">Traduzir artigos, gerenciar modelos de idioma</string>
+    <string name="translate_article">Traduzir artigos</string>
+    <string name="translate_title">Traduzir títulos</string>
+    <string name="auto_translate">Tradução automática</string>
+    <string name="show_original">Mostrar original</string>
+    <string name="translating">Traduzindo…</string>
+    <string name="translation_model_downloading">Baixando modelo de idioma…</string>
+    <string name="translation_model_download_failed">Falha no download do modelo de idioma</string>
+    <string name="downloaded_models">Modelos baixados</string>
+    <string name="delete_model">Excluir modelo</string>
+    <string name="no_downloaded_models">Nenhum modelo baixado</string>
+    <string name="translate_target_language">Idioma de destino</string>
+    <string name="translate_wifi_only">Baixar apenas via Wi-Fi</string>
+    <string name="manage_models">Gerenciar modelos</string>
+    <string name="delete_model_desc">Excluir modelo de idioma baixado</string>
+    <string name="delete_model_title">Excluir modelo</string>
+    <string name="delete_model_confirmation">Tem certeza de que deseja excluir o modelo %1$s?</string>
+    <string name="download_model_title">Baixar modelos de tradução</string>
+    <string name="download_model_message">Modelos de tradução (~30 MB cada) precisam ser baixados para traduzir este artigo. Continuar?</string>
 </resources>

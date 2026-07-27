@@ -324,4 +324,59 @@
     <string name="sort_unread_articles">Ordina gli articoli non letti</string>
     <string name="latest">Ultimi</string>
     <string name="earliest">Vecchi</string>
+    <string name="card_widget_label">Vista a schede</string>
+    <string name="widget_description">Visualizza gli ultimi articoli non letti dalle fonti selezionate</string>
+    <string name="apply">Applica</string>
+    <string name="notifications">Notifiche</string>
+    <string name="group_configuration_description">Configura \"%1$s\" per i feed in \"%2$s\"</string>
+    <string name="disabled">Disabilitato</string>
+    <string name="enabled">Abilitato</string>
+    <string name="notifications_desc">Ricevi notifiche quando sono disponibili nuovi articoli non letti</string>
+    <string name="open_in_browser_desc">Apri gli articoli nel browser</string>
+    <string name="parse_full_content_desc">Recupera gli articoli completi dalle pagine web</string>
+    <string name="enable">Abilita</string>
+    <string name="disable">Disabilita</string>
+    <string name="intro">Un lettore RSS in stile Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Riassunto AI</string>
+    <string name="ai_summary_loading">Generazione riassunto…</string>
+    <string name="ai_summary_error">Generazione riassunto fallita: %1$s</string>
+    <string name="ai_settings">Impostazioni AI</string>
+    <string name="ai_settings_desc">Configura i servizi di riassunto AI</string>
+    <string name="api_configuration">Configurazione API</string>
+    <string name="ai_base_url">URL di base dell\'API</string>
+    <string name="ai_base_url_hint">Inserisci l\'URL di base dell\'AI</string>
+    <string name="ai_api_key">Chiave API</string>
+    <string name="ai_api_key_hint">Inserisci la chiave API</string>
+    <string name="ai_model">Modello</string>
+    <string name="ai_model_default">Modello predefinito</string>
+    <string name="ai_fetch_models">Recupero modelli disponibili…</string>
+    <string name="summarization_settings">Impostazioni riassunto</string>
+    <string name="ai_summarization_prompt">Prompt personalizzato</string>
+    <string name="ai_summarization_prompt_hint">Istruzioni per l\'AI...</string>
+    <string name="ai_summarization_prompt_default">\"Fornisci un riassunto conciso del seguente articolo in 3-5 punti elenco: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Traduci</string>
+    <string name="translation">Traduzione</string>
+    <string name="translation_desc">Traduci articoli, gestisci i modelli linguistici</string>
+    <string name="translate_article">Traduci articoli</string>
+    <string name="translate_title">Traduci titoli</string>
+    <string name="auto_translate">Traduzione automatica</string>
+    <string name="show_original">Mostra originale</string>
+    <string name="translating">Traduzione in corso…</string>
+    <string name="translation_model_downloading">Download modello linguistico…</string>
+    <string name="translation_model_download_failed">Download modello linguistico fallito</string>
+    <string name="downloaded_models">Modelli scaricati</string>
+    <string name="delete_model">Elimina modello</string>
+    <string name="no_downloaded_models">Nessun modello scaricato</string>
+    <string name="translate_target_language">Lingua di destinazione</string>
+    <string name="translate_wifi_only">Scarica solo tramite Wi-Fi</string>
+    <string name="manage_models">Gestisci modelli</string>
+    <string name="delete_model_desc">Elimina il modello linguistico scaricato</string>
+    <string name="delete_model_title">Elimina modello</string>
+    <string name="delete_model_confirmation">Sei sicuro di voler eliminare il modello %1$s?</string>
+    <string name="download_model_title">Scarica modelli di traduzione</string>
+    <string name="download_model_message">I modelli di traduzione (~30 MB ciascuno) devono essere scaricati per tradurre questo articolo. Continuare?</string>
 </resources>

@@ -250,4 +250,59 @@
     <string name="username">Användarnamn</string>
     <string name="system_default">Systemet</string>
     <string name="empty">Tömma</string>
+    <string name="card_widget_label">Kortvy</string>
+    <string name="widget_description">Visa de senaste olästa artiklarna från valda källor</string>
+    <string name="apply">Verkställ</string>
+    <string name="notifications">Aviseringar</string>
+    <string name="group_configuration_description">Konfigurera \"%1$s\" för flöden i \"%2$s\"</string>
+    <string name="disabled">Inaktiverad</string>
+    <string name="enabled">Aktiverad</string>
+    <string name="notifications_desc">Få aviseringar när nya olästa artiklar finns tillgängliga</string>
+    <string name="open_in_browser_desc">Öppna artiklar i webbläsaren</string>
+    <string name="parse_full_content_desc">Hämta fullständiga artiklar från webbsidor</string>
+    <string name="enable">Aktivera</string>
+    <string name="disable">Inaktivera</string>
+    <string name="intro">En Material You 3 RSS-läsare.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI-sammanfattning</string>
+    <string name="ai_summary_loading">Genererar sammanfattning…</string>
+    <string name="ai_summary_error">Kunde inte generera sammanfattning: %1$s</string>
+    <string name="ai_settings">AI-inställningar</string>
+    <string name="ai_settings_desc">Konfigurera AI-sammanfattningstjänster</string>
+    <string name="api_configuration">API-konfiguration</string>
+    <string name="ai_base_url">API-bas-URL</string>
+    <string name="ai_base_url_hint">Ange AI-bas-URL</string>
+    <string name="ai_api_key">API-nyckel</string>
+    <string name="ai_api_key_hint">Ange API-nyckel</string>
+    <string name="ai_model">Modell</string>
+    <string name="ai_model_default">Standardmodell</string>
+    <string name="ai_fetch_models">Hämtar tillgängliga modeller…</string>
+    <string name="summarization_settings">Sammanfattningsinställningar</string>
+    <string name="ai_summarization_prompt">Anpassad prompt</string>
+    <string name="ai_summarization_prompt_hint">Instruktioner för AI:n...</string>
+    <string name="ai_summarization_prompt_default">"Vänligen ge en kortfattad sammanfattning av följande artikel i 3-5 punkter: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Översätt</string>
+    <string name="translation">Översättning</string>
+    <string name="translation_desc">Översätt artiklar, hantera språkmodeller</string>
+    <string name="translate_article">Översätt artikel</string>
+    <string name="translate_title">Översätt titel</string>
+    <string name="auto_translate">Automatisk översättning</string>
+    <string name="show_original">Visa original</string>
+    <string name="translating">Översätter…</string>
+    <string name="translation_model_downloading">Laddar ner språkmodell…</string>
+    <string name="translation_model_download_failed">Nedladdning av språkmodell misslyckades</string>
+    <string name="downloaded_models">Nedladdade modeller</string>
+    <string name="delete_model">Ta bort modell</string>
+    <string name="no_downloaded_models">Inga nedladdade modeller</string>
+    <string name="translate_target_language">Målspråk</string>
+    <string name="translate_wifi_only">Ladda endast ner via Wi-Fi</string>
+    <string name="manage_models">Hantera modeller</string>
+    <string name="delete_model_desc">Ta bort nedladdad språkmodell</string>
+    <string name="delete_model_title">Ta bort modell</string>
+    <string name="delete_model_confirmation">Är du säker på att du vill ta bort %1$s-modellen?</string>
+    <string name="download_model_title">Ladda ner översättningsmodeller</string>
+    <string name="download_model_message">Översättningsmodeller (~30 MB vardera) måste laddas ner för att översätta denna artikel. Fortsätta?</string>
 </resources>

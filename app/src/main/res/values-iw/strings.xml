@@ -296,4 +296,59 @@
     <string name="bold_characters_preview">להדגיש כמה מהמילים הראשונות בכתבות</string>
     <string name="permission_denied">ההרשאה נדחתה</string>
     <string name="preview_article_title">לורד התעלומות המסתורי הגיע לסיומו</string>
+    <string name="card_widget_label">תצוגת כרטיס</string>
+    <string name="widget_description">הצגת הכתבות האחרונות שלא נקראו מהמקורות שנבחרו</string>
+    <string name="apply">החלה</string>
+    <string name="notifications">התראות</string>
+    <string name="group_configuration_description">הגדרת „%1$s” עבור היזנים ב־„%2$s”</string>
+    <string name="disabled">מושבת</string>
+    <string name="enabled">פעיל</string>
+    <string name="notifications_desc">קבלת התראות כאשר קיימות כתבות חדשות שלא נקראו</string>
+    <string name="open_in_browser_desc">פתיחת כתבות בדפדפן</string>
+    <string name="parse_full_content_desc">אחזור כתבות מלאות מדפי אינטרנט</string>
+    <string name="enable">הפעלה</string>
+    <string name="disable">השבתה</string>
+    <string name="intro">קורא RSS בסגנון Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">סיכום בינה מלאכותית</string>
+    <string name="ai_summary_loading">מייצר סיכום…</string>
+    <string name="ai_summary_error">נכשלה יצירת סיכום: %1$s</string>
+    <string name="ai_settings">הגדרות בינה מלאכותית</string>
+    <string name="ai_settings_desc">הגדרת שירותי סיכום בינה מלאכותית</string>
+    <string name="api_configuration">הגדרות API</string>
+    <string name="ai_base_url">כתובת API בסיסית</string>
+    <string name="ai_base_url_hint">הזנת כתובת בסיס לבינה מלאכותית</string>
+    <string name="ai_api_key">מפתח API</string>
+    <string name="ai_api_key_hint">הזנת מפתח API</string>
+    <string name="ai_model">מודל</string>
+    <string name="ai_model_default">מודל ברירת מחדל</string>
+    <string name="ai_fetch_models">מאחזר מודלים זמינים…</string>
+    <string name="summarization_settings">הגדרות סיכום</string>
+    <string name="ai_summarization_prompt">הנחיה מותאמת אישית</string>
+    <string name="ai_summarization_prompt_hint">הוראות לבינה מלאכותית...</string>
+    <string name="ai_summarization_prompt_default">"אנא ספק סיכום תמציתי של המאמר הבא ב-3-5 נקודות: "</string>
+
+    <!-- Translation -->
+    <string name="translate">תרגום</string>
+    <string name="translation">תרגום</string>
+    <string name="translation_desc">תרגום מאמרים, ניהול מודלים של שפה</string>
+    <string name="translate_article">תרגום מאמרים</string>
+    <string name="translate_title">תרגום כותרות</string>
+    <string name="auto_translate">תרגום אוטומטי</string>
+    <string name="show_original">הצגת המקור</string>
+    <string name="translating">מתרגם…</string>
+    <string name="translation_model_downloading">מוריד מודל שפה…</string>
+    <string name="translation_model_download_failed">הורדת מודל השפה נכשלה</string>
+    <string name="downloaded_models">מודלים שהורדו</string>
+    <string name="delete_model">מחיקת מודל</string>
+    <string name="no_downloaded_models">אין מודלים שהורדו</string>
+    <string name="translate_target_language">שפת יעד</string>
+    <string name="translate_wifi_only">הורדה דרך Wi-Fi בלבד</string>
+    <string name="manage_models">ניהול מודלים</string>
+    <string name="delete_model_desc">מחיקת מודל שפה שהורד</string>
+    <string name="delete_model_title">מחיקת מודל</string>
+    <string name="delete_model_confirmation">האם אתה בטוח שברצונך למחוק את המודל %1$s?</string>
+    <string name="download_model_title">הורדת מודלים של תרגום</string>
+    <string name="download_model_message">יש להוריד מודלים של תרגום (~30 מ"ב כל אחד) כדי לתרגם מאמר זה. להמשיך?</string>
 </resources>

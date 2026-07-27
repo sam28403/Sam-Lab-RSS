@@ -352,5 +352,59 @@
     <string name="last_updated">المحدثة مؤخرا</string>
     <string name="no_unread_articles">لا توجد مقالات غير مقروءة</string>
     <string name="list_widget_label">عرض كقائمة</string>
-    <string name="card_widget_label">عرض كبطاقة</string>"
-    </resources>
+    <string name="card_widget_label">عرض كبطاقة</string>
+    <string name="widget_description">عرض أحدث المقالات غير المقروءة من المصادر المحددة</string>
+    <string name="apply">تطبيق</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="group_configuration_description">تكوين \"%1$s\" للخلاصات في \"%2$s\"</string>
+    <string name="disabled">معطل</string>
+    <string name="enabled">ممكن</string>
+    <string name="notifications_desc">الحصول على إشعارات عند توفر مقالات جديدة غير مقروءة</string>
+    <string name="open_in_browser_desc">فتح المقالات في المتصفح</string>
+    <string name="parse_full_content_desc">جلب المقالات الكاملة من صفحات الويب</string>
+    <string name="enable">تفعيل</string>
+    <string name="disable">تعطيل</string>
+    <string name="intro">قارئ RSS بنمط Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">ملخص الذكاء الاصطناعي</string>
+    <string name="ai_summary_loading">جاري إنشاء الملخص…</string>
+    <string name="ai_summary_error">فشل إنشاء الملخص: %1$s</string>
+    <string name="ai_settings">إعدادات الذكاء الاصطناعي</string>
+    <string name="ai_settings_desc">تكوين خدمات تلخيص الذكاء الاصطناعي</string>
+    <string name="api_configuration">تكوين واجهة برمجة التطبيقات</string>
+    <string name="ai_base_url">عنوان URL الأساسي لواجهة برمجة التطبيقات</string>
+    <string name="ai_base_url_hint">أدخل عنوان URL الأساسي للذكاء الاصطناعي</string>
+    <string name="ai_api_key">مفتاح واجهة برمجة التطبيقات</string>
+    <string name="ai_api_key_hint">أدخل مفتاح واجهة برمجة التطبيقات</string>
+    <string name="ai_model">النموذج</string>
+    <string name="ai_model_default">النموذج الافتراضي</string>
+    <string name="ai_fetch_models">جاري جلب النماذج المتاحة…</string>
+    <string name="summarization_settings">إعدادات التلخيص</string>
+    <string name="ai_summarization_prompt">موجه مخصص</string>
+    <string name="ai_summarization_prompt_hint">تعليمات للذكاء الاصطناعي...</string>
+    <string name="ai_summarization_prompt_default">\"يرجى تقديم ملخص موجز للمقالة التالية في 3-5 نقاط: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">ترجمة</string>
+    <string name="translation">الترجمة</string>
+    <string name="translation_desc">ترجمة المقالات، إدارة نماذج اللغة</string>
+    <string name="translate_article">ترجمة المقالات</string>
+    <string name="translate_title">ترجمة العناوين</string>
+    <string name="auto_translate">ترجمة تلقائية</string>
+    <string name="show_original">إظهار الأصل</string>
+    <string name="translating">جاري الترجمة…</string>
+    <string name="translation_model_downloading">جاري تنزيل نموذج اللغة…</string>
+    <string name="translation_model_download_failed">فشل تنزيل نموذج اللغة</string>
+    <string name="downloaded_models">النماذج التي تم تنزيلها</string>
+    <string name="delete_model">حذف النموذج</string>
+    <string name="no_downloaded_models">لا توجد نماذج تم تنزيلها</string>
+    <string name="translate_target_language">اللغة الهدف</string>
+    <string name="translate_wifi_only">التنزيل عبر Wi-Fi فقط</string>
+    <string name="manage_models">إدارة النماذج</string>
+    <string name="delete_model_desc">حذف نموذج اللغة الذي تم تنزيله</string>
+    <string name="delete_model_title">حذف النموذج</string>
+    <string name="delete_model_confirmation">هل أنت متأكد أنك تريد حذف نموذج %1$s؟</string>
+    <string name="download_model_title">تنزيل نماذج الترجمة</string>
+    <string name="download_model_message">يجب تنزيل نماذج الترجمة (حوالي 30 ميجابايت لكل منها) لترجمة هذه المقالة. استمرار؟</string>
+</resources>

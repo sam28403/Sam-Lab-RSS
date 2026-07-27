@@ -341,7 +341,7 @@
     <string name="last_updated">Utoljára frissítve</string>
     <string name="no_unread_articles">Nincsenek olvasatlan cikkek</string>
     <string name="list_widget_label">Listanézet</string>
-    <string name="card_widget_label">Kártyanézet</string>"
+    <string name="card_widget_label">Kártyanézet</string>
     <string name="widget_description">Legutóbbi olvasatlan cikkek megtekintése a kiválasztott forrásokból</string>
     <string name="apply">Alkalmaz</string>
     <string name="notifications">Értesítések</string>
@@ -353,4 +353,47 @@
     <string name="parse_full_content_desc">Teljes cikkek lekérése a weboldalakról</string>
     <string name="enable">Engedélyezés</string>
     <string name="disable">Letiltás</string>
+    <string name="intro">Material You 3 stílusú RSS-olvasó.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI összefoglaló</string>
+    <string name="ai_summary_loading">Összefoglaló készítése…</string>
+    <string name="ai_summary_error">Nem sikerült összefoglalót készíteni: %1$s</string>
+    <string name="ai_settings">AI beállítások</string>
+    <string name="ai_settings_desc">AI összefoglaló szolgáltatások beállítása</string>
+    <string name="api_configuration">API konfiguráció</string>
+    <string name="ai_base_url">API alap URL</string>
+    <string name="ai_base_url_hint">Adja meg az AI alap URL-t</string>
+    <string name="ai_api_key">API kulcs</string>
+    <string name="ai_api_key_hint">Adja meg az API kulcsot</string>
+    <string name="ai_model">Modell</string>
+    <string name="ai_model_default">Alapértelmezett modell</string>
+    <string name="ai_fetch_models">Elérhető modellek lekérése…</string>
+    <string name="summarization_settings">Összefoglalás beállításai</string>
+    <string name="ai_summarization_prompt">Egyéni utasítás</string>
+    <string name="ai_summarization_prompt_hint">Utasítások az AI-nak...</string>
+    <string name="ai_summarization_prompt_default">"Kérem, adjon tömör összefoglalót a következő cikkről 3-5 pontban: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Fordítás</string>
+    <string name="translation">Fordítás</string>
+    <string name="translation_desc">Cikkek fordítása, nyelvi modellek kezelése</string>
+    <string name="translate_article">Cikk fordítása</string>
+    <string name="translate_title">Cím fordítása</string>
+    <string name="auto_translate">Automatikus fordítás</string>
+    <string name="show_original">Eredeti megjelenítése</string>
+    <string name="translating">Fordítás…</string>
+    <string name="translation_model_downloading">Nyelvi modell letöltése…</string>
+    <string name="translation_model_download_failed">Nyelvi modell letöltése sikertelen</string>
+    <string name="downloaded_models">Letöltött modellek</string>
+    <string name="delete_model">Modell törlése</string>
+    <string name="no_downloaded_models">Nincsenek letöltött modellek</string>
+    <string name="translate_target_language">Célnyelv</string>
+    <string name="translate_wifi_only">Letöltés csak Wi-Fi-n</string>
+    <string name="manage_models">Modellek kezelése</string>
+    <string name="delete_model_desc">Letöltött nyelvi modell törlése</string>
+    <string name="delete_model_title">Modell törlése</string>
+    <string name="delete_model_confirmation">Biztosan törölni szeretné a(z) %1$s modellt?</string>
+    <string name="download_model_title">Fordító modellek letöltése</string>
+    <string name="download_model_message">A cikk lefordításához fordító modelleket (egyenként ~30 MB) kell letölteni. Folytatja?</string>
 </resources>

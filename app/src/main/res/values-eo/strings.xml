@@ -325,4 +325,59 @@
     <string name="export_as_protobuf_file">Eksporti kiel protobuf dosiero</string>
     <string name="sponsor_desc">Ni konstruas kaj prizorgas tiun liberan, malfermitkodan apon dum nia libertempo. Se vi ŝatas ĝin, bonvolu konsideri subteni nin per eta donaco! ☕️</string>
     <string name="import_from_protobuf_file">Importi el protobuf dosiero</string>
+    <string name="card_widget_label">Karta vido</string>
+    <string name="widget_description">Vidi la plej freŝajn nelegitajn artikolojn de elektitaj fontoj</string>
+    <string name="apply">Apliki</string>
+    <string name="notifications">Sciigoj</string>
+    <string name="group_configuration_description">Agordi \"%1$s\" por fluoj en \"%2$s\"</string>
+    <string name="disabled">Malebligita</string>
+    <string name="enabled">Ebligita</string>
+    <string name="notifications_desc">Ricevi sciigojn kiam novaj nelegitaj artikoloj estas disponeblaj</string>
+    <string name="open_in_browser_desc">Malfermi artikolojn en la retumilo</string>
+    <string name="parse_full_content_desc">Havi plenajn artikolojn de retpaĝoj</string>
+    <string name="enable">Ebligi</string>
+    <string name="disable">Malebligi</string>
+    <string name="intro">RSS-legilo en la stilo de Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI-resumo</string>
+    <string name="ai_summary_loading">Generante resumon…</string>
+    <string name="ai_summary_error">Malsukcesis generi resumon: %1$s</string>
+    <string name="ai_settings">AI-agordoj</string>
+    <string name="ai_settings_desc">Agordi AI-resumajn servojn</string>
+    <string name="api_configuration">API-agordo</string>
+    <string name="ai_base_url">API Baza URL</string>
+    <string name="ai_base_url_hint">Enigi AI bazan URL</string>
+    <string name="ai_api_key">API-ŝlosilo</string>
+    <string name="ai_api_key_hint">Enigi API-ŝlosilon</string>
+    <string name="ai_model">Modelo</string>
+    <string name="ai_model_default">Defaŭlta modelo</string>
+    <string name="ai_fetch_models">Ricevante disponeblajn modelojn…</string>
+    <string name="summarization_settings">Resumaj agordoj</string>
+    <string name="ai_summarization_prompt">Propra instigo</string>
+    <string name="ai_summarization_prompt_hint">Instrukcioj por la AI...</string>
+    <string name="ai_summarization_prompt_default">\"Bonvolu doni koncizan resumon de la sekva artikolo en 3-5 punktoj: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Traduki</string>
+    <string name="translation">Traduko</string>
+    <string name="translation_desc">Traduki artikolojn, administri lingvajn modelojn</string>
+    <string name="translate_article">Traduki artikolojn</string>
+    <string name="translate_title">Traduki titolojn</string>
+    <string name="auto_translate">Aŭtomata traduko</string>
+    <string name="show_original">Montri originalon</string>
+    <string name="translating">Tradukante…</string>
+    <string name="translation_model_downloading">Elŝutante lingvan modelon…</string>
+    <string name="translation_model_download_failed">Elŝuto de lingva modelo malsukcesis</string>
+    <string name="downloaded_models">Elŝutitaj modeloj</string>
+    <string name="delete_model">Viŝi modelon</string>
+    <string name="no_downloaded_models">Neniuj elŝutitaj modeloj</string>
+    <string name="translate_target_language">Cella lingvo</string>
+    <string name="translate_wifi_only">Elŝuti nur per Wi-Fi</string>
+    <string name="manage_models">Administri modelojn</string>
+    <string name="delete_model_desc">Viŝi elŝutitan lingvan modelon</string>
+    <string name="delete_model_title">Viŝi modelon</string>
+    <string name="delete_model_confirmation">Ĉu vi certas, ke vi volas viŝi la modelon %1$s?</string>
+    <string name="download_model_title">Elŝuti tradukajn modelojn</string>
+    <string name="download_model_message">Tradukaj modeloj (~30 MB ĉiu) devas esti elŝutitaj por traduki ĉi tiun artikolon. Ĉu daŭrigi?</string>
 </resources>

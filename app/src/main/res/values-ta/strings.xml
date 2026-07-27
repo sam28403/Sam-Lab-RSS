@@ -233,7 +233,6 @@
     <string name="other">ஏனைய</string>
     <string name="amoled_dark_theme">கருப்பு அடர் தீம்</string>
     <string name="tonal_elevation">உயர்வு தொனி</string>
-    <string name="reading_fonts">வாசிப்பு எழுத்துருக்கள்</string>
     <string name="basic_fonts">அடிப்படை எழுத்துருக்கள்</string>
     <string name="flow_page">பாய்வு பக்கம்</string>
     <string name="reading_page">வாசிப்பு பக்கம்</string>
@@ -241,7 +240,7 @@
     <string name="change_log">மாற்றப்பதிகை</string>
     <string name="update">புதுப்பி</string>
     <string name="skip_this_version">இப்பதிப்பைக் கடந்திடு</string>
-    <string name="is_latest_version">இதுவே இச்செயலியின் பிந்தையப் பதிப்பு</string>
+    <string name="is_latest_version">இதுве இச்செயலியின் பிந்தையப் பதிப்பு</string>
     <string name="update_link">https://api.github.com/repos/ReadYouApp/ReadYou/releases/latest</string>
     <string name="check_failure">புதுப்பிக்கும் சோதனை செயலிழந்தது</string>
     <string name="download_failure">புதுப்பித்தல்களை பதிவிறக்கமுடியவில்லை</string>
@@ -324,4 +323,59 @@
     <string name="none_desc">ஏதுமில்லை</string>
     <string name="short_desc">குட்டை</string>
     <string name="long_desc">நீளம்</string>
+    <string name="card_widget_label">அட்டை காட்சி</string>
+    <string name="widget_description">தேர்ந்தெடுக்கப்பட்ட மூலங்களிலிருந்து சமீபத்திய படிக்காத கட்டுரைகளைக் காண்க</string>
+    <string name="apply">விண்ணப்பிக்கவும்</string>
+    <string name="notifications">அறிவிப்புகள்</string>
+    <string name="group_configuration_description">\"%2$s\" இல் உள்ள ஊட்டங்களுக்கு \"%1$s\" ஐ உள்ளமைக்கவும்</string>
+    <string name="disabled">முடக்கப்பட்டது</string>
+    <string name="enabled">செயல்படுத்தப்பட்டது</string>
+    <string name="notifications_desc">புதிய படிக்காத கட்டுரைகள் கிடைக்கும்போது அறிவிப்புகளைப் பெறவும்</string>
+    <string name="open_in_browser_desc">கட்டுரைகளை உலாவியில் திறக்கவும்</string>
+    <string name="parse_full_content_desc">வலைப்பக்கங்களிலிருந்து முழு கட்டுரைகளையும் பெறவும்</string>
+    <string name="enable">செயல்படுத்து</string>
+    <string name="disable">முடக்கு</string>
+    <string name="intro">ஒரு மெட்டீரியல் யூ 3 ஆர்எஸ்எஸ் ரீடர்.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI சுருக்கம்</string>
+    <string name="ai_summary_loading">சுருக்கத்தை உருவாக்குகிறது…</string>
+    <string name="ai_summary_error">சுருக்கத்தை உருவாக்குவதில் தோல்வி: %1$s</string>
+    <string name="ai_settings">AI அமைப்புகள்</string>
+    <string name="ai_settings_desc">AI சுருக்க சேவைகளை உள்ளமைக்கவும்</string>
+    <string name="api_configuration">API உள்ளமைவு</string>
+    <string name="ai_base_url">API அடிப்படை URL</string>
+    <string name="ai_base_url_hint">AI அடிப்படை URL ஐ உள்ளிடவும்</string>
+    <string name="ai_api_key">API திறவுகோல்</string>
+    <string name="ai_api_key_hint">API திறவுகோலை உள்ளிடவும்</string>
+    <string name="ai_model">மாதிரி</string>
+    <string name="ai_model_default">இயல்புநிலை மாதிரி</string>
+    <string name="ai_fetch_models">கிடைக்கக்கூடிய மாதிரிகளைப் பெறுகிறது…</string>
+    <string name="summarization_settings">சுருக்க அமைப்புகள்</string>
+    <string name="ai_summarization_prompt">தனிப்பயன் தூண்டுதல்</string>
+    <string name="ai_summarization_prompt_hint">AI-க்கான வழிமுறைகள்...</string>
+    <string name="ai_summarization_prompt_default">\"தயவுசெய்து பின்வரும் கட்டுரையின் சுருக்கமான சுருக்கத்தை 3-5 புல்லட் பாயிண்டுகளில் வழங்கவும்: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">மொழிபெயர்க்கவும்</string>
+    <string name="translation">மொழிபெயர்ப்பு</string>
+    <string name="translation_desc">கட்டுரைகளை மொழிபெயர்க்கவும், மொழி மாதிரிகளை நிர்வகிக்கவும்</string>
+    <string name="translate_article">கட்டுரையை மொழிபெயர்க்கவும்</string>
+    <string name="translate_title">தலைப்பை மொழிபெயர்க்கவும்</string>
+    <string name="auto_translate">தானியங்கி மொழிபெயர்ப்பு</string>
+    <string name="show_original">அசலைக் காட்டு</string>
+    <string name="translating">மொழிபெயர்க்கிறது…</string>
+    <string name="translation_model_downloading">மொழி மாதிரியைப் பதிவிறக்குகிறது…</string>
+    <string name="translation_model_download_failed">மொழி மாதிரி பதிவிறக்கம் தோல்வியடைந்தது</string>
+    <string name="downloaded_models">பதிவிறக்கம் செய்யப்பட்ட மாதிரிகள்</string>
+    <string name="delete_model">மாதிரியை நீக்கு</string>
+    <string name="no_downloaded_models">பதிவிறக்கம் செய்யப்பட்ட மாதிரிகள் இல்லை</string>
+    <string name="translate_target_language">இலக்கு மொழி</string>
+    <string name="translate_wifi_only">Wi-Fi மூலம் மட்டுமே பதிவிறக்கவும்</string>
+    <string name="manage_models">மாதிரிகளை நிர்வகிக்கவும்</string>
+    <string name="delete_model_desc">பதிவிறக்கம் செய்யப்பட்ட மொழி மாதிரியை நீக்கு</string>
+    <string name="delete_model_title">மாதிரியை நீக்கு</string>
+    <string name="delete_model_confirmation">%1$s மாதிரியை நீக்க விரும்புகிறீர்களா என்பதில் உறுதியாக இருக்கிறீர்களா?</string>
+    <string name="download_model_title">மொழிபெயர்ப்பு மாதிரிகளைப் பதிவிறக்கவும்</string>
+    <string name="download_model_message">இந்தக் கட்டுரையை மொழிபெயர்க்க மொழிபெயர்ப்பு மாதிரிகள் (ஒவ்வொன்றும் ~30 MB) பதிவிறக்கம் செய்யப்பட வேண்டும். தொடரவா?</string>
 </resources>

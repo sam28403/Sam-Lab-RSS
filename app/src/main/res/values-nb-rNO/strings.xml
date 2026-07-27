@@ -262,4 +262,59 @@
     <string name="default_browser">Påtving forvalgt filbehandler</string>
     <string name="open_link_something_wrong">Innstilling for åpning av lenke ble ignorert fordi noe gikk galt.</string>
     <string name="open_link_specific_browser_not_selected">Ingen</string>
+    <string name="card_widget_label">Kortvisning</string>
+    <string name="widget_description">Se de siste uleste artiklene fra valgte kilder</string>
+    <string name="apply">Bruk</string>
+    <string name="notifications">Varslinger</string>
+    <string name="group_configuration_description">Konfigurer «%1$s» for informasjonskanaler i «%2$s»</string>
+    <string name="disabled">Deaktivert</string>
+    <string name="enabled">Aktivert</string>
+    <string name="notifications_desc">Få varsler når nye uleste artikler er tilgjengelige</string>
+    <string name="open_in_browser_desc">Åpne artikler i nettleseren</string>
+    <string name="parse_full_content_desc">Hent fullstendige artikler fra nettsider</string>
+    <string name="enable">Aktiver</string>
+    <string name="disable">Deaktiver</string>
+    <string name="intro">En Material You 3 RSS-leser.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">KI-sammendrag</string>
+    <string name="ai_summary_loading">Genererer sammendrag …</string>
+    <string name="ai_summary_error">Kunne ikke generere sammendrag: %1$s</string>
+    <string name="ai_settings">KI-innstillinger</string>
+    <string name="ai_settings_desc">Konfigurer KI-sammendragstjenester</string>
+    <string name="api_configuration">API-konfigurasjon</string>
+    <string name="ai_base_url">API-basenettadresse</string>
+    <string name="ai_base_url_hint">Skriv inn KI-basenettadresse</string>
+    <string name="ai_api_key">API-nøkkel</string>
+    <string name="ai_api_key_hint">Skriv inn API-nøkkel</string>
+    <string name="ai_model">Modell</string>
+    <string name="ai_model_default">Standardmodell</string>
+    <string name="ai_fetch_models">Henter tilgjengelige modeller …</string>
+    <string name="summarization_settings">Sammendragsinnstillinger</string>
+    <string name="ai_summarization_prompt">Egendefinert ledetekst</string>
+    <string name="ai_summarization_prompt_hint">Instruksjoner for KI-en …</string>
+    <string name="ai_summarization_prompt_default">"Vennligst gi et kortfattet sammendrag av følgende artikkel i 3-5 punkter: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Oversett</string>
+    <string name="translation">Oversettelse</string>
+    <string name="translation_desc">Oversett artikler, administrer språkmodeller</string>
+    <string name="translate_article">Oversett artikler</string>
+    <string name="translate_title">Oversett titler</string>
+    <string name="auto_translate">Automatisk oversettelse</string>
+    <string name="show_original">Vis original</string>
+    <string name="translating">Oversetter …</string>
+    <string name="translation_model_downloading">Laster ned språkmodell …</string>
+    <string name="translation_model_download_failed">Nedlasting av språkmodell mislyktes</string>
+    <string name="downloaded_models">Nedlastede modeller</string>
+    <string name="delete_model">Slett modell</string>
+    <string name="no_downloaded_models">Ingen nedlastede modeller</string>
+    <string name="translate_target_language">Målspråk</string>
+    <string name="translate_wifi_only">Last ned kun over Wi-Fi</string>
+    <string name="manage_models">Administrer modeller</string>
+    <string name="delete_model_desc">Slett nedlastet språkmodell</string>
+    <string name="delete_model_title">Slett modell</string>
+    <string name="delete_model_confirmation">Er du sikker på at du vil slette %1$s-modellen?</string>
+    <string name="download_model_title">Last ned oversettelsesmodeller</string>
+    <string name="download_model_message">Oversettelsesmodeller (~30 MB hver) må lastes ned for å oversette denne artikkelen. Fortsette?</string>
 </resources>

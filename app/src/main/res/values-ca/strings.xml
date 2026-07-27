@@ -282,4 +282,59 @@
     <string name="open_link_specific_browser">Navegador</string>
     <string name="copy_error_report">Copia l\'informe d\'error</string>
     <string name="open_link_specific_browser_not_selected">Cap</string>
+    <string name="card_widget_label">Vista de targeta</string>
+    <string name="widget_description">Veure els últims articles sense llegir de les fonts seleccionades</string>
+    <string name="apply">Aplicar</string>
+    <string name="notifications">Notificacions</string>
+    <string name="group_configuration_description">Configurar \"%1$s\" per a fonts a \"%2$s\"</string>
+    <string name="disabled">Desactivat</string>
+    <string name="enabled">Activat</string>
+    <string name="notifications_desc">Rebre notificacions quan hi hagi nous articles sense llegir disponibles</string>
+    <string name="open_in_browser_desc">Obrir articles al navegador</string>
+    <string name="parse_full_content_desc">Obtenir articles complets de les pàgines web</string>
+    <string name="enable">Activar</string>
+    <string name="disable">Desactivar</string>
+    <string name="intro">Un lector de RSS Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Resum per IA</string>
+    <string name="ai_summary_loading">Generant resum…</string>
+    <string name="ai_summary_error">No s\'ha pogut generar el resum: %1$s</string>
+    <string name="ai_settings">Configuració de la IA</string>
+    <string name="ai_settings_desc">Configurar serveis de resum per IA</string>
+    <string name="api_configuration">Configuració de l\'API</string>
+    <string name="ai_base_url">URL base de l\'API</string>
+    <string name="ai_base_url_hint">Introdueix l\'URL base de la IA</string>
+    <string name="ai_api_key">Clau de l\'API</string>
+    <string name="ai_api_key_hint">Introdueix la clau de l\'API</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Model per defecte</string>
+    <string name="ai_fetch_models">Obtenint models disponibles…</string>
+    <string name="summarization_settings">Configuració de resum</string>
+    <string name="ai_summarization_prompt">Prompt personalitzat</string>
+    <string name="ai_summarization_prompt_hint">Instruccions per a la IA...</string>
+    <string name="ai_summarization_prompt_default">\"Si us plau, proporciona un resum concís del següent article en 3-5 punts clau: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Traduir</string>
+    <string name="translation">Traducció</string>
+    <string name="translation_desc">Traduir articles, gestionar models de llenguatge</string>
+    <string name="translate_article">Traduir articles</string>
+    <string name="translate_title">Traduir títols</string>
+    <string name="auto_translate">Traducció automàtica</string>
+    <string name="show_original">Mostrar original</string>
+    <string name="translating">Traduint…</string>
+    <string name="translation_model_downloading">Descarregant model de llenguatge…</string>
+    <string name="translation_model_download_failed">La descàrrega del model de llenguatge ha fallat</string>
+    <string name="downloaded_models">Models descarregats</string>
+    <string name="delete_model">Eliminar model</string>
+    <string name="no_downloaded_models">No hi ha models descarregats</string>
+    <string name="translate_target_language">Llengua de destinació</string>
+    <string name="translate_wifi_only">Descarregar només mitjançant Wi-Fi</string>
+    <string name="manage_models">Gestionar models</string>
+    <string name="delete_model_desc">Eliminar el model de llenguatge descarregat</string>
+    <string name="delete_model_title">Eliminar model</string>
+    <string name="delete_model_confirmation">Esteu segur que voleu eliminar el model %1$s?</string>
+    <string name="download_model_title">Descarregar models de traducció</string>
+    <string name="download_model_message">Els models de traducció (~30 MB cadascun) s\'han de descarregar per traduir aquest article. Voleu continuar?</string>
 </resources>

@@ -210,4 +210,59 @@
     <string name="delete_toast">\"%1$s\" 그룹을 삭제했습니다.</string>
     <string name="permission_denied">권한 거부됨</string>
     <string name="image_saved">이미지 저장됨</string>
+    <string name="card_widget_label">카드 뷰</string>
+    <string name="widget_description">선택한 소스에서 최신 미독 아티클을 봅니다</string>
+    <string name="apply">적용</string>
+    <string name="notifications">알림</string>
+    <string name="group_configuration_description">\"%2$s\"의 피드에 대해 \"%1$s\" 설정</string>
+    <string name="disabled">비활성화됨</string>
+    <string name="enabled">활성화됨</string>
+    <string name="notifications_desc">새로운 미독 아티클이 있을 때 알림 받기</string>
+    <string name="open_in_browser_desc">브라우저에서 아티클 열기</string>
+    <string name="parse_full_content_desc">웹페이지에서 전체 아티클 가져오기</string>
+    <string name="enable">활성화</string>
+    <string name="disable">비활성화</string>
+    <string name="intro">Material You 3 디자인의 RSS 리더.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI 요약</string>
+    <string name="ai_summary_loading">요약 생성 중…</string>
+    <string name="ai_summary_error">요약 생성 실패: %1$s</string>
+    <string name="ai_settings">AI 설정</string>
+    <string name="ai_settings_desc">AI 요약 서비스 설정</string>
+    <string name="api_configuration">API 구성</string>
+    <string name="ai_base_url">API 기본 URL</string>
+    <string name="ai_base_url_hint">AI 기본 URL 입력</string>
+    <string name="ai_api_key">API 키</string>
+    <string name="ai_api_key_hint">API 키 입력</string>
+    <string name="ai_model">모델</string>
+    <string name="ai_model_default">기본 모델</string>
+    <string name="ai_fetch_models">사용 가능한 모델 가져오는 중…</string>
+    <string name="summarization_settings">요약 설정</string>
+    <string name="ai_summarization_prompt">사용자 정의 프롬프트</string>
+    <string name="ai_summarization_prompt_hint">AI를 위한 지침...</string>
+    <string name="ai_summarization_prompt_default">\"다음 아티클을 3~5개의 글머리 기호로 간결하게 요약해 주세요: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">번역</string>
+    <string name="translation">번역</string>
+    <string name="translation_desc">아티클 번역, 언어 모델 관리</string>
+    <string name="translate_article">아티클 번역</string>
+    <string name="translate_title">제목 번역</string>
+    <string name="auto_translate">자동 번역</string>
+    <string name="show_original">원본 보기</string>
+    <string name="translating">번역 중…</string>
+    <string name="translation_model_downloading">언어 모델 다운로드 중…</string>
+    <string name="translation_model_download_failed">언어 모델 다운로드 실패</string>
+    <string name="downloaded_models">다운로드된 모델</string>
+    <string name="delete_model">모델 삭제</string>
+    <string name="no_downloaded_models">다운로드된 모델 없음</string>
+    <string name="translate_target_language">대상 언어</string>
+    <string name="translate_wifi_only">Wi-Fi에서만 다운로드</string>
+    <string name="manage_models">모델 관리</string>
+    <string name="delete_model_desc">다운로드된 언어 모델 삭제</string>
+    <string name="delete_model_title">모델 삭제</string>
+    <string name="delete_model_confirmation">%1$s 모델을 삭제하시겠습니까?</string>
+    <string name="download_model_title">번역 모델 다운로드</string>
+    <string name="download_model_message">이 아티클을 번역하려면 번역 모델(각 약 30MB)을 다운로드해야 합니다. 계속하시겠습니까?</string>
 </resources>

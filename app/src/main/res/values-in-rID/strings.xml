@@ -338,6 +338,59 @@
     <string name="last_updated">Terakhir diperbarui</string>
     <string name="no_unread_articles">Tidak ada artikel yang belum dibaca</string>
     <string name="list_widget_label">Tampilan Daftar</string>
-    <string name="card_widget_label">Tampilan kartu</string>"
+    <string name="card_widget_label">Tampilan kartu</string>
     <string name="widget_description">Lihat artikel terbaru yang belum dibaca dari sumber yang dipilih</string>
+    <string name="apply">Terapkan</string>
+    <string name="notifications">Notifikasi</string>
+    <string name="group_configuration_description">Konfigurasi \"%1$s\" untuk umpan di \"%2$s\"</string>
+    <string name="disabled">Dinonaktifkan</string>
+    <string name="enabled">Diaktifkan</string>
+    <string name="notifications_desc">Dapatkan notifikasi saat artikel belum dibaca baru tersedia</string>
+    <string name="open_in_browser_desc">Buka artikel di peramban</string>
+    <string name="parse_full_content_desc">Ambil artikel lengkap dari situs web</string>
+    <string name="enable">Aktifkan</string>
+    <string name="disable">Nonaktifkan</string>
+    <string name="intro">Pembaca RSS dengan desain Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Ringkasan AI</string>
+    <string name="ai_summary_loading">Menghasilkan ringkasan…</string>
+    <string name="ai_summary_error">Gagal menghasilkan ringkasan: %1$s</string>
+    <string name="ai_settings">Pengaturan AI</string>
+    <string name="ai_settings_desc">Konfigurasi layanan ringkasan AI</string>
+    <string name="api_configuration">Konfigurasi API</string>
+    <string name="ai_base_url">URL Dasar API</string>
+    <string name="ai_base_url_hint">Masukkan URL dasar AI</string>
+    <string name="ai_api_key">Kunci API</string>
+    <string name="ai_api_key_hint">Masukkan Kunci API</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Model Default</string>
+    <string name="ai_fetch_models">Mengambil model yang tersedia…</string>
+    <string name="summarization_settings">Pengaturan Ringkasan</string>
+    <string name="ai_summarization_prompt">Prompt Kustom</string>
+    <string name="ai_summarization_prompt_hint">Instruksi untuk AI...</string>
+    <string name="ai_summarization_prompt_default">\"Harap berikan ringkasan singkat dari artikel berikut dalam 3-5 poin: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Terjemahkan</string>
+    <string name="translation">Terjemahan</string>
+    <string name="translation_desc">Terjemahkan artikel, kelola model bahasa</string>
+    <string name="translate_article">Terjemahkan artikel</string>
+    <string name="translate_title">Terjemahkan judul</string>
+    <string name="auto_translate">Terjemahan otomatis</string>
+    <string name="show_original">Tampilkan asli</string>
+    <string name="translating">Menerjemahkan…</string>
+    <string name="translation_model_downloading">Mengunduh model bahasa…</string>
+    <string name="translation_model_download_failed">Unduhan model bahasa gagal</string>
+    <string name="downloaded_models">Model yang diunduh</string>
+    <string name="delete_model">Hapus model</string>
+    <string name="no_downloaded_models">Tidak ada model yang diunduh</string>
+    <string name="translate_target_language">Bahasa tujuan</string>
+    <string name="translate_wifi_only">Unduh melalui Wi-Fi saja</string>
+    <string name="manage_models">Kelola model</string>
+    <string name="delete_model_desc">Hapus model bahasa yang diunduh</string>
+    <string name="delete_model_title">Hapus Model</string>
+    <string name="delete_model_confirmation">Apakah Anda yakin ingin menghapus model %1$s?</string>
+    <string name="download_model_title">Unduh Model Terjemahan</string>
+    <string name="download_model_message">Model terjemahan (masing-masing ~30 MB) perlu diunduh untuk menerjemahkan artikel ini. Lanjutkan?</string>
 </resources>

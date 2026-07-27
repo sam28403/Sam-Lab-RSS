@@ -265,4 +265,59 @@
     <string name="alignment">Aliniament</string>
     <string name="clear_articles">Șterge articolelele</string>
     <string name="rate_limit">Rata de solicitare este limitată</string>
+    <string name="card_widget_label">Vizualizare card</string>
+    <string name="widget_description">Vizualizați cele mai recente articole necitite din sursele selectate</string>
+    <string name="apply">Aplică</string>
+    <string name="notifications">Notificări</string>
+    <string name="group_configuration_description">Configurați „%1$s” pentru fluxurile din „%2$s”</string>
+    <string name="disabled">Dezactivat</string>
+    <string name="enabled">Activat</string>
+    <string name="notifications_desc">Primiți notificări când sunt disponibile articole noi necitite</string>
+    <string name="open_in_browser_desc">Deschideți articolele în browser</string>
+    <string name="parse_full_content_desc">Obțineți articole complete de pe paginile web</string>
+    <string name="enable">Activează</string>
+    <string name="disable">Dezactivează</string>
+    <string name="intro">Un cititor RSS în stil Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Rezumat AI</string>
+    <string name="ai_summary_loading">Se generează rezumatul…</string>
+    <string name="ai_summary_error">Generarea rezumatului a eșuat: %1$s</string>
+    <string name="ai_settings">Setări AI</string>
+    <string name="ai_settings_desc">Configurați serviciile de rezumat AI</string>
+    <string name="api_configuration">Configurație API</string>
+    <string name="ai_base_url">URL de bază API</string>
+    <string name="ai_base_url_hint">Introduceți URL-ul de bază AI</string>
+    <string name="ai_api_key">Cheie API</string>
+    <string name="ai_api_key_hint">Introduceți cheia API</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Model implicit</string>
+    <string name="ai_fetch_models">Se preiau modelele disponibile…</string>
+    <string name="summarization_settings">Setări rezumat</string>
+    <string name="ai_summarization_prompt">Prompt personalizat</string>
+    <string name="ai_summarization_prompt_hint">Instrucțiuni pentru AI...</string>
+    <string name="ai_summarization_prompt_default">\"Vă rugăm să furnizați un rezumat concis al următorului articol în 3-5 puncte: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Traducere</string>
+    <string name="translation">Traducere</string>
+    <string name="translation_desc">Traduceți articole, gestionați modelele de limbă</string>
+    <string name="translate_article">Traduceți articole</string>
+    <string name="translate_title">Traduceți titluri</string>
+    <string name="auto_translate">Traducere automată</string>
+    <string name="show_original">Afișează originalul</string>
+    <string name="translating">Se traduce…</string>
+    <string name="translation_model_downloading">Se descarcă modelul de limbă…</string>
+    <string name="translation_model_download_failed">Descărcarea modelului de limbă a eșuat</string>
+    <string name="downloaded_models">Modele descărcate</string>
+    <string name="delete_model">Șterge modelul</string>
+    <string name="no_downloaded_models">Niciun model descărcat</string>
+    <string name="translate_target_language">Limba țintă</string>
+    <string name="translate_wifi_only">Descărcare doar prin Wi-Fi</string>
+    <string name="manage_models">Gestionați modelele</string>
+    <string name="delete_model_desc">Ștergeți modelul de limbă descărcat</string>
+    <string name="delete_model_title">Șterge modelul</string>
+    <string name="delete_model_confirmation">Sigur doriți să ștergeți modelul %1$s?</string>
+    <string name="download_model_title">Descărcare modele de traducere</string>
+    <string name="download_model_message">Modelele de traducere (~30 MB fiecare) trebuie descărcate pentru a traduce acest articol. Continuați?</string>
 </resources>

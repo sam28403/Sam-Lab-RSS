@@ -347,16 +347,59 @@
     <string name="last_updated">Останнє оновлення</string>
     <string name="no_unread_articles">Немає непрочитаних статей</string>
     <string name="list_widget_label">Список перегляд</string>
-    <string name="card_widget_label">Перегляд картки</string>"
-    <string name="widget_description">Переглянути останні непрочитані статті з вибраних джерел</string>
+    <string name="card_widget_label">Вигляд карток</string>
+    <string name="widget_description">Перегляньте останні непрочитані статті з вибраних джерел</string>
     <string name="apply">Застосувати</string>
     <string name="notifications">Сповіщення</string>
-    <string name="group_configuration_description">Налаштуйте \"%1$s\" для каналів у \"%2$s\"</string>
+    <string name="group_configuration_description">Налаштуйте «%1$s» для стрічок у «%2$s»</string>
     <string name="disabled">Вимкнено</string>
     <string name="enabled">Увімкнено</string>
-    <string name="notifications_desc">Отримуйте сповіщення, коли з\'являються нові непрочитані статті</string>
+    <string name="notifications_desc">Отримуйте сповіщення, коли з’являються нові непрочитані статті</string>
     <string name="open_in_browser_desc">Відкривати статті у браузері</string>
-    <string name="parse_full_content_desc">Отримання повних статей з веб-сторінок</string>
+    <string name="parse_full_content_desc">Отримувати повні статті з веб-сторінок</string>
     <string name="enable">Увімкнути</string>
     <string name="disable">Вимкнути</string>
+    <string name="intro">RSS-читач у стилі Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI-резюме</string>
+    <string name="ai_summary_loading">Генерується резюме…</string>
+    <string name="ai_summary_error">Не вдалося згенерувати резюме: %1$s</string>
+    <string name="ai_settings">Налаштування AI</string>
+    <string name="ai_settings_desc">Налаштування служб AI-резюме</string>
+    <string name="api_configuration">Конфігурація API</string>
+    <string name="ai_base_url">Базова URL-адреса API</string>
+    <string name="ai_base_url_hint">Введіть базову URL-адресу AI</string>
+    <string name="ai_api_key">Ключ API</string>
+    <string name="ai_api_key_hint">Введіть ключ API</string>
+    <string name="ai_model">Модель</string>
+    <string name="ai_model_default">Типова модель</string>
+    <string name="ai_fetch_models">Отримання доступних моделей…</string>
+    <string name="summarization_settings">Налаштування резюме</string>
+    <string name="ai_summarization_prompt">Спеціальна підказка</string>
+    <string name="ai_summarization_prompt_hint">Інструкції для AI...</string>
+    <string name="ai_summarization_prompt_default">"Будь ласка, надайте стисле резюме наступної статті у 3-5 пунктах: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Перекласти</string>
+    <string name="translation">Переклад</string>
+    <string name="translation_desc">Перекладайте статті, керуйте мовними моделями</string>
+    <string name="translate_article">Перекласти статтю</string>
+    <string name="translate_title">Перекласти заголовок</string>
+    <string name="auto_translate">Автоматичний переклад</string>
+    <string name="show_original">Показати оригінал</string>
+    <string name="translating">Перекладається…</string>
+    <string name="translation_model_downloading">Завантаження мовної моделі…</string>
+    <string name="translation_model_download_failed">Завантаження мовної моделі не вдалося</string>
+    <string name="downloaded_models">Завантажені моделі</string>
+    <string name="delete_model">Видалити модель</string>
+    <string name="no_downloaded_models">Немає завантажених моделей</string>
+    <string name="translate_target_language">Цільова мова</string>
+    <string name="translate_wifi_only">Завантажувати лише через Wi-Fi</string>
+    <string name="manage_models">Керування моделями</string>
+    <string name="delete_model_desc">Видалити завантажену мовну модель</string>
+    <string name="delete_model_title">Видалити модель</string>
+    <string name="delete_model_confirmation">Ви впевнені, що хочете видалити модель %1$s?</string>
+    <string name="download_model_title">Завантаження моделей перекладу</string>
+    <string name="download_model_message">Для перекладу цієї статті потрібно завантажити моделі перекладу (кожна ~30 МБ). Продовжити?</string>
 </resources>

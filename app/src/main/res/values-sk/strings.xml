@@ -134,7 +134,7 @@
     <string name="submit_bug_report">Odoslať hlásenie o chybe na GitHub</string>
     <string name="unexpected_error_title">Ojoj! Niečo sa pokazilo…</string>
     <string name="copy_error_report">Kopírovať chybové hlásenie</string>
-    <string name="unexpected_error_msg">V aplikácii sa vyskytla neočakávaná chyba a zavrela sa. \n \nAk nám chcete pomôcť tento problém rýchlo identifikovať a opraviť, môžete odoslať %1$s pomocou hlásenia chýb nižšie.</string>
+    <string name="unexpected_error_msg">V aplikácii sa vyskytla neočakávaná chyba a zavrela sa. \n \nAk nám chcete pomôcť tento problém rýchlo identifikovať a opraviť, môžete odoslať %1$s pomocou hlásenia chýieb nižšie.</string>
     <string name="all">Všetko</string>
     <string name="empty">Prázdne</string>
     <string name="update">Aktualizovať</string>
@@ -344,7 +344,7 @@
     <string name="last_updated">Naposledy aktualizované</string>
     <string name="no_unread_articles">Žiadne neprečítané články</string>
     <string name="list_widget_label">Zobrazenie zoznamu</string>
-    <string name="card_widget_label">Zobrazenie karty</string>"
+    <string name="card_widget_label">Zobrazenie karty</string>
     <string name="widget_description">Zobraziť najnovšie neprečítané články z vybraných zdrojov</string>
     <string name="apply">Použiť</string>
     <string name="notifications">Upozornenia</string>
@@ -354,6 +354,49 @@
     <string name="notifications_desc">Dostávajte upozornenia, keď sú k dispozícii nové neprečítané články</string>
     <string name="open_in_browser_desc">Otvorenie článkov v prehliadači</string>
     <string name="parse_full_content_desc">Načítanie celých článkov z webových stránok</string>
-    <string name="enable">Povolte</string>
+    <string name="enable">Povoliť</string>
     <string name="disable">Zakázať</string>
+    <string name="intro">Čítačka RSS v štýle Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI Súhrn</string>
+    <string name="ai_summary_loading">Generuje sa súhrn…</string>
+    <string name="ai_summary_error">Nepodarilo sa vygenerovať súhrn: %1$s</string>
+    <string name="ai_settings">AI Nastavenia</string>
+    <string name="ai_settings_desc">Konfigurácia služieb AI súhrnu</string>
+    <string name="api_configuration">Konfigurácia API</string>
+    <string name="ai_base_url">Základná URL adresa API</string>
+    <string name="ai_base_url_hint">Zadajte základnú URL adresu AI</string>
+    <string name="ai_api_key">Kľúč API</string>
+    <string name="ai_api_key_hint">Zadajte kľúč API</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Predvolený model</string>
+    <string name="ai_fetch_models">Načítavanie dostupných modelov…</string>
+    <string name="summarization_settings">Nastavenia sumarizácie</string>
+    <string name="ai_summarization_prompt">Vlastná výzva</string>
+    <string name="ai_summarization_prompt_hint">Pokyny pre AI...</string>
+    <string name="ai_summarization_prompt_default">"Poskytnite, prosím, stručný súhrn nasledujúceho článku v 3-5 bodoch: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Preložiť</string>
+    <string name="translation">Preklad</string>
+    <string name="translation_desc">Prekladajte články, spravujte jazykové modely</string>
+    <string name="translate_article">Preložiť článok</string>
+    <string name="translate_title">Preložiť nadpis</string>
+    <string name="auto_translate">Automatický preklad</string>
+    <string name="show_original">Zobraziť originál</string>
+    <string name="translating">Prekladá sa…</string>
+    <string name="translation_model_downloading">Sťahuje sa jazykový model…</string>
+    <string name="translation_model_download_failed">Sťahovanie jazykového modelu zlyhalo</string>
+    <string name="downloaded_models">Stiahnuté modely</string>
+    <string name="delete_model">Odstrániť model</string>
+    <string name="no_downloaded_models">Žiadne stiahnuté modely</string>
+    <string name="translate_target_language">Cieľový jazyk</string>
+    <string name="translate_wifi_only">Sťahovať iba cez Wi-Fi</string>
+    <string name="manage_models">Spravovať modely</string>
+    <string name="delete_model_desc">Odstrániť stiahnutý jazykový model</string>
+    <string name="delete_model_title">Odstrániť model</string>
+    <string name="delete_model_confirmation">Naozaj chcete odstrániť model %1$s?</string>
+    <string name="download_model_title">Stiahnuť modely pre preklad</string>
+    <string name="download_model_message">Na preklad tohto článku je potrebné stiahnuť modely pre preklad (každý cca 30 MB). Pokračovať?</string>
 </resources>

@@ -341,6 +341,59 @@
     <string name="last_updated">Zuletzt aktualisiert</string>
     <string name="no_unread_articles">Keine ungelesenen Artikel</string>
     <string name="list_widget_label">Listenansicht</string>
-    <string name="card_widget_label">Kartenansicht</string>"
+    <string name="card_widget_label">Kartenansicht</string>
     <string name="widget_description">Neueste ungelesene Artikel aus ausgewählten Quellen anzeigen</string>
+    <string name="apply">Anwenden</string>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="group_configuration_description">Konfiguriere „%1$s“ für Feeds in „%2$s“</string>
+    <string name="disabled">Deaktiviert</string>
+    <string name="enabled">Aktiviert</string>
+    <string name="notifications_desc">Benachrichtigungen erhalten, wenn neue ungelesene Artikel verfügbar sind</string>
+    <string name="open_in_browser_desc">Artikel im Browser öffnen</string>
+    <string name="parse_full_content_desc">Vollständige Artikel von Webseiten abrufen</string>
+    <string name="enable">Aktivieren</string>
+    <string name="disable">Deaktivieren</string>
+    <string name="intro">Ein Material You 3 RSS-Reader.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">KI-Zusammenfassung</string>
+    <string name="ai_summary_loading">Zusammenfassung wird generiert…</string>
+    <string name="ai_summary_error">KI-Zusammenfassung fehlgeschlagen: %1$s</string>
+    <string name="ai_settings">KI-Einstellungen</string>
+    <string name="ai_settings_desc">KI-Zusammenfassungsdienste konfigurieren</string>
+    <string name="api_configuration">API-Konfiguration</string>
+    <string name="ai_base_url">API-Basis-URL</string>
+    <string name="ai_base_url_hint">API-Basis-URL eingeben</string>
+    <string name="ai_api_key">API-Schlüssel</string>
+    <string name="ai_api_key_hint">API-Schlüssel eingeben</string>
+    <string name="ai_model">Modell</string>
+    <string name="ai_model_default">Standardmodell</string>
+    <string name="ai_fetch_models">Verfügbare Modelle werden abgerufen…</string>
+    <string name="summarization_settings">Zusammenfassungs-Einstellungen</string>
+    <string name="ai_summarization_prompt">Eigener Prompt</string>
+    <string name="ai_summarization_prompt_hint">Anweisungen für die KI...</string>
+    <string name="ai_summarization_prompt_default">"Bitte erstellen Sie eine prägnante Zusammenfassung des folgenden Artikels in 3-5 Aufzählungspunkten: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Übersetzen</string>
+    <string name="translation">Übersetzung</string>
+    <string name="translation_desc">Artikel übersetzen, Sprachmodelle verwalten</string>
+    <string name="translate_article">Artikel übersetzen</string>
+    <string name="translate_title">Titel übersetzen</string>
+    <string name="auto_translate">Automatisch übersetzen</string>
+    <string name="show_original">Original anzeigen</string>
+    <string name="translating">Übersetzen…</string>
+    <string name="translation_model_downloading">Sprachmodell wird heruntergeladen…</string>
+    <string name="translation_model_download_failed">Download des Sprachmodells fehlgeschlagen</string>
+    <string name="downloaded_models">Heruntergeladene Modelle</string>
+    <string name="delete_model">Modell löschen</string>
+    <string name="no_downloaded_models">Keine heruntergeladenen Modelle</string>
+    <string name="translate_target_language">Zielsprache</string>
+    <string name="translate_wifi_only">Download nur über WLAN</string>
+    <string name="manage_models">Modelle verwalten</string>
+    <string name="delete_model_desc">Heruntergeladenes Sprachmodell löschen</string>
+    <string name="delete_model_title">Modell löschen</string>
+    <string name="delete_model_confirmation">Sind Sie sicher, dass Sie das Modell %1$s löschen möchten?</string>
+    <string name="download_model_title">Übersetzungsmodelle herunterladen</string>
+    <string name="download_model_message">Übersetzungsmodelle (jeweils ~30 MB) müssen heruntergeladen werden, um diesen Artikel zu übersetzen. Fortfahren?</string>
 </resources>

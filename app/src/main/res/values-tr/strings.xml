@@ -312,7 +312,59 @@
     <string name="all_open_in_browser_tips">\"%1$s\" grubundaki tüm makaleleri tarayıcı kullanarak aç</string>
     <string name="all_open_in_browser_toast">\"%1$s\" grubundaki tüm makaleleri tarayıcı kullanarak aç</string>
     <string name="become_a_sponsor">Sponsor olun</string>
-    <string name="short_desc">Kısa</string>
-    <string name="long_desc">Uzun</string>
-    <string name="none_desc">Hiçbiri</string>
+    <string name="card_widget_label">Kart görünümü</string>
+    <string name="widget_description">Seçilen kaynaklardan en son okunmamış makaleleri görün</string>
+    <string name="apply">Uygula</string>
+    <string name="notifications">Bildirimler</string>
+    <string name="group_configuration_description">\"%2$s\" içindeki beslemeler için \"%1$s\" öğesini yapılandırın</string>
+    <string name="disabled">Devre dışı</string>
+    <string name="enabled">Etkin</string>
+    <string name="notifications_desc">Yeni okunmamış makaleler olduğunda bildirim alın</string>
+    <string name="open_in_browser_desc">Makaleleri tarayıcıda açın</string>
+    <string name="parse_full_content_desc">Web sayfalarından tam makaleleri alın</string>
+    <string name="enable">Etkinleştir</string>
+    <string name="disable">Devre dışı bırak</string>
+    <string name="intro">Material You 3 tarzında bir RSS okuyucu.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI Özeti</string>
+    <string name="ai_summary_loading">Özet oluşturuluyor…</string>
+    <string name="ai_summary_error">Özet oluşturulamadı: %1$s</string>
+    <string name="ai_settings">AI Ayarları</string>
+    <string name="ai_settings_desc">AI özet hizmetlerini yapılandırın</string>
+    <string name="api_configuration">API Yapılandırması</string>
+    <string name="ai_base_url">API Temel URL\'si</string>
+    <string name="ai_base_url_hint">AI Temel URL\'sini girin</string>
+    <string name="ai_api_key">API Anahtarı</string>
+    <string name="ai_api_key_hint">API Anahtarını girin</string>
+    <string name="ai_model">Model</string>
+    <string name="ai_model_default">Varsayılan Model</string>
+    <string name="ai_fetch_models">Kullanılabilir modeller alınıyor…</string>
+    <string name="summarization_settings">Özetleme Ayarları</string>
+    <string name="ai_summarization_prompt">Özel İstemi</string>
+    <string name="ai_summarization_prompt_hint">AI için talimatlar...</string>
+    <string name="ai_summarization_prompt_default">\"Lütfen aşağıdaki makalenin 3-5 maddelik kısa bir özetini sağlayın: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Çevir</string>
+    <string name="translation">Çeviri</string>
+    <string name="translation_desc">Makaleleri çevirin, dil modellerini yönetin</string>
+    <string name="translate_article">Makaleyi çevir</string>
+    <string name="translate_title">Başlığı çevir</string>
+    <string name="auto_translate">Otomatik çeviri</string>
+    <string name="show_original">Orijinali göster</string>
+    <string name="translating">Çevriliyor…</string>
+    <string name="translation_model_downloading">Dil modeli indiriliyor…</string>
+    <string name="translation_model_download_failed">Dil modeli indirilemedi</string>
+    <string name="downloaded_models">İndirilen modeller</string>
+    <string name="delete_model">Modeli sil</string>
+    <string name="no_downloaded_models">İndirilmiş model yok</string>
+    <string name="translate_target_language">Hedef dil</string>
+    <string name="translate_wifi_only">Yalnızca Wi-Fi üzerinden indir</string>
+    <string name="manage_models">Modelleri yönet</string>
+    <string name="delete_model_desc">İndirilen dil modelini sil</string>
+    <string name="delete_model_title">Modeli sil</string>
+    <string name="delete_model_confirmation">%1$s modelini silmek istediğinizden emin misiniz?</string>
+    <string name="download_model_title">Çeviri modellerini indir</string>
+    <string name="download_model_message">Bu makaleyi çevirmek için çeviri modellerinin (her biri ~30 MB) indirilmesi gerekiyor. Devam edilsin mi?</string>
 </resources>

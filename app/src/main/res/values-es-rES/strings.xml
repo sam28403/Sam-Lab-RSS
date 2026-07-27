@@ -346,14 +346,59 @@
     <string name="last_updated">Última actualización</string>
     <string name="no_unread_articles">No hay artículos sin leer</string>
     <string name="list_widget_label">Lista</string>
-    <string name="card_widget_label">Tarjeta</string>"
-    <string name="widget_description">Ver los últimos artículos sin leer de fuentes seleccionadas</string>
+    <string name="card_widget_label">Tarjeta</string>
+    <string name="widget_description">Ver los últimos artículos sin leer de las fuentes seleccionadas</string>
     <string name="apply">Aplicar</string>
     <string name="notifications">Notificaciones</string>
     <string name="group_configuration_description">Configurar «%1$s» para fuentes en «%2$s»</string>
     <string name="disabled">Deshabilitado</string>
     <string name="enabled">Habilitado</string>
+    <string name="notifications_desc">Recibe notificaciones cuando haya nuevos artículos sin leer disponibles</string>
     <string name="open_in_browser_desc">Abrir artículos en el navegador</string>
+    <string name="parse_full_content_desc">Obtener artículos completos de las páginas web</string>
     <string name="enable">Habilitar</string>
     <string name="disable">Deshabilitar</string>
+    <string name="intro">Un lector de RSS al estilo Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">Resumen por IA</string>
+    <string name="ai_summary_loading">Generando resumen…</string>
+    <string name="ai_summary_error">No se ha podido generar el resumen: %1$s</string>
+    <string name="ai_settings">Ajustes de IA</string>
+    <string name="ai_settings_desc">Configurar servicios de resumen por IA</string>
+    <string name="api_configuration">Configuración de API</string>
+    <string name="ai_base_url">URL base de la API</string>
+    <string name="ai_base_url_hint">Introduce la URL base de la IA</string>
+    <string name="ai_api_key">Clave de API</string>
+    <string name="ai_api_key_hint">Introduce la clave de API</string>
+    <string name="ai_model">Modelo</string>
+    <string name="ai_model_default">Modelo por defecto</string>
+    <string name="ai_fetch_models">Obteniendo modelos disponibles…</string>
+    <string name="summarization_settings">Ajustes de resumen</string>
+    <string name="ai_summarization_prompt">Prompt personalizado</string>
+    <string name="ai_summarization_prompt_hint">Instrucciones para la IA...</string>
+    <string name="ai_summarization_prompt_default">"Por favor, proporciona un resumen conciso del siguiente artículo en 3-5 puntos clave: "</string>
+
+    <!-- Translation -->
+    <string name="translate">Traducir</string>
+    <string name="translation">Traducción</string>
+    <string name="translation_desc">Traducir artículos, gestionar modelos de idioma</string>
+    <string name="translate_article">Traducir artículos</string>
+    <string name="translate_title">Traducir títulos</string>
+    <string name="auto_translate">Traducción automática</string>
+    <string name="show_original">Mostrar original</string>
+    <string name="translating">Traduciendo…</string>
+    <string name="translation_model_downloading">Descargando modelo de idioma…</string>
+    <string name="translation_model_download_failed">La descarga del modelo de idioma ha fallado</string>
+    <string name="downloaded_models">Modelos descargados</string>
+    <string name="delete_model">Eliminar modelo</string>
+    <string name="no_downloaded_models">No hay modelos descargados</string>
+    <string name="translate_target_language">Idioma de destino</string>
+    <string name="translate_wifi_only">Descargar solo por Wi-Fi</string>
+    <string name="manage_models">Gestionar modelos</string>
+    <string name="delete_model_desc">Eliminar modelo de idioma descargado</string>
+    <string name="delete_model_title">Eliminar modelo</string>
+    <string name="delete_model_confirmation">¿Estás seguro de que quieres eliminar el modelo %1$s?</string>
+    <string name="download_model_title">Descargar modelos de traducción</string>
+    <string name="download_model_message">Se deben descargar los modelos de traducción (~30 MB cada uno) para traducir este artículo. ¿Deseas continuar?</string>
 </resources>

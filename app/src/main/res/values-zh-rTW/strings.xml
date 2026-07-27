@@ -309,4 +309,59 @@
     <string name="mark_as_read_on_scroll">捲動時標記為已讀</string>
     <string name="become_a_sponsor">成為贊助者</string>
     <string name="sponsor_desc">我們在空閒時間建立並維護這個免費的開源應用程式。如果您喜歡它，請考慮給予我們一點小額捐款支持！☕️</string>
+    <string name="card_widget_label">卡片檢視</string>
+    <string name="widget_description">查看所選來源的最新未讀文章</string>
+    <string name="apply">套用</string>
+    <string name="notifications">通知</string>
+    <string name="group_configuration_description">為「%2$s」中的來源配置「%1$s」</string>
+    <string name="disabled">已停用</string>
+    <string name="enabled">已啟用</string>
+    <string name="notifications_desc">當有新的未讀文章時接收通知</string>
+    <string name="open_in_browser_desc">在瀏覽器中開啟文章</string>
+    <string name="parse_full_content_desc">從網頁獲取全文文章</string>
+    <string name="enable">啟用</string>
+    <string name="disable">停用</string>
+    <string name="intro">Material You 3 風格之 RSS 閱讀器。</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI 摘要</string>
+    <string name="ai_summary_loading">摘要生成中…</string>
+    <string name="ai_summary_error">摘要生成失敗：%1$s</string>
+    <string name="ai_settings">AI 設定</string>
+    <string name="ai_settings_desc">配置 AI 摘要服務</string>
+    <string name="api_configuration">API 配置</string>
+    <string name="ai_base_url">API 基礎網址</string>
+    <string name="ai_base_url_hint">輸入 AI 基礎網址</string>
+    <string name="ai_api_key">API 金鑰</string>
+    <string name="ai_api_key_hint">輸入 API 金鑰</string>
+    <string name="ai_model">模型</string>
+    <string name="ai_model_default">預設模型</string>
+    <string name="ai_fetch_models">獲取可用模型中…</string>
+    <string name="summarization_settings">摘要設定</string>
+    <string name="ai_summarization_prompt">自訂提示詞</string>
+    <string name="ai_summarization_prompt_hint">AI 之指令…</string>
+    <string name="ai_summarization_prompt_default">「請為下文提供精煉之摘要，列出 3 至 5 個重點：」</string>
+
+    <!-- Translation -->
+    <string name="translate">翻譯</string>
+    <string name="translation">翻譯</string>
+    <string name="translation_desc">翻譯文章，管理語言模型</string>
+    <string name="translate_article">翻譯文章</string>
+    <string name="translate_title">翻譯標題</string>
+    <string name="auto_translate">自動翻譯</string>
+    <string name="show_original">查看原文</string>
+    <string name="translating">翻譯中…</string>
+    <string name="translation_model_downloading">語言模型下載中…</string>
+    <string name="translation_model_download_failed">語言模型下載失敗</string>
+    <string name="downloaded_models">已下載的模型</string>
+    <string name="delete_model">刪除模型</string>
+    <string name="no_downloaded_models">暫無已下載的模型</string>
+    <string name="translate_target_language">目標語言</string>
+    <string name="translate_wifi_only">僅限 Wi-Fi 下載</string>
+    <string name="manage_models">管理模型</string>
+    <string name="delete_model_desc">刪除已下載的語言模型</string>
+    <string name="delete_model_title">刪除模型</string>
+    <string name="delete_model_confirmation">確定要刪除 %1$s 模型嗎？</string>
+    <string name="download_model_title">下載翻譯模型</string>
+    <string name="download_model_message">翻譯此文章需要下載翻譯模型（每個約 30 MB）。是否繼續？</string>
 </resources>

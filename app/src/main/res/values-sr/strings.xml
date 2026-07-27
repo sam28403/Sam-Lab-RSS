@@ -344,7 +344,7 @@
     <string name="last_updated">Последње ажурирање</string>
     <string name="no_unread_articles">Нема непрочитаних чланака</string>
     <string name="list_widget_label">Приказ листе</string>
-    <string name="card_widget_label">Приказ картице</string>"
+    <string name="card_widget_label">Приказ картице</string>
     <string name="widget_description">Погледајте најновије непрочитане чланке из изабраних извора</string>
     <string name="apply">Примени</string>
     <string name="notifications">Обавештења</string>
@@ -356,4 +356,47 @@
     <string name="parse_full_content_desc">Преузмите целе чланке са веб-страница</string>
     <string name="enable">Омогући</string>
     <string name="disable">Онемогући</string>
+    <string name="intro">Материјални RSS читач у стилу Material You 3.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI резиме</string>
+    <string name="ai_summary_loading">Генерисање резимеа…</string>
+    <string name="ai_summary_error">Генерисање резимеа није успело: %1$s</string>
+    <string name="ai_settings">AI подешавања</string>
+    <string name="ai_settings_desc">Конфигуришите AI услуге резимеа</string>
+    <string name="api_configuration">API конфигурација</string>
+    <string name="ai_base_url">API базни URL</string>
+    <string name="ai_base_url_hint">Унесите базни URL за AI</string>
+    <string name="ai_api_key">API кључ</string>
+    <string name="ai_api_key_hint">Унесите API кључ</string>
+    <string name="ai_model">Модел</string>
+    <string name="ai_model_default">Подразумевани модел</string>
+    <string name="ai_fetch_models">Преузимање доступних модела…</string>
+    <string name="summarization_settings">Подешавања резимеа</string>
+    <string name="ai_summarization_prompt">Прилагођени упит</string>
+    <string name="ai_summarization_prompt_hint">Упутства за AI...</string>
+    <string name="ai_summarization_prompt_default">\"Молимо вас да дате сажет резиме следећег чланка у 3-5 тачака: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Преведи</string>
+    <string name="translation">Превод</string>
+    <string name="translation_desc">Преводите чланке, управљајте језичким моделима</string>
+    <string name="translate_article">Преведи чланак</string>
+    <string name="translate_title">Преведи наслов</string>
+    <string name="auto_translate">Аутоматски превод</string>
+    <string name="show_original">Прикажи оригинал</string>
+    <string name="translating">Превођење…</string>
+    <string name="translation_model_downloading">Преузимање језичког модела…</string>
+    <string name="translation_model_download_failed">Преузимање језичког модела није успело</string>
+    <string name="downloaded_models">Преузети модели</string>
+    <string name="delete_model">Избриши модел</string>
+    <string name="no_downloaded_models">Нема преузетих модела</string>
+    <string name="translate_target_language">Циљни језик</string>
+    <string name="translate_wifi_only">Преузми само путем Wi-Fi-ја</string>
+    <string name="manage_models">Управљај моделима</string>
+    <string name="delete_model_desc">Избриши преузети језички модел</string>
+    <string name="delete_model_title">Избриши модел</string>
+    <string name="delete_model_confirmation">Да ли сте сигурни да желите да избришете модел %1$s?</string>
+    <string name="download_model_title">Преузимање модела за превод</string>
+    <string name="download_model_message">Модели за превод (~30 MB сваки) морају бити преузети да би се овај чланак превео. Наставити?</string>
 </resources>

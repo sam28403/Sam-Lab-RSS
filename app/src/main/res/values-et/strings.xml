@@ -341,16 +341,59 @@
     <string name="last_updated">Viimati uuendatud</string>
     <string name="no_unread_articles">Pole lugemata artikleid</string>
     <string name="list_widget_label">Loendivaade</string>
-    <string name="card_widget_label">Vahekaartide vaade</string>"
+    <string name="card_widget_label">Kaardivaade</string>
     <string name="widget_description">Vaata valitud allikate viimaseid lugemata artikleid</string>
     <string name="apply">Rakenda</string>
     <string name="notifications">Teavitused</string>
-    <string name="disabled">Pole kasutusel</string>
-    <string name="enabled">Kasutusel</string>
-    <string name="notifications_desc">Kui uusi lugemata artikleid on saadaval, siis saad asjakohase teavituse</string>
-    <string name="open_in_browser_desc">Ava artiklid veebibrauseris</string>
-    <string name="parse_full_content_desc">Laadi täismahus artiklid veebilehelt</string>
-    <string name="enable">Võta kasutusele</string>
-    <string name="disable">Eemalda kasutuselt</string>
     <string name="group_configuration_description">Seadista „%1$s“ „%2$s“ uudisvoogude jaoks</string>
+    <string name="disabled">Väljas</string>
+    <string name="enabled">Sees</string>
+    <string name="notifications_desc">Saada teavitusi, kui uued lugemata artiklid on saadaval</string>
+    <string name="open_in_browser_desc">Ava artiklid brauseris</string>
+    <string name="parse_full_content_desc">Hangi täispikad artiklid veebilehtedelt</string>
+    <string name="enable">Luba</string>
+    <string name="disable">Keela</string>
+    <string name="intro">Material You 3 stiilis RSS-lugeja.</string>
+
+    <!-- AI -->
+    <string name="ai_summary">AI kokkuvõte</string>
+    <string name="ai_summary_loading">Kokkuvõtte genereerimine…</string>
+    <string name="ai_summary_error">Kokkuvõtte genereerimine ebaõnnestus: %1$s</string>
+    <string name="ai_settings">AI seaded</string>
+    <string name="ai_settings_desc">Seadista AI kokkuvõtteteenuseid</string>
+    <string name="api_configuration">API seadistamine</string>
+    <string name="ai_base_url">API baas-URL</string>
+    <string name="ai_base_url_hint">Sisesta AI baas-URL</string>
+    <string name="ai_api_key">API võti</string>
+    <string name="ai_api_key_hint">Sisesta API võti</string>
+    <string name="ai_model">Mudel</string>
+    <string name="ai_model_default">Vaikimisi mudel</string>
+    <string name="ai_fetch_models">Saadaolevate mudelite hankimine…</string>
+    <string name="summarization_settings">Kokkuvõtte seaded</string>
+    <string name="ai_summarization_prompt">Kohandatud viip</string>
+    <string name="ai_summarization_prompt_hint">Juhised AI-le...</string>
+    <string name="ai_summarization_prompt_default">\"Palun esita järgmise artikli kohta lühike kokkuvõte 3–5 punktiga: \"</string>
+
+    <!-- Translation -->
+    <string name="translate">Tõlgi</string>
+    <string name="translation">Tõlge</string>
+    <string name="translation_desc">Tõlgi artikleid, halda keelemudeleid</string>
+    <string name="translate_article">Tõlgi artikleid</string>
+    <string name="translate_title">Tõlgi pealkirju</string>
+    <string name="auto_translate">Automaatne tõlge</string>
+    <string name="show_original">Näita originaali</string>
+    <string name="translating">Tõlkimine…</string>
+    <string name="translation_model_downloading">Keelemudeli allalaadimine…</string>
+    <string name="translation_model_download_failed">Keelemudeli allalaadimine ebaõnnestus</string>
+    <string name="downloaded_models">Allalaaditud mudelid</string>
+    <string name="delete_model">Kustuta mudel</string>
+    <string name="no_downloaded_models">Allalaaditud mudeleid pole</string>
+    <string name="translate_target_language">Sihtkeel</string>
+    <string name="translate_wifi_only">Laadi alla ainult Wi-Fi kaudu</string>
+    <string name="manage_models">Halda mudeleid</string>
+    <string name="delete_model_desc">Kustuta allalaaditud keelemudel</string>
+    <string name="delete_model_title">Mudeli kustutamine</string>
+    <string name="delete_model_confirmation">Kas oled kindel, et soovid mudeli %1$s kustutada?</string>
+    <string name="download_model_title">Tõlkemudelite allalaadimine</string>
+    <string name="download_model_message">Selle artikli tõlkimiseks on vaja alla laadida tõlkemudelid (igaüks ~30 MB). Kas jätkata?</string>
 </resources>
