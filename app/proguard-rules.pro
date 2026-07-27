@@ -35,7 +35,7 @@
 -keep class com.rometools.** { *; }
 
 # Provider API
--keep class me.ash.reader.** { *; }
+-keep class cc.samlab.rss.** { *; }
 
 # https://github.com/flutter/flutter/issues/127388
 -dontwarn org.kxml2.io.KXml**

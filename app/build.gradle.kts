@@ -112,7 +112,7 @@ android {
     }
     androidResources { generateLocaleConfig = true }
     composeCompiler { featureFlags = setOf(ComposeFeatureFlag.PausableComposition) }
-    namespace = "me.ash.reader"
+    namespace = "cc.samlab.rss"
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
