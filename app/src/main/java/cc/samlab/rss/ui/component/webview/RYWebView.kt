@@ -37,6 +37,7 @@ import cc.samlab.rss.ui.theme.palette.alwaysLight
 fun RYWebView(
     modifier: Modifier = Modifier,
     content: String,
+    baseUrl: String? = null,
     refererDomain: String? = null,
     onImageClick: ((imgUrl: String, altText: String) -> Unit)? = null,
 ) {
@@ -99,6 +100,7 @@ fun RYWebView(
         factory = { webView },
         update = {
             it.apply {
+                val currentBaseUrl = baseUrl ?: "https://cc.samlab.rss/"
                 val newHtml = WebViewHtml.HTML.format(
                     WebViewStyle.get(
                         fontSize = fontSize,
@@ -121,7 +123,7 @@ fun RYWebView(
                         selectionTextColor = selectionTextColor,
                         selectionBgColor = selectionBgColor,
                     ),
-                    url,
+                    currentBaseUrl,
                     content,
                     WebViewScript.get(boldCharacters.value),
                 )
@@ -129,7 +131,7 @@ fun RYWebView(
                 if (tag != newHtml) {
                     settings.defaultFontSize = fontSize
                     loadDataWithBaseURL(
-                        null,
+                        currentBaseUrl,
                         newHtml,
                         "text/HTML",
                         "UTF-8",
