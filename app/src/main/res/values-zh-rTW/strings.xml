@@ -338,6 +338,8 @@
     <string name="ai_summary">AI 摘要</string>
     <string name="ai_summary_loading">摘要生成中…</string>
     <string name="ai_summary_error">摘要生成失敗：%1$s</string>
+    <string name="continue_asking_ai">繼續問 AI</string>
+    <string name="you">你</string>
     <string name="ai_settings">AI 設定</string>
     <string name="ai_settings_desc">配置 AI 摘要服務</string>
     <string name="api_configuration">API 配置</string>

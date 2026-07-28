@@ -47,6 +47,7 @@ import cc.samlab.rss.domain.service.SyncWorker
 import cc.samlab.rss.infrastructure.android.AndroidImageDownloader
 import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.android.TextToSpeechManager
+import cc.samlab.rss.infrastructure.net.openai.ChatMessage
 import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.IODispatcher
 import cc.samlab.rss.infrastructure.preference.PullToLoadNextFeedPreference
@@ -776,6 +777,8 @@ constructor(
         }
     }
 
+    private val _aiChatHistory = mutableListOf<ChatMessage>()
+
     fun summarizeCurrentArticle(
         onSuccess: (String) -> Unit,
         onError: (String) -> Unit
@@ -789,21 +792,66 @@ constructor(
                 return@launch
             }
 
-            val result = aiSummaryRepository.summarizeArticle(
+            val prompt = settings.aiSummarizationPrompt.value.ifEmpty {
+                "Please provide a concise summary of the following article in 3-5 bullet points:\n\n"
+            }
+
+            _aiChatHistory.clear()
+            _aiChatHistory.add(ChatMessage(role = "user", content = "$prompt\n\n$articleContent"))
+
+            val result = aiSummaryRepository.chatWithAi(
                 baseUrl = settings.aiBaseUrl.value,
                 apiKey = settings.aiApiKey.value,
                 model = settings.aiModel.value.ifEmpty { "gpt-3.5-turbo" },
-                prompt = settings.aiSummarizationPrompt.value.ifEmpty {
-                    "Please provide a concise summary of the following article in 3-5 bullet points:\n\n"
-                },
-                articleContent = articleContent
+                messages = _aiChatHistory
             )
 
             when (result) {
-                is ApiResult.Success -> onSuccess(result.data)
+                is ApiResult.Success -> {
+                    _aiChatHistory.add(ChatMessage(role = "assistant", content = result.data))
+                    onSuccess(result.data)
+                }
                 is ApiResult.BizError -> onError(result.exception.message ?: "Business error")
                 is ApiResult.NetworkError -> onError(result.exception.message ?: "Network error")
                 is ApiResult.UnknownError -> onError(result.throwable.message ?: "Unknown error")
+            }
+        }
+    }
+
+    fun continueChatWithAi(
+        userQuestion: String,
+        onSuccess: (String) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        viewModelScope.launch {
+            val settings = settingsProvider.settings
+
+            _aiChatHistory.add(ChatMessage(role = "user", content = userQuestion))
+
+            val result = aiSummaryRepository.chatWithAi(
+                baseUrl = settings.aiBaseUrl.value,
+                apiKey = settings.aiApiKey.value,
+                model = settings.aiModel.value.ifEmpty { "gpt-3.5-turbo" },
+                messages = _aiChatHistory
+            )
+
+            when (result) {
+                is ApiResult.Success -> {
+                    _aiChatHistory.add(ChatMessage(role = "assistant", content = result.data))
+                    onSuccess(result.data)
+                }
+                is ApiResult.BizError -> {
+                    _aiChatHistory.removeAt(_aiChatHistory.size - 1)
+                    onError(result.exception.message ?: "Business error")
+                }
+                is ApiResult.NetworkError -> {
+                    _aiChatHistory.removeAt(_aiChatHistory.size - 1)
+                    onError(result.exception.message ?: "Network error")
+                }
+                is ApiResult.UnknownError -> {
+                    _aiChatHistory.removeAt(_aiChatHistory.size - 1)
+                    onError(result.throwable.message ?: "Unknown error")
+                }
             }
         }
     }

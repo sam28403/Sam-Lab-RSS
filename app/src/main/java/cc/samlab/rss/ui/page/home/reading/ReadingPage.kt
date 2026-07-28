@@ -46,6 +46,7 @@ import kotlin.math.abs
 import kotlinx.coroutines.launch
 import cc.samlab.rss.R
 import cc.samlab.rss.infrastructure.android.TextToSpeechManager
+import cc.samlab.rss.infrastructure.net.openai.ChatMessage
 import cc.samlab.rss.infrastructure.preference.LocalPullToSwitchArticle
 import cc.samlab.rss.infrastructure.preference.LocalReadingAutoHideToolbar
 import cc.samlab.rss.infrastructure.preference.LocalReadingBoldCharacters
@@ -88,7 +89,7 @@ fun ReadingPage(
     var showFullScreenImageViewer by remember { mutableStateOf(false) }
     var showAiSummaryOverlay by remember { mutableStateOf(false) }
     var currentImageData by remember { mutableStateOf(ImageData()) }
-    var summaryContent by remember { mutableStateOf("") }
+    var summaryMessages by remember { mutableStateOf<List<ChatMessage>>(emptyList()) }
     var isSummaryLoading by remember { mutableStateOf(false) }
     var summaryError by remember { mutableStateOf<String?>(null) }
 
@@ -129,7 +130,7 @@ fun ReadingPage(
                             coroutineScope.launch {
                                 viewModel.summarizeCurrentArticle(
                                     onSuccess = { summary ->
-                                        summaryContent = summary
+                                        summaryMessages = listOf(ChatMessage(role = "assistant", content = summary))
                                         isSummaryLoading = false
                                     },
                                     onError = { error ->
@@ -362,10 +363,26 @@ fun ReadingPage(
 
     if (showAiSummaryOverlay) {
         AiSummaryOverlay(
-            summary = summaryContent,
+            messages = summaryMessages,
             isLoading = isSummaryLoading,
             error = summaryError,
-            onDismissRequest = { showAiSummaryOverlay = false }
+            onDismissRequest = { showAiSummaryOverlay = false },
+            onContinueChat = { question ->
+                summaryError = null
+                isSummaryLoading = true
+                summaryMessages = summaryMessages + ChatMessage(role = "user", content = question)
+                viewModel.continueChatWithAi(
+                    userQuestion = question,
+                    onSuccess = { answer ->
+                        summaryMessages = summaryMessages + ChatMessage(role = "assistant", content = answer)
+                        isSummaryLoading = false
+                    },
+                    onError = { error ->
+                        summaryError = error
+                        isSummaryLoading = false
+                    }
+                )
+            }
         )
     }
 

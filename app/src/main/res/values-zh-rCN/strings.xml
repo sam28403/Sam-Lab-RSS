@@ -398,6 +398,8 @@
     <string name="ai_summary">AI总结</string>
     <string name="ai_summary_loading">生成总结中…</string>
     <string name="ai_summary_error">无法生成总结：%1$s</string>
+    <string name="continue_asking_ai">继续问AI</string>
+    <string name="you">你</string>
     <string name="ai_settings">AI设置</string>
     <string name="ai_settings_desc">配置AI总结服务</string>
     <string name="api_configuration">API配置</string>

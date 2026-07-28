@@ -314,6 +314,8 @@
     <string name="ai_summary">AI 要約</string>
     <string name="ai_summary_loading">要約を生成中…</string>
     <string name="ai_summary_error">要約の生成に失敗しました: %1$s</string>
+    <string name="continue_asking_ai">AI に続けて質問する</string>
+    <string name="you">あなた</string>
     <string name="ai_settings">AI 設定</string>
     <string name="ai_settings_desc">AI 要約サービスを設定する</string>
     <string name="api_configuration">API 設定</string>

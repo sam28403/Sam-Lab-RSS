@@ -375,6 +375,8 @@
     <string name="ai_summary">Resumen por IA</string>
     <string name="ai_summary_loading">Generando resumen…</string>
     <string name="ai_summary_error">No se ha podido generar el resumen: %1$s</string>
+    <string name="continue_asking_ai">Continuar preguntando a la IA</string>
+    <string name="you">Tú</string>
     <string name="ai_settings">Ajustes de IA</string>
     <string name="ai_settings_desc">Configurar servicios de resumen por IA</string>
     <string name="api_configuration">Configuración de API</string>
