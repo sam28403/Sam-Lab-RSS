@@ -82,6 +82,17 @@
     <string name="search_for_in">Поиск %1$s элементов в \"%2$s\"</string>
     <string name="search_for">Поиск %1$s элементов</string>
     <string name="get_new_updates_desc">Доступна версия %1$s</string>
+    <string name="sync_metered_network_warning">Используется сеть с лимитным трафиком. Синхронизация может потребовать много данных. Продолжить?</string>
+    <string name="sync_not_charging_warning">Устройство не заряжается. Синхронизация может сильно разрядить батарею. Продолжить?</string>
+    <string name="sync_overheat_warning">Температура устройства высокая. Синхронизация может привести к перегреву. Продолжить?</string>
+    <string name="sync_metered_and_not_charging_warning">Используется лимитная сеть, и устройство не заряжается. Продолжить?</string>
+    <string name="sync_metered_and_overheat_warning">Лимитная сеть и высокая температура устройства. Продолжить?</string>
+    <string name="sync_not_charging_and_overheat_warning">Устройство не заряжается и высокая температура. Продолжить?</string>
+    <string name="sync_all_warning">Лимитная сеть, отсутствие зарядки и высокая температура. Синхронизация может быть рискованной. Продолжить?</string>
+    <string name="only_when_safe_temp">Только при безопасной температуре устройства</string>
+    <string name="safe_temperature_settings">Настройки безопасной температуры</string>
+    <string name="temperature_threshold">Порог температуры: %1$d°C</string>
+    <string name="current_temperature">Текущая температура: %1$.1f°C</string>
     <string name="accounts_desc">Локальный, services, self-hosted</string>
     <string name="color_and_style_desc">Тема, цветовая палитра, размер текста</string>
     <string name="interaction">Использование</string>

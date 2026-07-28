@@ -29,6 +29,17 @@
     <string name="close">閉じる</string>
     <string name="get_new_updates">新しいアップデートを取得する</string>
     <string name="get_new_updates_desc">新しいバージョン %1$s が利用可能です</string>
+    <string name="sync_metered_network_warning">現在、従量制課金接続を使用しています。同期するとデータ通信量が多くなる可能性があります。続行しますか？</string>
+    <string name="sync_not_charging_warning">デバイスは現在充電されていません。同期するとバッテリーを大幅に消耗する可能性があります。続行しますか？</string>
+    <string name="sync_overheat_warning">デバイスの温度が高くなっています。同期すると過熱の原因となる可能性があります。続行しますか？</string>
+    <string name="sync_metered_and_not_charging_warning">従量制接続を使用しており、充電もされていません。続行しますか？</string>
+    <string name="sync_metered_and_overheat_warning">従量制接続を使用しており、デバイスの温度も高いです。続行しますか？</string>
+    <string name="sync_not_charging_and_overheat_warning">充電されておらず、デバイスの温度も高いです。続行しますか？</string>
+    <string name="sync_all_warning">従量制接続、未充電、高温状態です。同期にはリスクがあります。続行しますか？</string>
+    <string name="only_when_safe_temp">デバイスの温度が安全な時のみ</string>
+    <string name="safe_temperature_settings">安全温度設定</string>
+    <string name="temperature_threshold">温度しきい値: %1$d°C</string>
+    <string name="current_temperature">現在の温度: %1$.1f°C</string>
     <string name="accounts">アカウント</string>
     <string name="interaction">操作</string>
     <string name="interaction_desc">起動時のページ、触覚フィードバック</string>

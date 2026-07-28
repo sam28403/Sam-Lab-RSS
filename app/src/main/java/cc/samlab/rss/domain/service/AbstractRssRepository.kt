@@ -2,16 +2,22 @@ package cc.samlab.rss.domain.service
 
 import android.util.Log
 import androidx.paging.PagingSource
+import androidx.work.Constraints
+import androidx.work.ExistingWorkPolicy
 import androidx.work.ListenableWorker
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import com.rometools.rome.feed.synd.SyndFeed
 import java.util.Date
 import java.util.UUID
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.launch
 import cc.samlab.rss.domain.model.account.Account
 import cc.samlab.rss.domain.model.article.ArchivedArticle
 import cc.samlab.rss.domain.model.article.Article
@@ -23,6 +29,7 @@ import cc.samlab.rss.domain.repository.ArticleDao
 import cc.samlab.rss.domain.repository.FeedDao
 import cc.samlab.rss.domain.repository.GroupDao
 import cc.samlab.rss.infrastructure.android.NotificationHelper
+import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.preference.KeepArchivedPreference
 import cc.samlab.rss.infrastructure.preference.SyncIntervalPreference
 import cc.samlab.rss.infrastructure.rss.RssHelper
@@ -39,6 +46,8 @@ abstract class AbstractRssRepository(
     private val dispatcherIO: CoroutineDispatcher,
     private val dispatcherDefault: CoroutineDispatcher,
     private val accountService: AccountService,
+    private val coroutineScope: CoroutineScope,
+    private val systemHelper: SystemHelper,
 ) {
 
     open val importSubscription: Boolean = true
@@ -178,30 +187,58 @@ abstract class AbstractRssRepository(
         accountId: Int = accountService.getCurrentAccountId(),
         feedId: String? = null,
         groupId: String? = null,
+        ignoreConstraints: Boolean = true,
     ) {
-        SyncWorker.enqueueOneTimeWork(
-            workManager,
-            workDataOf("accountId" to accountId, "feedId" to feedId, "groupId" to groupId),
-        )
+        coroutineScope.launch(dispatcherIO) {
+            val account = accountService.getAccountById(accountId)
+            val constraints =
+                if (ignoreConstraints || account == null) {
+                    Constraints.NONE
+                } else {
+                    val isOverheat =
+                        account.syncOnlyWhenSafeTemp.value &&
+                                systemHelper.getBatteryTemperature() > account.syncMaxTemp
+
+                    if (isOverheat) {
+                        return@launch
+                    }
+
+                    Constraints.Builder()
+                        .setRequiresCharging(account.syncOnlyWhenCharging.value)
+                        .setRequiredNetworkType(
+                            if (account.syncOnlyOnWiFi.value) NetworkType.UNMETERED
+                            else NetworkType.CONNECTED
+                        )
+                        .build()
+                }
+
+            SyncWorker.enqueueOneTimeWork(
+                workManager,
+                workDataOf("accountId" to accountId, "feedId" to feedId, "groupId" to groupId),
+                constraints,
+            )
+        }
     }
 
     fun initSync() {
-        accountService.getCurrentAccount().let {
-            val syncOnStart = it.syncOnStart.value
-            if (syncOnStart) {
-                doSyncOneTime(it.id!!)
-            }
-            if (it.syncInterval.value != SyncIntervalPreference.Manually.value) {
-                SyncWorker.enqueuePeriodicWork(account = it, workManager = workManager)
-                WidgetUpdateWorker.enqueuePeriodicWork(
-                    workManager = workManager,
-                    syncInterval = it.syncInterval,
-                    syncOnlyWhenCharging = it.syncOnlyWhenCharging,
-                    syncOnlyOnWiFi = it.syncOnlyOnWiFi,
-                )
-            } else {
-                SyncWorker.cancelPeriodicWork(workManager)
-                WidgetUpdateWorker.cancelPeriodicWork(workManager)
+        coroutineScope.launch(dispatcherIO) {
+            accountService.getCurrentAccount().let {
+                val syncOnStart = it.syncOnStart.value
+                if (syncOnStart) {
+                    doSyncOneTime(it.id!!, ignoreConstraints = false)
+                }
+                if (it.syncInterval.value != SyncIntervalPreference.Manually.value) {
+                    SyncWorker.enqueuePeriodicWork(account = it, workManager = workManager)
+                    WidgetUpdateWorker.enqueuePeriodicWork(
+                        workManager = workManager,
+                        syncInterval = it.syncInterval,
+                        syncOnlyWhenCharging = it.syncOnlyWhenCharging,
+                        syncOnlyOnWiFi = it.syncOnlyOnWiFi,
+                    )
+                } else {
+                    SyncWorker.cancelPeriodicWork(workManager)
+                    WidgetUpdateWorker.cancelPeriodicWork(workManager)
+                }
             }
         }
     }

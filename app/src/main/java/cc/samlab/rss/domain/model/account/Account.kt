@@ -31,6 +31,10 @@ data class Account(
     val syncOnlyOnWiFi: SyncOnlyOnWiFiPreference = SyncOnlyOnWiFiPreference.default,
     @ColumnInfo(defaultValue = "0")
     val syncOnlyWhenCharging: SyncOnlyWhenChargingPreference = SyncOnlyWhenChargingPreference.default,
+    @ColumnInfo(defaultValue = "1")
+    val syncOnlyWhenSafeTemp: SyncOnlyWhenSafeTempPreference = SyncOnlyWhenSafeTempPreference.default,
+    @ColumnInfo(defaultValue = "40")
+    val syncMaxTemp: Int = 40,
     @ColumnInfo(defaultValue = "2592000000")
     val keepArchived: KeepArchivedPreference = KeepArchivedPreference.default,
     @ColumnInfo(defaultValue = "")

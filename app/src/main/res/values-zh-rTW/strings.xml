@@ -87,6 +87,17 @@
     <string name="close">關閉</string>
     <string name="get_new_updates">取得更新</string>
     <string name="get_new_updates_desc">版本 %1$s 現已發布</string>
+    <string name="sync_metered_network_warning">目前使用的是計費網路，同步可能會消耗較多流量，是否繼續？</string>
+    <string name="sync_not_charging_warning">目前裝置未在充電，同步可能會消耗較多電量，是否繼續？</string>
+    <string name="sync_overheat_warning">裝置溫度較高，同步可能會加劇發熱，是否繼續？</string>
+    <string name="sync_metered_and_not_charging_warning">目前使用的是計費網路且未在充電，同步可能會消耗較多流量和電量，是否繼續？</string>
+    <string name="sync_metered_and_overheat_warning">目前使用的是計費網路且裝置溫度較高，是否繼續？</string>
+    <string name="sync_not_charging_and_overheat_warning">目前裝置未在充電且溫度較高，是否繼續？</string>
+    <string name="sync_all_warning">計費網路、未充電且溫度較高，同步風險較大，是否繼續？</string>
+    <string name="only_when_safe_temp">僅限裝置溫度正常時</string>
+    <string name="safe_temperature_settings">溫度限制設定</string>
+    <string name="temperature_threshold">溫度閾值：%1$d°C</string>
+    <string name="current_temperature">目前溫度：%1$.1f°C</string>
     <string name="in_coding">打造中</string>
     <string name="coming_soon">即將登場</string>
     <string name="accounts">帳戶</string>

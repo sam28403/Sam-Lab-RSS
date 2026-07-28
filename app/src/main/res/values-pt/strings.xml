@@ -100,6 +100,17 @@
     <string name="close">Fechar</string>
     <string name="get_new_updates">Obter novas atualizações</string>
     <string name="get_new_updates_desc">Nova versão %1$s disponível</string>
+    <string name="sync_metered_network_warning">Uma rede tarifada está sendo usada. A sincronização pode consumir muitos dados. Deseja continuar?</string>
+    <string name="sync_not_charging_warning">O dispositivo não está carregando. A sincronização pode consumir muita bateria. Deseja continuar?</string>
+    <string name="sync_overheat_warning">A temperatura do dispositivo está alta. A sincronização pode causar superaquecimento. Continuar?</string>
+    <string name="sync_metered_and_not_charging_warning">Uma rede tarifada está sendo usada e o dispositivo não está carregando. Deseja continuar?</string>
+    <string name="sync_metered_and_overheat_warning">Rede tarifada e temperatura do dispositivo alta. Continuar?</string>
+    <string name="sync_not_charging_and_overheat_warning">O dispositivo não está carregando e a temperatura está alta. Continuar?</string>
+    <string name="sync_all_warning">Rede tarifada, sem carregar e temperatura alta. A sincronização pode ser arriscada. Continuar?</string>
+    <string name="only_when_safe_temp">Somente quando a temperatura do dispositivo estiver segura</string>
+    <string name="safe_temperature_settings">Configurações de temperatura segura</string>
+    <string name="temperature_threshold">Limiar de temperatura: %1$d°C</string>
+    <string name="current_temperature">Temperatura atual: %1$.1f°C</string>
     <string name="in_coding">Em progresso</string>
     <string name="coming_soon">Em breve</string>
     <string name="accounts">Contas</string>

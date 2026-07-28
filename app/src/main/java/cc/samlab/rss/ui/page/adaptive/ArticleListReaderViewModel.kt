@@ -37,12 +37,15 @@ import cc.samlab.rss.domain.model.article.ArticleFlowItem
 import cc.samlab.rss.domain.model.article.ArticleWithFeed
 import cc.samlab.rss.domain.model.feed.Feed
 import cc.samlab.rss.domain.model.general.MarkAsReadConditions
+import cc.samlab.rss.domain.model.general.SyncWarning
 import cc.samlab.rss.domain.repository.AiSummaryRepository
+import cc.samlab.rss.domain.service.AccountService
 import cc.samlab.rss.domain.service.GoogleReaderRssService
 import cc.samlab.rss.domain.service.LocalRssService
 import cc.samlab.rss.domain.service.RssService
 import cc.samlab.rss.domain.service.SyncWorker
 import cc.samlab.rss.infrastructure.android.AndroidImageDownloader
+import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.android.TextToSpeechManager
 import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.IODispatcher
@@ -72,10 +75,14 @@ constructor(
     private val articleListUseCase: ArticlePagingListUseCase,
     private val aiSummaryRepository: AiSummaryRepository,
     val translationService: TranslationService,
+    private val systemHelper: SystemHelper,
+    private val accountService: AccountService,
     workManager: WorkManager,
 ) : ViewModel() {
 
     private var translationJob: Job? = null
+
+    private val _syncWarningFlow = MutableStateFlow(SyncWarning.None)
 
     val flowUiState: StateFlow<FlowUiState?> =
         articleListUseCase.pagerFlow
@@ -130,6 +137,9 @@ constructor(
                     }
                 }
                 FlowUiState(nextFilterState = nextFilterState, pagerData = pagerData)
+            }
+            .combine(_syncWarningFlow) { uiState, syncWarning ->
+                uiState?.copy(syncWarning = syncWarning)
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
@@ -218,7 +228,40 @@ constructor(
         }
     }
 
-    fun sync() {
+    fun sync(force: Boolean = false) {
+        val account = accountService.currentAccountFlow.value
+        if (account != null && !force) {
+            val isMetered = systemHelper.isMetered()
+            val isCharging = systemHelper.isCharging()
+            val currentTemp = systemHelper.getBatteryTemperature()
+
+            val onlyOnWifi = account.syncOnlyOnWiFi.value
+            val onlyWhenCharging = account.syncOnlyWhenCharging.value
+            val onlyWhenSafeTemp = account.syncOnlyWhenSafeTemp.value
+            val maxTemp = account.syncMaxTemp
+
+            val meteredWarning = onlyOnWifi && isMetered
+            val chargingWarning = onlyWhenCharging && !isCharging
+            val overheatWarning = onlyWhenSafeTemp && currentTemp > maxTemp
+
+            val warning = when {
+                meteredWarning && chargingWarning && overheatWarning -> SyncWarning.All
+                meteredWarning && chargingWarning -> SyncWarning.MeteredNotCharging
+                meteredWarning && overheatWarning -> SyncWarning.MeteredOverheat
+                chargingWarning && overheatWarning -> SyncWarning.NotChargingOverheat
+                meteredWarning -> SyncWarning.Metered
+                chargingWarning -> SyncWarning.NotCharging
+                overheatWarning -> SyncWarning.Overheat
+                else -> SyncWarning.None
+            }
+
+            if (warning != SyncWarning.None) {
+                _syncWarningFlow.value = warning
+                return
+            }
+        }
+
+        dismissSyncWarning()
         diffMapHolder.commitDiffsToDb()
         viewModelScope.launch {
             _isSyncingFlow.value = true
@@ -249,6 +292,10 @@ constructor(
                 else -> service.doSyncOneTime()
             }
         }
+    }
+
+    fun dismissSyncWarning() {
+        _syncWarningFlow.value = SyncWarning.None
     }
 
     fun resetFilter() =
@@ -762,7 +809,11 @@ constructor(
     }
 }
 
-data class FlowUiState(val pagerData: PagerData, val nextFilterState: FilterState? = null)
+data class FlowUiState(
+    val pagerData: PagerData,
+    val nextFilterState: FilterState? = null,
+    val syncWarning: SyncWarning = SyncWarning.None,
+)
 
 data class ReadingUiState(
     val articleWithFeed: ArticleWithFeed? = null,

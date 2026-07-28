@@ -38,6 +38,8 @@ import cc.samlab.rss.domain.repository.ArticleDao
 import cc.samlab.rss.domain.repository.FeedDao
 import cc.samlab.rss.domain.repository.GroupDao
 import cc.samlab.rss.infrastructure.android.NotificationHelper
+import cc.samlab.rss.infrastructure.android.SystemHelper
+import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.DefaultDispatcher
 import cc.samlab.rss.infrastructure.di.IODispatcher
 import cc.samlab.rss.infrastructure.di.MainDispatcher
@@ -77,6 +79,8 @@ constructor(
     private val workManager: WorkManager,
     private val accountService: AccountService,
     private val syncLogger: SyncLogger,
+    @ApplicationScope private val applicationScope: CoroutineScope,
+    private val systemHelper: SystemHelper,
 ) :
     AbstractRssRepository(
         articleDao,
@@ -88,6 +92,8 @@ constructor(
         ioDispatcher,
         defaultDispatcher,
         accountService,
+        applicationScope,
+        systemHelper,
     ) {
 
     override val importSubscription: Boolean = false

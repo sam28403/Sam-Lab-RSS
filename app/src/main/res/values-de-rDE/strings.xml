@@ -90,6 +90,17 @@
     <string name="close">Schließen</string>
     <string name="get_new_updates">Neue Updates erhalten</string>
     <string name="get_new_updates_desc">Version %1$s wurde veröffentlicht</string>
+    <string name="sync_metered_network_warning">Es wird derzeit ein getaktetes Netzwerk verwendet. Die Synchronisierung kann viele Daten verbrauchen. Möchten Sie fortfahren?</string>
+    <string name="sync_not_charging_warning">Das Gerät wird derzeit nicht geladen. Die Synchronisierung kann viel Akku verbrauchen. Möchten Sie fortfahren?</string>
+    <string name="sync_overheat_warning">Die Gerätetemperatur ist hoch. Die Synchronisierung kann zu Überhitzung führen. Fortfahren?</string>
+    <string name="sync_metered_and_not_charging_warning">Es wird derzeit ein getaktetes Netzwerk verwendet und das Gerät wird nicht geladen. Möchten Sie fortfahren?</string>
+    <string name="sync_metered_and_overheat_warning">Getaktetes Netzwerk und hohe Gerätetemperatur. Fortfahren?</string>
+    <string name="sync_not_charging_and_overheat_warning">Gerät wird nicht geladen und Temperatur ist hoch. Fortfahren?</string>
+    <string name="sync_all_warning">Getaktetes Netzwerk, kein Laden und hohe Temperatur. Synchronisierung riskant. Fortfahren?</string>
+    <string name="only_when_safe_temp">Nur bei sicherer Gerätetemperatur</string>
+    <string name="safe_temperature_settings">Einstellungen für sichere Temperatur</string>
+    <string name="temperature_threshold">Temperaturschwellenwert: %1$d°C</string>
+    <string name="current_temperature">Aktuelle Temperatur: %1$.1f°C</string>
     <string name="in_coding">In Arbeit</string>
     <string name="coming_soon">Demnächst verfügbar</string>
     <string name="accounts">Konten</string>

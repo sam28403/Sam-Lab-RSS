@@ -22,6 +22,7 @@ import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.DefaultDispatcher
 import cc.samlab.rss.infrastructure.di.IODispatcher
 import cc.samlab.rss.infrastructure.di.MainDispatcher
+import cc.samlab.rss.infrastructure.android.SystemHelper
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,6 +38,7 @@ class AccountViewModel @Inject constructor(
     private val mainDispatcher: CoroutineDispatcher,
     @ApplicationScope
     private val applicationScope: CoroutineScope,
+    private val systemHelper: SystemHelper,
 ) : ViewModel() {
 
     private val _accountUiState = MutableStateFlow(AccountUiState())
@@ -53,7 +55,10 @@ class AccountViewModel @Inject constructor(
     fun update(accountId: Int, block: Account.() -> Account) {
         applicationScope.launch(ioDispatcher) {
             accountService.update(accountId, block)
-            rssService.get(accountId).clearAuthorization()
+            rssService.get(accountId).apply {
+                clearAuthorization()
+                initSync()
+            }
         }
     }
 
@@ -152,6 +157,8 @@ class AccountViewModel @Inject constructor(
         }
     }
     
+    fun getBatteryTemperature(): Float = systemHelper.getBatteryTemperature()
+
     fun cancelAdd() {
         addAccountJob?.cancel()
         setLoading(false)

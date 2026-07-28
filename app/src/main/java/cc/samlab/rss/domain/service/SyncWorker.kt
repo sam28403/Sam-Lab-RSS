@@ -8,6 +8,10 @@ import dagger.assisted.AssistedInject
 import java.util.concurrent.TimeUnit
 import cc.samlab.rss.domain.model.account.Account
 import cc.samlab.rss.infrastructure.preference.SyncIntervalPreference
+import cc.samlab.rss.infrastructure.preference.SyncOnlyOnWiFiPreference
+import cc.samlab.rss.infrastructure.preference.SyncOnlyWhenChargingPreference
+import cc.samlab.rss.infrastructure.preference.SyncOnlyWhenSafeTempPreference
+import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.rss.ReaderCacheHelper
 
 @HiltWorker
@@ -19,6 +23,8 @@ constructor(
     private val rssService: RssService,
     private val readerCacheHelper: ReaderCacheHelper,
     private val workManager: WorkManager,
+    private val accountService: AccountService,
+    private val systemHelper: SystemHelper,
 ) : CoroutineWorker(context, workerParams) {
 
     override suspend fun doWork(): Result {
@@ -27,6 +33,18 @@ constructor(
         require(accountId != -1)
         val feedId = data.getString("feedId")
         val groupId = data.getString("groupId")
+
+        val account = accountService.getAccountById(accountId)
+        if (account != null) {
+            val isOverheat =
+                account.syncOnlyWhenSafeTemp.value &&
+                        systemHelper.getBatteryTemperature() > account.syncMaxTemp
+
+            if (isOverheat) {
+                // Reschedule for later if overheating
+                return Result.retry()
+            }
+        }
 
         return rssService
             .get()
@@ -37,16 +55,31 @@ constructor(
                 }
 
                 // 如果当前账户的同步周期是 1 分钟，则再次排队下次同步
-                workManager.enqueueUniqueWork(
-                    SYNC_WORK_NAME_PERIODIC,
-                    ExistingWorkPolicy.REPLACE,
-                    OneTimeWorkRequestBuilder<SyncWorker>()
-                        .setInitialDelay(1, TimeUnit.MINUTES)
-                        .setInputData(workDataOf("accountId" to accountId))
-                        .addTag(SYNC_TAG)
-                        .addTag(ONETIME_WORK_TAG)
-                        .build()
-                )
+                val account = accountService.getAccountById(accountId)
+                if (account?.syncInterval == SyncIntervalPreference.Every1Minutes) {
+                    val syncOnlyWhenCharging = account.syncOnlyWhenCharging
+                    val syncOnlyOnWiFi = account.syncOnlyOnWiFi
+
+                    workManager.enqueueUniqueWork(
+                        SYNC_WORK_NAME_PERIODIC,
+                        ExistingWorkPolicy.REPLACE,
+                        OneTimeWorkRequestBuilder<SyncWorker>()
+                            .setConstraints(
+                                Constraints.Builder()
+                                    .setRequiresCharging(syncOnlyWhenCharging.value)
+                                    .setRequiredNetworkType(
+                                        if (syncOnlyOnWiFi.value) NetworkType.UNMETERED
+                                        else NetworkType.CONNECTED
+                                    )
+                                    .build()
+                            )
+                            .setInitialDelay(1, TimeUnit.MINUTES)
+                            .setInputData(workDataOf("accountId" to accountId))
+                            .addTag(SYNC_TAG)
+                            .addTag(ONETIME_WORK_TAG)
+                            .build()
+                    )
+                }
 
                 workManager
                     .beginUniqueWork(
@@ -89,7 +122,11 @@ constructor(
             workManager.cancelUniqueWork(READER_WORK_NAME_PERIODIC)
         }
 
-        fun enqueueOneTimeWork(workManager: WorkManager, inputData: Data = workDataOf()) {
+        fun enqueueOneTimeWork(
+            workManager: WorkManager,
+            inputData: Data = workDataOf(),
+            constraints: Constraints = Constraints.NONE,
+        ) {
             workManager
                 .beginUniqueWork(
                     SYNC_ONETIME_NAME,
@@ -98,6 +135,7 @@ constructor(
                         .addTag(SYNC_TAG)
                         .addTag(ONETIME_WORK_TAG)
                         .setInputData(inputData)
+                        .setConstraints(constraints)
                         .build(),
                 )
                 .enqueue()

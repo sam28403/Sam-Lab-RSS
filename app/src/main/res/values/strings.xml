@@ -99,6 +99,17 @@
     <string name="close">Close</string>
     <string name="get_new_updates">Get new updates</string>
     <string name="get_new_updates_desc">New version %1$s is available</string>
+    <string name="sync_metered_network_warning">It is currently using a metered network. Syncing may consume a lot of data. Do you want to continue?</string>
+    <string name="sync_not_charging_warning">The device is currently not charging. Syncing may consume a lot of battery. Do you want to continue?</string>
+    <string name="sync_overheat_warning">Device temperature is high. Syncing may cause overheating. Continue?</string>
+    <string name="sync_metered_and_not_charging_warning">It is currently using a metered network and not charging. Syncing may consume a lot of data and battery. Do you want to continue?</string>
+    <string name="sync_metered_and_overheat_warning">It is currently using a metered network and device temperature is high. Do you want to continue?</string>
+    <string name="sync_not_charging_and_overheat_warning">The device is currently not charging and temperature is high. Do you want to continue?</string>
+    <string name="sync_all_warning">Metered network, not charging, and high temperature. Syncing may be risky. Continue?</string>
+    <string name="only_when_safe_temp">Only when device temperature is safe</string>
+    <string name="safe_temperature_settings">Safe temperature settings</string>
+    <string name="temperature_threshold">Temperature threshold: %1$d°C</string>
+    <string name="current_temperature">Current temperature: %1$.1f°C</string>
     <string name="in_coding">In progress</string>
     <string name="coming_soon">Coming soon</string>
     <string name="accounts">Accounts</string>

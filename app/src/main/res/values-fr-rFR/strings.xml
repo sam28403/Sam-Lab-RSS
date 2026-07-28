@@ -102,6 +102,17 @@
     <string name="close">Fermer</string>
     <string name="get_new_updates">Rechercher des mises à jour</string>
     <string name="get_new_updates_desc">La version %1$s est disponible</string>
+    <string name="sync_metered_network_warning">Un réseau facturé à l\'usage est utilisé. La synchronisation peut consommer beaucoup de données. Voulez-vous continuer ?</string>
+    <string name="sync_not_charging_warning">L\'appareil n\'est pas en charge. La synchronisation peut consommer beaucoup de batterie. Voulez-vous continuer ?</string>
+    <string name="sync_overheat_warning">La température de l\'appareil est élevée. La synchronisation peut provoquer une surchauffe. Continuer ?</string>
+    <string name="sync_metered_and_not_charging_warning">Un réseau facturé est utilisé et l\'appareil n\'est pas en charge. Voulez-vous continuer ?</string>
+    <string name="sync_metered_and_overheat_warning">Réseau facturé et température élevée. Continuer ?</string>
+    <string name="sync_not_charging_and_overheat_warning">Appareil non en charge et température élevée. Continuer ?</string>
+    <string name="sync_all_warning">Réseau facturé, pas de charge et température élevée. Synchronisation risquée. Continuer ?</string>
+    <string name="only_when_safe_temp">Uniquement quand la température est sûre</string>
+    <string name="safe_temperature_settings">Paramètres de température de sécurité</string>
+    <string name="temperature_threshold">Seuil de température : %1$d°C</string>
+    <string name="current_temperature">Température actuelle : %1$.1f°C</string>
     <string name="in_coding">En développement</string>
     <string name="coming_soon">Bientôt disponible</string>
     <string name="accounts">Comptes</string>

@@ -90,6 +90,7 @@ import cc.samlab.rss.infrastructure.preference.LocalSortUnreadArticles
 import cc.samlab.rss.infrastructure.preference.PullToLoadNextFeedPreference
 import cc.samlab.rss.infrastructure.preference.SortUnreadArticlesPreference
 import cc.samlab.rss.ui.component.FilterBar
+import cc.samlab.rss.ui.component.SyncWarningDialog
 import cc.samlab.rss.ui.component.base.FeedbackIconButton
 import cc.samlab.rss.ui.component.base.RYExtensibleVisibility
 import cc.samlab.rss.ui.component.base.RYScaffold
@@ -746,5 +747,11 @@ fun FlowPage(
                         ),
             )
         }
+
+        SyncWarningDialog(
+            syncWarning = flowUiState.syncWarning,
+            onConfirm = { viewModel.sync(force = true) },
+            onDismissRequest = { viewModel.dismissSyncWarning() }
+        )
     }
 }

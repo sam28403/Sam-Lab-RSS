@@ -76,6 +76,7 @@ import cc.samlab.rss.infrastructure.preference.LocalFeedsTopBarTonalElevation
 import cc.samlab.rss.infrastructure.preference.LocalNewVersionNumber
 import cc.samlab.rss.infrastructure.preference.LocalSkipVersionNumber
 import cc.samlab.rss.ui.component.FilterBar
+import cc.samlab.rss.ui.component.SyncWarningDialog
 import cc.samlab.rss.ui.component.base.DisplayText
 import cc.samlab.rss.ui.component.base.FeedbackIconButton
 import cc.samlab.rss.ui.component.base.RYScaffold
@@ -427,5 +428,11 @@ fun FeedsPage(
             navigateToAccountList()
         },
         onDismissRequest = { accountTabVisible = false },
+    )
+
+    SyncWarningDialog(
+        syncWarning = feedsUiState.syncWarning,
+        onConfirm = { feedsViewModel.sync(force = true) },
+        onDismissRequest = { feedsViewModel.dismissSyncWarning() }
     )
 }

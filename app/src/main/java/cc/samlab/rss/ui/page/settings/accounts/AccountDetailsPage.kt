@@ -51,7 +51,9 @@ import cc.samlab.rss.R
 import cc.samlab.rss.infrastructure.preference.KeepArchivedPreference
 import cc.samlab.rss.infrastructure.preference.SyncBlockListPreference
 import cc.samlab.rss.infrastructure.preference.SyncIntervalPreference
+import cc.samlab.rss.infrastructure.preference.SyncOnlyWhenSafeTempPreference
 import cc.samlab.rss.infrastructure.preference.not
+import cc.samlab.rss.ui.component.SafeTempDialog
 import cc.samlab.rss.ui.component.base.DisplayText
 import cc.samlab.rss.ui.component.base.FeedbackIconButton
 import cc.samlab.rss.ui.component.base.RYDialog
@@ -97,6 +99,7 @@ fun AccountDetailsPage(
     var blockListDialogVisible by remember { mutableStateOf(false) }
     var syncIntervalDialogVisible by remember { mutableStateOf(false) }
     var keepArchivedDialogVisible by remember { mutableStateOf(false) }
+    var safeTempDialogVisible by remember { mutableStateOf(false) }
     var exportOPMLModeDialogVisible by remember { mutableStateOf(false) }
 
     val launcher =
@@ -226,6 +229,16 @@ fun AccountDetailsPage(
                         }
                     }
                     SettingItem(
+                        title = stringResource(R.string.only_when_safe_temp),
+                        onClick = { safeTempDialogVisible = true },
+                    ) {
+                        RYSwitch(activated = selectedAccount?.syncOnlyWhenSafeTemp?.value == true) {
+                            selectedAccount?.id?.let {
+                                (!selectedAccount.syncOnlyWhenSafeTemp).put(it, viewModel)
+                            }
+                        }
+                    }
+                    SettingItem(
                         title = stringResource(R.string.keep_archived_articles),
                         desc = selectedAccount?.keepArchived?.toDesc(context),
                         onClick = { keepArchivedDialogVisible = true },
@@ -319,6 +332,19 @@ fun AccountDetailsPage(
     ) {
         keepArchivedDialogVisible = false
     }
+
+    SafeTempDialog(
+        visible = safeTempDialogVisible,
+        currentMaxTemp = selectedAccount?.syncMaxTemp ?: 40,
+        currentDeviceTemp = viewModel.getBatteryTemperature(),
+        onConfirm = { maxTemp ->
+            selectedAccount?.id?.let { accountId ->
+                viewModel.update(accountId) { copy(syncMaxTemp = maxTemp) }
+            }
+            safeTempDialogVisible = false
+        },
+        onDismissRequest = { safeTempDialogVisible = false }
+    )
 
     TextFieldDialog(
         visible = blockListDialogVisible,

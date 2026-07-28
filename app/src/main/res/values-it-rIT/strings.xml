@@ -93,6 +93,17 @@
     <string name="close">Chiudi</string>
     <string name="get_new_updates">Ottieni nuovi aggiornamenti</string>
     <string name="get_new_updates_desc">La nuova versione %1$s è disponibile</string>
+    <string name="sync_metered_network_warning">È in uso una rete a consumo. La sincronizzazione potrebbe consumare molti dati. Continuare?</string>
+    <string name="sync_not_charging_warning">Il dispositivo non è in carica. La sincronizzazione potrebbe consumare molta batteria. Continuare?</string>
+    <string name="sync_overheat_warning">La temperatura del dispositivo è alta. La sincronizzazione potrebbe causare surriscaldamento. Continuare?</string>
+    <string name="sync_metered_and_not_charging_warning">È in uso una rete a consumo e il dispositivo non è in carica. Continuare?</string>
+    <string name="sync_metered_and_overheat_warning">Rete a consumo e temperatura del dispositivo alta. Continuare?</string>
+    <string name="sync_not_charging_and_overheat_warning">Il dispositivo non è in carica e la temperatura è alta. Continuare?</string>
+    <string name="sync_all_warning">Rete a consumo, non in carica e temperatura alta. La sincronizzazione potrebbe essere rischiosa. Continuare?</string>
+    <string name="only_when_safe_temp">Solo quando la temperatura del dispositivo è sicura</string>
+    <string name="safe_temperature_settings">Impostazioni temperatura sicura</string>
+    <string name="temperature_threshold">Soglia di temperatura: %1$d°C</string>
+    <string name="current_temperature">Temperatura attuale: %1$.1f°C</string>
     <string name="in_coding">Programmando</string>
     <string name="coming_soon">Prossimamente</string>
     <string name="accounts">Account</string>

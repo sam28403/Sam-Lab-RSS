@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import cc.samlab.rss.R
 import cc.samlab.rss.domain.model.account.Account
 import cc.samlab.rss.domain.model.general.Filter
+import cc.samlab.rss.domain.model.general.SyncWarning
 import cc.samlab.rss.domain.service.AccountService
 import cc.samlab.rss.domain.service.RssService
 import cc.samlab.rss.infrastructure.android.AndroidStringsHelper
@@ -32,6 +33,7 @@ import cc.samlab.rss.domain.data.FilterState
 import cc.samlab.rss.domain.data.FilterStateUseCase
 import cc.samlab.rss.domain.data.GroupWithFeedsListUseCase
 import cc.samlab.rss.domain.service.SyncWorker
+import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.DefaultDispatcher
 import cc.samlab.rss.infrastructure.di.IODispatcher
@@ -57,6 +59,7 @@ class FeedsViewModel @Inject constructor(
     private val diffMapHolder: DiffMapHolder,
     private val filterStateUseCase: FilterStateUseCase,
     private val groupWithFeedsListUseCase: GroupWithFeedsListUseCase,
+    private val systemHelper: SystemHelper,
 ) : ViewModel() {
 
     private val _feedsUiState =
@@ -70,10 +73,47 @@ class FeedsViewModel @Inject constructor(
 
     var currentJob: Job? = null
 
-    fun sync() {
+    fun sync(force: Boolean = false) {
+        val account = feedsUiState.value.account
+        if (account != null && !force) {
+            val isMetered = systemHelper.isMetered()
+            val isCharging = systemHelper.isCharging()
+            val currentTemp = systemHelper.getBatteryTemperature()
+            
+            val onlyOnWifi = account.syncOnlyOnWiFi.value
+            val onlyWhenCharging = account.syncOnlyWhenCharging.value
+            val onlyWhenSafeTemp = account.syncOnlyWhenSafeTemp.value
+            val maxTemp = account.syncMaxTemp
+
+            val meteredWarning = onlyOnWifi && isMetered
+            val chargingWarning = onlyWhenCharging && !isCharging
+            val overheatWarning = onlyWhenSafeTemp && currentTemp > maxTemp
+
+            val warning = when {
+                meteredWarning && chargingWarning && overheatWarning -> SyncWarning.All
+                meteredWarning && chargingWarning -> SyncWarning.MeteredNotCharging
+                meteredWarning && overheatWarning -> SyncWarning.MeteredOverheat
+                chargingWarning && overheatWarning -> SyncWarning.NotChargingOverheat
+                meteredWarning -> SyncWarning.Metered
+                chargingWarning -> SyncWarning.NotCharging
+                overheatWarning -> SyncWarning.Overheat
+                else -> SyncWarning.None
+            }
+
+            if (warning != SyncWarning.None) {
+                _feedsUiState.update { it.copy(syncWarning = warning) }
+                return
+            }
+        }
+
+        dismissSyncWarning()
         applicationScope.launch(ioDispatcher) {
             rssService.get().doSyncOneTime()
         }
+    }
+
+    fun dismissSyncWarning() {
+        _feedsUiState.update { it.copy(syncWarning = SyncWarning.None) }
     }
 
     fun commitDiffs() = diffMapHolder.commitDiffsToDb()
@@ -224,4 +264,5 @@ data class FeedsUiState(
     val importantSum: String = "",
     val listState: LazyListState = LazyListState(),
     val groupsVisible: SnapshotStateMap<String, Boolean> = mutableStateMapOf(),
+    val syncWarning: SyncWarning = SyncWarning.None,
 )
