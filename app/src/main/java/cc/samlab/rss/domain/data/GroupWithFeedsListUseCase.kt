@@ -6,20 +6,24 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import cc.samlab.rss.domain.model.general.Filter
 import cc.samlab.rss.domain.model.group.GroupWithFeed
+import cc.samlab.rss.domain.service.AbstractRssRepository
 import cc.samlab.rss.domain.service.AccountService
 import cc.samlab.rss.domain.service.RssService
 import cc.samlab.rss.infrastructure.di.ApplicationScope
@@ -39,27 +43,26 @@ class GroupWithFeedsListUseCase @Inject constructor(
     private val accountService: AccountService,
 ) {
 
-    private var currentJob: Job? = null
-
     init {
         val accountFlow = accountService.currentAccountFlow.mapNotNull { it }
+
         applicationScope.launch {
-            accountFlow.collectLatest {
-                rssService.get(it.type.id).pullFeeds().collect { feeds -> feedsFlow.value = feeds }
-            }
-        }
-        applicationScope.launch {
-            filterStateUseCase.filterStateFlow.map { it.filter }
-                .combine(accountFlow) { filter, account ->
-                    filter
-                }.collectLatest {
-                    currentJob?.cancel()
-                    currentJob = when (it) {
-                        Filter.Unread -> pullUnreadFeeds()
-                        Filter.Starred -> pullStarredFeeds()
-                        else -> pullAllFeeds()
+            accountFlow.combine(
+                filterStateUseCase.filterStateFlow.map { it.filter }.distinctUntilChanged()
+            ) { account, filter ->
+                account to filter
+            }.flatMapLatest { (account, filter) ->
+                val service = rssService.get(account.type.id)
+                service.pullFeeds().flatMapLatest { feeds ->
+                    when (filter) {
+                        Filter.Unread -> pullUnreadFeeds(feeds, service)
+                        Filter.Starred -> pullStarredFeeds(feeds, service)
+                        else -> pullAllFeeds(feeds, service)
                     }
                 }
+            }.flowOn(ioDispatcher).collect {
+                _groupWithFeedsListFlow.value = it
+            }
         }
     }
 
@@ -81,108 +84,102 @@ class GroupWithFeedsListUseCase @Inject constructor(
             }
         }.stateIn(applicationScope, SharingStarted.Eagerly, emptyList())
 
-    private val feedsFlow: MutableStateFlow<List<GroupWithFeed>> = MutableStateFlow(emptyList())
 
     private val defaultGroupId get() = accountService.getCurrentAccountId().getDefaultGroupId()
 
     private val hideEmptyGroups get() = settingsProvider.settings.hideEmptyGroups.value
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private fun pullAllFeeds(): Job {
-        val articleCountMapFlow =
-            rssService.get().pullImportant(isStarred = false, isUnread = false)
+    private fun pullAllFeeds(
+        feeds: List<GroupWithFeed>,
+        service: AbstractRssRepository
+    ): Flow<List<GroupWithFeed>> {
+        val articleCountMapFlow = service.pullImportant(isStarred = false, isUnread = false)
 
-        return applicationScope.launch {
-            feedsFlow.combine(articleCountMapFlow) { groupWithFeedsList, articleCountMap ->
-                groupWithFeedsList.fastFilteredMap(predicate = {
-                    it.group.id != defaultGroupId || it.feeds.isNotEmpty()
-                }, transform = {
-                    val feedList = it.feeds.map { feed ->
-                        feed.copy(important = articleCountMap[feed.id] ?: 0)
-                    }
-                    it.copy(feeds = feedList.toMutableList())
-                })
-            }.flowOn(ioDispatcher).collect { _groupWithFeedsListFlow.value = it }
-
+        return articleCountMapFlow.map { articleCountMap ->
+            feeds.fastFilteredMap(predicate = {
+                it.group.id != defaultGroupId || it.feeds.isNotEmpty()
+            }, transform = {
+                val feedList = it.feeds.map { feed ->
+                    feed.copy(important = articleCountMap[feed.id] ?: 0)
+                }
+                it.copy(feeds = feedList.toMutableList())
+            })
         }
     }
 
-    private fun pullStarredFeeds(): Job {
-        val starredCountMap = rssService.get().pullImportant(isStarred = true, isUnread = false)
+    private fun pullStarredFeeds(
+        feeds: List<GroupWithFeed>,
+        service: AbstractRssRepository
+    ): Flow<List<GroupWithFeed>> {
+        val starredCountMapFlow = service.pullImportant(isStarred = true, isUnread = false)
 
-        return applicationScope.launch {
-
-            feedsFlow.combine(starredCountMap) { groupWithFeedsList, starredCountMap ->
-                val result = mutableListOf<GroupWithFeed>()
-                for (groupItem in groupWithFeedsList) {
-
-                    val feedList = groupItem.feeds.fastMap { feed ->
-                        val feedCount = (starredCountMap[feed.id] ?: 0)
-                        feed.copy(important = feedCount)
-                    }
-
-                    val groupItem = if (hideEmptyGroups) {
-                        val filteredFeeds = feedList.filterNot { it.important == 0 }
-                        if (filteredFeeds.isEmpty()) {
-                            continue
-                        } else {
-                            groupItem.copy(feeds = filteredFeeds.toMutableList())
-                        }
-                    } else {
-                        groupItem.copy(feeds = feedList.toMutableList())
-                    }
-
-                    if (groupItem.group.id != defaultGroupId || groupItem.feeds.isNotEmpty()) {
-                        result.add(groupItem)
-                    }
+        return starredCountMapFlow.map { starredCountMap ->
+            val result = mutableListOf<GroupWithFeed>()
+            for (groupItem in feeds) {
+                val feedList = groupItem.feeds.fastMap { feed ->
+                    val feedCount = (starredCountMap[feed.id] ?: 0)
+                    feed.copy(important = feedCount)
                 }
-                result
-            }.flowOn(ioDispatcher).collect {
-                _groupWithFeedsListFlow.value = it
+
+                val processedGroupItem = if (hideEmptyGroups) {
+                    val filteredFeeds = feedList.filterNot { it.important == 0 }
+                    if (filteredFeeds.isEmpty()) {
+                        null
+                    } else {
+                        groupItem.copy(feeds = filteredFeeds.toMutableList())
+                    }
+                } else {
+                    groupItem.copy(feeds = feedList.toMutableList())
+                }
+
+                if (processedGroupItem != null && (processedGroupItem.group.id != defaultGroupId || processedGroupItem.feeds.isNotEmpty())) {
+                    result.add(processedGroupItem)
+                }
             }
+            result
         }
     }
 
     @OptIn(FlowPreview::class)
-    private fun pullUnreadFeeds(): Job {
-        val unreadCountMapFlow = rssService.get().pullImportant(isStarred = false, isUnread = true)
-        return applicationScope.launch {
-            combine(
-                feedsFlow, unreadCountMapFlow, diffMapHolder.diffMapSnapshotFlow
-            ) { groupWithFeedsList, unreadCountMap, diffMap ->
-                val result = mutableListOf<GroupWithFeed>()
-                val unreadDiffs = diffMap.values.filter { it.isUnread }
-                val readDiffs = diffMap.values.filterNot { it.isUnread }
+    private fun pullUnreadFeeds(
+        feeds: List<GroupWithFeed>,
+        service: AbstractRssRepository
+    ): Flow<List<GroupWithFeed>> {
+        val unreadCountMapFlow = service.pullImportant(isStarred = false, isUnread = true)
+        return unreadCountMapFlow.combine(
+            diffMapHolder.diffMapSnapshotFlow
+        ) { unreadCountMap, diffMap ->
+            val result = mutableListOf<GroupWithFeed>()
+            val unreadDiffs = diffMap.values.filter { it.isUnread }
+            val readDiffs = diffMap.values.filterNot { it.isUnread }
 
-                for (groupItem in groupWithFeedsList) {
-
-                    val feedList = groupItem.feeds.map { feed ->
-                        val feedId = feed.id
-                        val feedCount = unreadCountMap[feedId] ?: 0
-                        val combinedFeedCount =
-                            feedCount + unreadDiffs.count { it.feedId == feedId } - readDiffs.count { it.feedId == feedId }
-                        feed.copy(important = combinedFeedCount.coerceAtLeast(0))
-                    }
-
-                    val groupItem = if (hideEmptyGroups) {
-                        val filteredFeeds = feedList.filterNot { it.important == 0 }
-                        if (filteredFeeds.isEmpty()) {
-                            continue
-                        } else {
-                            groupItem.copy(feeds = filteredFeeds.toMutableList())
-                        }
-                    } else {
-                        groupItem.copy(feeds = feedList.toMutableList())
-                    }
-
-                    if (groupItem.group.id != defaultGroupId || groupItem.feeds.isNotEmpty()) {
-                        result.add(groupItem)
-                    }
-
+            for (groupItem in feeds) {
+                val feedList = groupItem.feeds.map { feed ->
+                    val feedId = feed.id
+                    val feedCount = unreadCountMap[feedId] ?: 0
+                    val combinedFeedCount =
+                        feedCount + unreadDiffs.count { it.feedId == feedId } - readDiffs.count { it.feedId == feedId }
+                    feed.copy(important = combinedFeedCount.coerceAtLeast(0))
                 }
-                result
-            }.debounce(200L).flowOn(ioDispatcher).collect { _groupWithFeedsListFlow.value = it }
-        }
+
+                val processedGroupItem = if (hideEmptyGroups) {
+                    val filteredFeeds = feedList.filterNot { it.important == 0 }
+                    if (filteredFeeds.isEmpty()) {
+                        null
+                    } else {
+                        groupItem.copy(feeds = filteredFeeds.toMutableList())
+                    }
+                } else {
+                    groupItem.copy(feeds = feedList.toMutableList())
+                }
+
+                if (processedGroupItem != null && (processedGroupItem.group.id != defaultGroupId || processedGroupItem.feeds.isNotEmpty())) {
+                    result.add(processedGroupItem)
+                }
+            }
+            result
+        }.debounce(200L)
     }
 
 }

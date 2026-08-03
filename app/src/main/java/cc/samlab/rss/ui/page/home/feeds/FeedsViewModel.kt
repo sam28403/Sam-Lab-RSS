@@ -17,8 +17,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import cc.samlab.rss.R
@@ -32,12 +36,14 @@ import cc.samlab.rss.domain.data.DiffMapHolder
 import cc.samlab.rss.domain.data.FilterState
 import cc.samlab.rss.domain.data.FilterStateUseCase
 import cc.samlab.rss.domain.data.GroupWithFeedsListUseCase
+import cc.samlab.rss.domain.service.AbstractRssRepository
 import cc.samlab.rss.domain.service.SyncWorker
 import cc.samlab.rss.infrastructure.android.SystemHelper
 import cc.samlab.rss.infrastructure.di.ApplicationScope
 import cc.samlab.rss.infrastructure.di.DefaultDispatcher
 import cc.samlab.rss.infrastructure.di.IODispatcher
 import cc.samlab.rss.infrastructure.preference.SettingsProvider
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 private const val TAG = "FeedsViewModel"
@@ -70,8 +76,6 @@ class FeedsViewModel @Inject constructor(
 
     val filterStateFlow = filterStateUseCase.filterStateFlow
     val groupWithFeedsListFlow = groupWithFeedsListUseCase.groupWithFeedListFlow
-
-    var currentJob: Job? = null
 
     fun sync(force: Boolean = false) {
         val account = feedsUiState.value.account
@@ -135,71 +139,54 @@ class FeedsViewModel @Inject constructor(
             }
         }
         viewModelScope.launch {
-            filterStateUseCase.filterStateFlow.mapLatest { it.filter }
-                .combine(accountFlow) { filter, account ->
-                    filter
+            accountFlow.mapNotNull { it }.combine(
+                filterStateUseCase.filterStateFlow.map { it.filter }.distinctUntilChanged()
+            ) { account, filter ->
+                account to filter
+            }.flatMapLatest { (account, filter) ->
+                val service = rssService.get(account.type.id)
+                when (filter) {
+                    Filter.Unread -> pullUnreadFeeds(service)
+                    Filter.Starred -> pullStarredFeeds(service)
+                    else -> pullAllFeeds(service)
                 }
-                .collect {
-                    currentJob?.cancel()
-                    currentJob = when (it) {
-                        Filter.Unread -> pullUnreadFeeds()
-                        Filter.Starred -> pullStarredFeeds()
-                        else -> pullAllFeeds()
-                    }
-                }
-        }
-    }
-
-    private fun pullAllFeeds(): Job {
-        val articleCountMapFlow =
-            rssService.get().pullImportant(isStarred = false, isUnread = false)
-
-        return viewModelScope.launch {
-            launch {
-                articleCountMapFlow.mapLatest {
-                    val sum = it.values.sum()
-                    androidStringsHelper.getQuantityString(R.plurals.all_desc, sum, sum)
-                }.flowOn(defaultDispatcher).collect { text ->
-                    _feedsUiState.update { it.copy(importantSum = text) }
-                }
-            }
-        }
-    }
-
-    private fun pullStarredFeeds(): Job {
-        val starredCountMap = rssService.get().pullImportant(isStarred = true, isUnread = false)
-
-        return viewModelScope.launch {
-            starredCountMap.mapLatest {
-                val sum = it.values.sum()
-                androidStringsHelper.getQuantityString(R.plurals.starred_desc, sum, sum)
             }.flowOn(defaultDispatcher).collect { text ->
                 _feedsUiState.update { it.copy(importantSum = text) }
             }
         }
     }
 
-    @OptIn(FlowPreview::class)
-    private fun pullUnreadFeeds(): Job {
-        val unreadCountMapFlow = rssService.get().pullImportant(isStarred = false, isUnread = true)
+    private fun pullAllFeeds(service: AbstractRssRepository): Flow<String> {
+        return service.pullImportant(isStarred = false, isUnread = false)
+            .mapLatest {
+                val sum = it.values.sum()
+                androidStringsHelper.getQuantityString(R.plurals.all_desc, sum, sum)
+            }
+    }
 
-        return viewModelScope.launch {
-            diffMapHolder.diffMapSnapshotFlow
-                .combine(
-                    unreadCountMapFlow
-                ) { diffMap, unreadCountMap ->
-                    val sum = unreadCountMap.values.sum()
-                    val combinedSum =
-                        sum + diffMap.values.sumOf { if (it.isUnread) 1.toInt() else -1 } // KT-46360
-                    androidStringsHelper.getQuantityString(
-                        R.plurals.unread_desc,
-                        combinedSum,
-                        combinedSum
-                    )
-                }.debounce(200L).flowOn(defaultDispatcher).collect { text ->
-                    _feedsUiState.update { it.copy(importantSum = text) }
-                }
-        }
+    private fun pullStarredFeeds(service: AbstractRssRepository): Flow<String> {
+        return service.pullImportant(isStarred = true, isUnread = false)
+            .mapLatest {
+                val sum = it.values.sum()
+                androidStringsHelper.getQuantityString(R.plurals.starred_desc, sum, sum)
+            }
+    }
+
+    @OptIn(FlowPreview::class)
+    private fun pullUnreadFeeds(service: AbstractRssRepository): Flow<String> {
+        return diffMapHolder.diffMapSnapshotFlow
+            .combine(
+                service.pullImportant(isStarred = false, isUnread = true)
+            ) { diffMap, unreadCountMap ->
+                val sum = unreadCountMap.values.sum()
+                val combinedSum =
+                    sum + diffMap.values.sumOf { if (it.isUnread) 1.toInt() else -1 } // KT-46360
+                androidStringsHelper.getQuantityString(
+                    R.plurals.unread_desc,
+                    combinedSum,
+                    combinedSum
+                )
+            }.debounce(200L)
     }
 
 //    @OptIn(ExperimentalCoroutinesApi::class)
