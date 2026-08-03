@@ -33,9 +33,10 @@ constructor(
         require(accountId != -1)
         val feedId = data.getString("feedId")
         val groupId = data.getString("groupId")
+        val ignoreConstraints = data.getBoolean("ignoreConstraints", false)
 
         val account = accountService.getAccountById(accountId)
-        if (account != null) {
+        if (account != null && !ignoreConstraints) {
             val isOverheat =
                 account.syncOnlyWhenSafeTemp.value &&
                         systemHelper.getBatteryTemperature() > account.syncMaxTemp

@@ -112,7 +112,7 @@ class FeedsViewModel @Inject constructor(
 
         dismissSyncWarning()
         applicationScope.launch(ioDispatcher) {
-            rssService.get().doSyncOneTime()
+            rssService.get().doSyncOneTime(ignoreConstraints = force)
         }
     }
 

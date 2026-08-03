@@ -282,15 +282,17 @@ constructor(
                     service.doSyncOneTime(
                         feedId = filterState.feed?.id,
                         groupId = filterState.group?.id,
+                        ignoreConstraints = force,
                     )
 
                 is GoogleReaderRssService ->
                     service.doSyncOneTime(
                         feedId = filterState.feed?.id,
                         groupId = filterState.group?.id,
+                        ignoreConstraints = force,
                     )
 
-                else -> service.doSyncOneTime()
+                else -> service.doSyncOneTime(ignoreConstraints = force)
             }
         }
     }

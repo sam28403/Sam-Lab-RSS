@@ -122,7 +122,7 @@ class AndroidApp : Application(), Configuration.Provider {
             if (accountService.isNoAccount()) {
                 launch { accountService.initWithDefaultAccount() }
                     .invokeOnCompletion {
-                        rssService.get().doSyncOneTime(accountService.getCurrentAccountId())
+                        rssService.get().doSyncOneTime(accountService.getCurrentAccountId(), ignoreConstraints = true)
                     }
             }
         }
