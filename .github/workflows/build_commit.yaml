@@ -16,5 +16,5 @@ jobs:
 
             - uses: actions/upload-artifact@v4
               with:
-                  name: ReadYou-GitHub-Build-${{ github.sha }}
+                  name: Sam_Lab_RSS-GitHub-Build-${{ github.sha }}
                   path: app/build/outputs/apk/github/release/*.apk
