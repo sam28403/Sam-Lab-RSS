@@ -174,9 +174,9 @@ class PullToLoadState internal constructor(
      * gone beyond the [threshold] - e.g. a value of 2f indicates that the user has pulled to
      * two times the [threshold].
      */
-    val absProgress get() = abs(offsetPulled) / threshold
+    val absProgress get() = if (threshold > 0f) abs(offsetPulled) / threshold else 0f
 
-    val progress get() = offsetPulled / threshold
+    val progress get() = if (threshold > 0f) offsetPulled / threshold else 0f
 
     /**
      * The offset fraction calculated from [absProgress] and [status],

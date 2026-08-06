@@ -65,6 +65,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import kotlinx.coroutines.delay
@@ -569,9 +570,9 @@ fun FlowPage(
                     val isSyncing by rememberUpdatedState(isSyncing)
 
                     LaunchedEffect(pagingItems) {
-                        snapshotFlow { pagingItems.loadState.isIdle }
+                        snapshotFlow { pagingItems.loadState.refresh }
                             .collect {
-                                if (isSyncing) {
+                                if (isSyncing && it is LoadState.NotLoading && !listState.isScrollInProgress) {
                                     listState.scrollToItem(0)
                                 }
                             }

@@ -78,7 +78,7 @@ constructor(
                     mutablePagerFlow.value =
                         PagerData(
                             Pager(
-                                    config = PagingConfig(pageSize = 50, enablePlaceholders = false)
+                                    config = PagingConfig(pageSize = 50, enablePlaceholders = true)
                                 ) {
                                     if (!searchContent.isNullOrBlank()) {
                                         rssService

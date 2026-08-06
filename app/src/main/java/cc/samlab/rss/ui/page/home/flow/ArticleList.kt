@@ -1,9 +1,13 @@
 package cc.samlab.rss.ui.page.home.flow
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
@@ -12,6 +16,7 @@ import androidx.paging.compose.itemContentType
 import cc.samlab.rss.domain.data.Diff
 import cc.samlab.rss.domain.model.article.ArticleFlowItem
 import cc.samlab.rss.domain.model.article.ArticleWithFeed
+import cc.samlab.rss.ui.ext.surfaceColorAtElevation
 
 @Suppress("FunctionName")
 @OptIn(ExperimentalFoundationApi::class)
@@ -41,22 +46,21 @@ fun LazyListScope.ArticleList(
         ) { index ->
             when (val item = pagingItems[index]) {
                 is ArticleFlowItem.Article -> {
-                    val article = item.articleWithFeed.article
-                    SwipeableArticleItem(
-                        articleWithFeed = item.articleWithFeed,
-                        isUnread = diffMap[article.id]?.isUnread ?: article.isUnread,
+                    ArticleListItem(
+                        item = item,
+                        index = index,
+                        pagingItems = pagingItems,
+                        diffMap = diffMap,
                         articleListTonalElevation = articleListTonalElevation,
-                        onClick = { onClick(it, index) },
                         isSwipeEnabled = isSwipeEnabled,
                         isMenuEnabled = isMenuEnabled,
+                        onClick = onClick,
                         onToggleStarred = onToggleStarred,
                         onToggleRead = onToggleRead,
-                        onMarkAboveAsRead =
-                            if (index == 1) null
-                            else onMarkAboveAsRead, // index == 0 -> ArticleFlowItem.Date
-                        onMarkBelowAsRead =
-                            if (index == pagingItems.itemCount - 1) null else onMarkBelowAsRead,
+                        onMarkAboveAsRead = onMarkAboveAsRead,
+                        onMarkBelowAsRead = onMarkBelowAsRead,
                         onShare = onShare,
+                        isShowFeedIcon = isShowFeedIcon
                     )
                 }
 
@@ -67,47 +71,102 @@ fun LazyListScope.ArticleList(
                     StickyHeader(item.date, isShowFeedIcon, articleListTonalElevation)
                 }
 
-                else -> {}
+                null -> {
+                    ArticlePlaceholder(articleListTonalElevation)
+                }
             }
         }
     } else {
         for (index in 0 until pagingItems.itemCount) {
-            when (val item = pagingItems.peek(index)) {
+            val item = pagingItems.peek(index)
+            if (item == null) {
+                // Placeholder
+                item(key = "placeholder_$index", contentType = CONTENT_TYPE_ARTICLE) {
+                    ArticlePlaceholder(articleListTonalElevation)
+                }
+                continue
+            }
+            when (item) {
                 is ArticleFlowItem.Article -> {
                     item(key = key(item), contentType = contentType(item)) {
-                        val article = item.articleWithFeed.article
-                        SwipeableArticleItem(
-                            articleWithFeed = item.articleWithFeed,
-                            isUnread = diffMap[article.id]?.isUnread ?: article.isUnread,
+                        ArticleListItem(
+                            item = item,
+                            index = index,
+                            pagingItems = pagingItems,
+                            diffMap = diffMap,
                             articleListTonalElevation = articleListTonalElevation,
-                            onClick = { onClick(it, index) },
                             isSwipeEnabled = isSwipeEnabled,
                             isMenuEnabled = isMenuEnabled,
+                            onClick = onClick,
                             onToggleStarred = onToggleStarred,
                             onToggleRead = onToggleRead,
-                            onMarkAboveAsRead =
-                                if (index == 1) null
-                                else onMarkAboveAsRead, // index == 0 -> ArticleFlowItem.Date
-                            onMarkBelowAsRead =
-                                if (index == pagingItems.itemCount - 1) null else onMarkBelowAsRead,
+                            onMarkAboveAsRead = onMarkAboveAsRead,
+                            onMarkBelowAsRead = onMarkBelowAsRead,
                             onShare = onShare,
+                            isShowFeedIcon = isShowFeedIcon
                         )
                     }
                 }
 
                 is ArticleFlowItem.Date -> {
                     if (item.showSpacer) {
-                        item { Spacer(modifier = Modifier.height(32.dp)) }
+                        item(key = "spacer_${key(item)}", contentType = 0) {
+                            Spacer(modifier = Modifier.height(32.dp))
+                        }
                     }
                     stickyHeader(key = key(item), contentType = contentType(item)) {
                         StickyHeader(item.date, isShowFeedIcon, articleListTonalElevation)
                     }
                 }
-
-                else -> {}
             }
         }
     }
+}
+
+@Composable
+private fun ArticleListItem(
+    item: ArticleFlowItem.Article,
+    index: Int,
+    pagingItems: LazyPagingItems<ArticleFlowItem>,
+    diffMap: Map<String, Diff>,
+    articleListTonalElevation: Int,
+    isSwipeEnabled: () -> Boolean,
+    isMenuEnabled: Boolean,
+    onClick: (ArticleWithFeed, Int) -> Unit,
+    onToggleStarred: (ArticleWithFeed) -> Unit,
+    onToggleRead: (ArticleWithFeed) -> Unit,
+    onMarkAboveAsRead: ((ArticleWithFeed) -> Unit)?,
+    onMarkBelowAsRead: ((ArticleWithFeed) -> Unit)?,
+    onShare: ((ArticleWithFeed) -> Unit)?,
+    isShowFeedIcon: Boolean
+) {
+    val article = item.articleWithFeed.article
+    SwipeableArticleItem(
+        articleWithFeed = item.articleWithFeed,
+        isUnread = diffMap[article.id]?.isUnread ?: article.isUnread,
+        articleListTonalElevation = articleListTonalElevation,
+        onClick = { onClick(it, index) },
+        isSwipeEnabled = isSwipeEnabled,
+        isMenuEnabled = isMenuEnabled,
+        onToggleStarred = onToggleStarred,
+        onToggleRead = onToggleRead,
+        onMarkAboveAsRead =
+            if (index <= 1) null
+            else onMarkAboveAsRead, // index == 0 -> ArticleFlowItem.Date
+        onMarkBelowAsRead = if (index == pagingItems.itemCount - 1) null else onMarkBelowAsRead,
+        onShare = onShare,
+    )
+}
+
+@Composable
+private fun ArticlePlaceholder(articleListTonalElevation: Int) {
+    // A simple placeholder to maintain list height
+    Spacer(
+        modifier =
+            Modifier.fillMaxWidth()
+                .height(100.dp)
+                .background(MaterialTheme.colorScheme.surfaceColorAtElevation(articleListTonalElevation.dp))
+    )
 }
 
 private fun key(item: ArticleFlowItem): String {
